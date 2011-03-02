@@ -5,3 +5,7 @@
 
 2009-06-14 ӦBootص
 在ubuntu上进行开发
+
+$JAVA_HOME 			/usr/lib/jvm/java-6-sun-1.6.0.22/bin
+
+Debian 6 is ok!
