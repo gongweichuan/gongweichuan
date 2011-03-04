@@ -1,0 +1,182 @@
+<?xml version="1.0"  encoding="GB2312"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="boost-install" basedir="../../build" default="boost-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    boost Compilation Targets
+  </description>
+  
+  <target name="boost-init" depends="prepare">
+    <property file="${source}/corepower/boost/boost.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <!-- fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+
+      <fileset dir="${tools.lib.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="boost-compile" depends="boost-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${boost.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${boost.output}"/>
+    <mkdir dir="${boost.output}"/>  
+    <mkdir dir="${boost.output}/classes"/>
+
+	<javac srcdir="${boost.source}"
+           destdir="${boost.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+           classpathref="javac.classpath"/>
+  </target>
+
+  <target name="boost-build" depends="boost-compile">
+    <mkdir dir="${boost.output}/lib"/>
+    <jar jarfile="${boost.output}/lib/${boost.jar.name}" index="true">
+      <fileset dir="${boost.output}/classes">
+		<include name="com/chinaviponline/erp/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="boost-install" depends="boost-build">
+       <!-- 拷贝到版本中-->
+	<!-- mkdir dir="${lct.erp.build.dir}/${boost.par.lct.name}"/ -->
+      	<copy todir="${lct.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${boost.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+
+	<!-- mkdir dir="${clnt.erp.build.dir}/${boost.par.clnt.name}"/ -->
+      	<copy todir="${clnt.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${boost.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+
+	<!-- mkdir dir="${svr.erp.build.dir}/${boost.par.svr.name}"/ -->
+      	<copy todir="${svr.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${boost.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件,这里只有一个boost.properties -->
+  <copy todir="${lct.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${boost.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${clnt.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${boost.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${boost.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 ,特殊支撑包,无资源文件-->
+	  <!-- copy todir="${clnt.erp.build.dir}/${boost.par.clnt.name}/conf" filtering="no" overwrite="true">
+			<fileset dir="${boost.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${boost.par.lct.name}/conf" filtering="no" overwrite="true">
+			<fileset dir="${boost.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${boost.par.svr.name}/conf" filtering="no" overwrite="true">
+			<fileset dir="${boost.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy -->	
+
+
+		<!-- 将boost模板配置文件拷贝到版本中,特殊支撑文件,无模板配置文件 -->
+		<!-- copy todir="${lct.erp.build.dir}/${boost.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${boost.template}/lct/${boost.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${boost.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${boost.template}/clnt/${boost.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${boost.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${boost.template}/svr/${boost.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy -->
+
+		<!-- 拷贝ant*.jar到bing/boot_lib-->
+		<mkdir dir="${lct.bin.boot.lib.dir}"/>
+      	<copy todir="${lct.bin.boot.lib.dir}" filtering="no" overwrite="true">
+			<fileset dir="${tools.lib.jar.dir}">
+				<include name="ant.jar"/>
+				<include name="ant-launcher.jar"/>
+			</fileset>
+		</copy>		
+
+		<mkdir dir="${clnt.bin.boot.lib.dir}"/>
+			<copy todir="${clnt.bin.boot.lib.dir}" filtering="no" overwrite="true">
+			<fileset dir="${tools.lib.jar.dir}">
+				<include name="ant.jar"/>
+				<include name="ant-launcher.jar"/>
+			</fileset>
+		</copy>	
+
+		<mkdir dir="${svr.bin.boot.lib.dir}"/>
+			<copy todir="${svr.bin.boot.lib.dir}" filtering="no" overwrite="true">
+			<fileset dir="${tools.lib.jar.dir}">
+				<include name="ant.jar"/>
+				<include name="ant-launcher.jar"/>
+			</fileset>
+		</copy>	
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="boost-checkstyle">
+	  <delete dir="${basedir}/../corepower/boost/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/boost/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/boost/output/checkstyle/boost-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/boost/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>
