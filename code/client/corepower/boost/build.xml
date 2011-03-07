@@ -1,4 +1,4 @@
-<?xml version="1.0"  encoding="GB2312"?>
+<?xml version="1.0"  encoding="UTF-8"?>
 <!--
   www.ChinaVipOnline.com License.
 -->
@@ -58,7 +58,7 @@
   </target>
 	
 <target name="boost-install" depends="boost-build">
-       <!-- ¿½±´µ½°æ±¾ÖÐ-->
+       <!-- æ‹·è´åˆ°ç‰ˆæœ¬ä¸­-->
 	<!-- mkdir dir="${lct.erp.build.dir}/${boost.par.lct.name}"/ -->
       	<copy todir="${lct.bin.dir}" filtering="no" overwrite="true">
 		<fileset dir="${boost.output}/lib">
@@ -81,7 +81,7 @@
 	</copy>	
 	
 
-  <!-- ¿½±´ÅäÖÃÎÄ¼þ,ÕâÀïÖ»ÓÐÒ»¸öboost.properties -->
+  <!-- æ‹·è´é…ç½®æ–‡ä»¶,è¿™é‡Œåªæœ‰ä¸€ä¸ªboost.properties -->
   <copy todir="${lct.bin.dir}" filtering="no" overwrite="true">
 		<fileset dir="${boost.conf}">
 			<include name="**"/>
@@ -102,7 +102,7 @@
 		</fileset>
 	</copy>	
 	
-	  <!-- ¿½±´×ÊÔ´ÎÄ¼þ ,ÌØÊâÖ§³Å°ü,ÎÞ×ÊÔ´ÎÄ¼þ-->
+	  <!-- æ‹·è´èµ„æºæ–‡ä»¶ ,ç‰¹æ®Šæ”¯æ’‘åŒ…,æ— èµ„æºæ–‡ä»¶-->
 	  <!-- copy todir="${clnt.erp.build.dir}/${boost.par.clnt.name}/conf" filtering="no" overwrite="true">
 			<fileset dir="${boost.res}">
 				<include name="**"/>
@@ -125,7 +125,7 @@
 		</copy -->	
 
 
-		<!-- ½«boostÄ£°åÅäÖÃÎÄ¼þ¿½±´µ½°æ±¾ÖÐ,ÌØÊâÖ§³ÅÎÄ¼þ,ÎÞÄ£°åÅäÖÃÎÄ¼þ -->
+		<!-- å°†boostæ¨¡æ¿é…ç½®æ–‡ä»¶æ‹·è´åˆ°ç‰ˆæœ¬ä¸­,ç‰¹æ®Šæ”¯æ’‘æ–‡ä»¶,æ— æ¨¡æ¿é…ç½®æ–‡ä»¶ -->
 		<!-- copy todir="${lct.erp.build.dir}/${boost.par.lct.name}" filtering="no" overwrite="true">
 			<fileset dir="${boost.template}/lct/${boost.par.lct.name}">
 				<include name="*.xml"/>
@@ -142,7 +142,7 @@
 			</fileset>
 		</copy -->
 
-		<!-- ¿½±´ant*.jarµ½bing/boot_lib-->
+		<!-- æ‹·è´ant*.jaråˆ°bing/boot_lib-->
 		<mkdir dir="${lct.bin.boot.lib.dir}"/>
       	<copy todir="${lct.bin.boot.lib.dir}" filtering="no" overwrite="true">
 			<fileset dir="${tools.lib.jar.dir}">
@@ -168,7 +168,7 @@
 		</copy>	
   </target>  
   
-   <!-- Ä£¿éµÄcheckstyle¼ì²é -->
+   <!-- æ¨¡å—çš„checkstyleæ£€æŸ¥ -->
   <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
   <target name="boost-checkstyle">
 	  <delete dir="${basedir}/../corepower/boost/output/checkstyle"/>
