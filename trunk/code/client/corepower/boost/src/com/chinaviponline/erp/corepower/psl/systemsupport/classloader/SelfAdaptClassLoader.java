@@ -8,21 +8,21 @@ import java.net.URLClassLoader;
 import java.nio.MappedByteBuffer;
 
 /**
- * <p>ÎÄ¼şÃû³Æ£ºSelfAdaptClassLoader.java</p>
- * <p>ÎÄ¼şÃèÊö£ºÀà¼ÓÔØÆ÷</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2007-2017</p>
- * <p>¹«    Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2008-5-9</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * <p>æ–‡ä»¶åç§°ï¼šSelfAdaptClassLoader.java</p>
+ * <p>æ–‡ä»¶æè¿°ï¼šç±»åŠ è½½å™¨</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2007-2017</p>
+ * <p>å…¬    å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2008-5-9</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º    °æ±¾ºÅ£º    ĞŞ¸ÄÈË£º    ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š    ç‰ˆæœ¬å·ï¼š    ä¿®æ”¹äººï¼š    ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨
+ * @author é¾šä¸ºå·
  * @email  gongweichuan(AT)gmail.com
  */
 public class SelfAdaptClassLoader extends URLClassLoader
@@ -39,49 +39,49 @@ public class SelfAdaptClassLoader extends URLClassLoader
     private static final int TEN_THOUSAND = 10000;
 
     /**
-     * ¿É¹«ÓÃ
+     * å¯å…¬ç”¨
      */
     private byte sharedBytes[];
 
     /**
-     * ¼ÓÔØ»º´æ
+     * åŠ è½½ç¼“å­˜
      */
     private LoaderCache cache;
 
     /**
-     * µ±Ç°ÎÄ¼ş
+     * å½“å‰æ–‡ä»¶
      */
     private MappedByteBuffer currentFileBuffer;
 
     /**
-     * ×Ü¹²¼ÓÔØÊ±¼ä
+     * æ€»å…±åŠ è½½æ—¶é—´
      */
     long erpClassTotalTime;
 
     /**
-     * ÀàµÄ×ÜÊı
+     * ç±»çš„æ€»æ•°
      */
     int erpClassCount;
 
     /**
-     * ÏµÍ³Àà×Ü¹²¼ÓÔØÊ±¼ä
+     * ç³»ç»Ÿç±»æ€»å…±åŠ è½½æ—¶é—´
      */
     long systemClassTotalTime;
 
     /**
-     * ÏµÍ³ÀàµÄ×ÜÊı
+     * ç³»ç»Ÿç±»çš„æ€»æ•°
      */
     int systemClassCount;
 
     /**
-     * ×Ü¹²ÀàµÄ¼ÓÔØÊ±¼ä
+     * æ€»å…±ç±»çš„åŠ è½½æ—¶é—´
      */
-    long totalClassTime;        // µ÷ÊÔµÄÊ±ºòºÄÊ±±È½Ï³¤,´Óint¸ÄÎªlong
+    long totalClassTime;        // è°ƒè¯•çš„æ—¶å€™è€—æ—¶æ¯”è¾ƒé•¿,ä»intæ”¹ä¸ºlong
 
     /**
-     * ¹¹Ôìº¯Êı
-     * @param initURLs Â·¾¶
-     * @param parent ¸¸Àà¼ÓÔØÆ÷
+     * æ„é€ å‡½æ•°
+     * @param initURLs è·¯å¾„
+     * @param parent çˆ¶ç±»åŠ è½½å™¨
      */
     public SelfAdaptClassLoader(URL initURLs[], ClassLoader parent)
     {
@@ -100,14 +100,14 @@ public class SelfAdaptClassLoader extends URLClassLoader
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£ºÌí¼Óclasspath</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨</p>
-     * <p>´´½¨ÈÕÆÚ£º2008-5-18</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šæ·»åŠ classpath</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2008-5-18</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º    ĞŞ¸ÄÈÕÆÚ£º    ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š    ä¿®æ”¹æ—¥æœŸï¼š    ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
      * @param urls
      */
@@ -121,7 +121,7 @@ public class SelfAdaptClassLoader extends URLClassLoader
 
     /**
      * 
-     * ¹¦ÄÜÃèÊö£º»ñÈ¡×ÊÔ´
+     * åŠŸèƒ½æè¿°ï¼šè·å–èµ„æº
      * @see java.lang.ClassLoader#getResource(java.lang.String)
      */
     public synchronized URL getResource(String name)
@@ -151,7 +151,7 @@ public class SelfAdaptClassLoader extends URLClassLoader
 
     /**
      * 
-     * ¹¦ÄÜÃèÊö£º¼ÓÔØclass
+     * åŠŸèƒ½æè¿°ï¼šåŠ è½½class
      * @see java.lang.ClassLoader#loadClass(java.lang.String, boolean)
      */
     protected synchronized Class loadClass(String name, boolean resolve)
@@ -212,14 +212,14 @@ public class SelfAdaptClassLoader extends URLClassLoader
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£ºÆô¶¯Ê±¼ä</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨</p>
-     * <p>´´½¨ÈÕÆÚ£º2008-5-18</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šå¯åŠ¨æ—¶é—´</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2008-5-18</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º    ĞŞ¸ÄÈÕÆÚ£º    ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š    ä¿®æ”¹æ—¥æœŸï¼š    ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
      */
     public synchronized void requestStartupTimeOver()
@@ -234,14 +234,14 @@ public class SelfAdaptClassLoader extends URLClassLoader
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£ºÍ£Ö¹Ñ¹Ëõ</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨</p>
-     * <p>´´½¨ÈÕÆÚ£º2008-5-18</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šåœæ­¢å‹ç¼©</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2008-5-18</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º    ĞŞ¸ÄÈÕÆÚ£º    ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š    ä¿®æ”¹æ—¥æœŸï¼š    ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
      */
     public synchronized void requestStopOptimize()
@@ -265,14 +265,14 @@ public class SelfAdaptClassLoader extends URLClassLoader
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£º¿ªÊ¼Ñ¹Ëõ</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨</p>
-     * <p>´´½¨ÈÕÆÚ£º2008-5-18</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šå¼€å§‹å‹ç¼©</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2008-5-18</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º    ĞŞ¸ÄÈÕÆÚ£º    ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š    ä¿®æ”¹æ—¥æœŸï¼š    ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
      */
     public synchronized void requestStartOptimize()
@@ -283,19 +283,19 @@ public class SelfAdaptClassLoader extends URLClassLoader
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£º²éÕÒclass</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨</p>
-     * <p>´´½¨ÈÕÆÚ£º2008-5-18</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šæŸ¥æ‰¾class</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2008-5-18</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º    ĞŞ¸ÄÈÕÆÚ£º    ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š    ä¿®æ”¹æ—¥æœŸï¼š    ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
-     * @param info »º´æĞÅÏ¢
-     * @param name ÀàÃû³Æ
-     * @return Àà
-     * @throws ClassNotFoundException Ã»ÓĞÕÒµ½Àà
+     * @param info ç¼“å­˜ä¿¡æ¯
+     * @param name ç±»åç§°
+     * @return ç±»
+     * @throws ClassNotFoundException æ²¡æœ‰æ‰¾åˆ°ç±»
      */
     private Class findClass(ClassCacheInfo info, String name)
             throws ClassNotFoundException

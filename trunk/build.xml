@@ -4,7 +4,7 @@
 -->
 <project name="PRMCommon-install"  default="PRMCommon-install">
 
-	<!-- Í³Ò»µÄ»·¾³±äÁ¿ -->
+	<!-- ç»Ÿä¸€çš„ç¯å¢ƒå˜é‡ -->
 	<!-- import file="../../../tools/targets/init-build.xml" / basedir="./build" -->
 
 	<description>
@@ -47,7 +47,7 @@
 	</target>
 
 	<target name="PRMCommon-init" depends="prepare">
-		<!-- Í³Ò»µÄÊôĞÔÎÄ¼ş¶¨Òå -->
+		<!-- ç»Ÿä¸€çš„å±æ€§æ–‡ä»¶å®šä¹‰ -->
 		<!--property file="${source}/pal/config/PRMCommon/PRMCommon.properties"/ -->
 		<path id="commomlib">
 			<fileset dir="${lib.dir}">
@@ -61,14 +61,14 @@
 			</fileset>
 		</path>	
 		
-		<!-- Í³Ò»ÓÃ javac.classpath ±íÊ¾-->
+		<!-- ç»Ÿä¸€ç”¨ javac.classpath è¡¨ç¤º-->
 		<path id="javac.classpath">
 			<path refid="commomlib"/>			
 			<path refid="antlib"/>		
 		</path>
 	</target>
 
-	<!-- ±àÒë -->
+	<!-- ç¼–è¯‘ -->
 	<target name="PRMCommon-compile" depends="PRMCommon-init">
 		<echo>
 		===================================PRMCommon==========================
@@ -79,7 +79,7 @@
 		<mkdir dir="${build.dir}"/>
 		<mkdir dir="${build.classes.dir}"/>
 		
-		<!-- ±àÒëÕıÊ½´úÂë -->
+		<!-- ç¼–è¯‘æ­£å¼ä»£ç  -->
 		<javac srcdir="${src.dir}"
            destdir="${build.classes.dir}"
            debug="${debug}"           
@@ -87,7 +87,7 @@
            nowarn="${compiler.nowarn}"
            classpathref="javac.classpath"/>
 
-		<!-- ±àÒë²âÊÔ´úÂë -->
+		<!-- ç¼–è¯‘æµ‹è¯•ä»£ç  -->
 		<javac srcdir="${test.dir}"
            destdir="${build.classes.dir}"
            debug="${debug}"           
@@ -96,13 +96,13 @@
            classpathref="javac.classpath"/>
 	</target>
 
-	<!-- Éú³É(Õë¶ÔÄ£¿é×ÔÉíËùÓĞµÄÄ¿Â¼) -->
+	<!-- ç”Ÿæˆ(é’ˆå¯¹æ¨¡å—è‡ªèº«æ‰€æœ‰çš„ç›®å½•) -->
 	<target name="PRMCommon-build" depends="PRMCommon-compile">
 		<mkdir dir="${build.dir}/lib"/>
 		<mkdir dir="${build.dir}/conf"/>
 		<mkdir dir="${build.dir}/res"/>
 
-		<!-- ¿½±´ÅäÖÃÎÄ¼ş -->
+		<!-- æ‹·è´é…ç½®æ–‡ä»¶ -->
 		<copy todir="${build.dir}/conf" filtering="no" overwrite="true">
 			<fileset dir="${etc.dir}/conf">
 				<include name="**"/>
@@ -110,7 +110,7 @@
 			</fileset>
 		</copy>
 
-		<!-- ¿½±´×ÊÔ´ÎÄ¼ş -->
+		<!-- æ‹·è´èµ„æºæ–‡ä»¶ -->
 		<copy todir="${build.dir}/res" filtering="no" overwrite="true">
 			<fileset dir="${etc.dir}/res">
 				<include name="**"/>
@@ -118,14 +118,14 @@
 			</fileset>
 		</copy>
 
-		<!-- Éú³Éjar -->
+		<!-- ç”Ÿæˆjar -->
 		<jar jarfile="${build.dir}/lib/${PRM.jar.name}" index="true">
 			<fileset dir="${build.classes.dir}"/>
 		</jar>
 
-		<!-- Éú³ÉRAR °ÑÄ¿Â¼ÏÂµÄÎÄ¼ş´ò°ü µ«²»°üÀ¨erpÄ¿Â¼ -->
+		<!-- ç”ŸæˆRAR æŠŠç›®å½•ä¸‹çš„æ–‡ä»¶æ‰“åŒ… ä½†ä¸åŒ…æ‹¬erpç›®å½• -->
 		<delete>
-			<!-- ÏÈÉ¾³ıÖ® -->
+			<!-- å…ˆåˆ é™¤ä¹‹ -->
 			<fileset dir="${start.dir}">
 				<filename  name="prm*src.rar"/>
 			</fileset>			
@@ -139,21 +139,21 @@
 			</fileset>
 		</jar>
 
-		<!-- ·¢ËÍÓÊ¼ş ÖÆ×÷ÖĞ-->
+		<!-- å‘é€é‚®ä»¶ åˆ¶ä½œä¸­-->
 		<!--antcall target="sendmail" / -->
 		
-		<!-- µ¥Ôª²âÊÔÖÆ×÷ÖĞ-->
+		<!-- å•å…ƒæµ‹è¯•åˆ¶ä½œä¸­-->
 		<!--antcall target="junittest" -->
 		
 		
-		<!-- ¿½±´parÄ£°åµ½par°üÖĞ -->
+		<!-- æ‹·è´paræ¨¡æ¿åˆ°paråŒ…ä¸­ -->
 		<!--copy todir="${PRMCommon.output.PRMCommonpar}" filtering="no" overwrite="true">
 			<fileset dir="${PRMCommon.template.PRMCommonpar}">
 				<include name="**"/>
 			</fileset>
 		</copy -->
 
-		<!-- ¿½±´libÖĞµÄjarµ½par°üÖĞ -->
+		<!-- æ‹·è´libä¸­çš„jaråˆ°paråŒ…ä¸­ -->
 		<!--copy todir="${PRMCommon.output.PRMCommonpar}" filtering="no" overwrite="true">
 			<fileset dir="${PRMCommon.output}/lib">
 				<include name="*.jar"/>
@@ -161,12 +161,12 @@
 		</copy-->
 	</target>
 
-	<!-- ·¢²¼ -->
+	<!-- å‘å¸ƒ -->
 	<target name="PRMCommon-install" depends="PRMCommon-build">
 		<property name="test.tmp.dir" value="${basedir}/output"/>
 		<property name="test.tmp.classes" value="${test.tmp.dir}/classes"/>
 
-		<!-- ¿½±´µ½°æ±¾lctÖĞ-->
+		<!-- æ‹·è´åˆ°ç‰ˆæœ¬lctä¸­-->
 		<!--mkdir dir="${lct.T3.dir}/${PRMCommon.par.name}"/>
 		<copy todir="${lct.T3.dir}/${PRMCommon.par.name}" filtering="no" overwrite="true">
 			<fileset dir="${PRMCommon.output.PRMCommonpar}">
@@ -174,7 +174,7 @@
 			</fileset>
 		</copy -->
 
-		<!-- ¿½±´µ½°æ±¾clntÖĞ-->
+		<!-- æ‹·è´åˆ°ç‰ˆæœ¬clntä¸­-->
 		<!-- mkdir dir="${clnt.T3.dir}/${PRMCommon.par.name}"/>
 		<copy todir="${clnt.T3.dir}/${PRMCommon.par.name}" filtering="no" overwrite="true">
 			<fileset dir="${PRMCommon.output.PRMCommonpar}">
@@ -182,14 +182,14 @@
 			</fileset>
 		</copy -->
 
-		<!-- ¿½±´µ½test.tmp.classesÖĞ£¬ÓÃÓÚµ¥Ôª²âÊÔ-->
+		<!-- æ‹·è´åˆ°test.tmp.classesä¸­ï¼Œç”¨äºå•å…ƒæµ‹è¯•-->
 		<!--copy todir="${test.tmp.dir}" overwrite="true">
 			<fileset dir="${source}/pal/config/PRMCommon/output">
 				<include name="**/*.jar"/>
 			</fileset>
 		</copy -->
 
-		<!-- ½âjarµ½test.tmp.classesÖĞ£¬ÓÃÓÚµ¥Ôª²âÊÔ-->
+		<!-- è§£jaråˆ°test.tmp.classesä¸­ï¼Œç”¨äºå•å…ƒæµ‹è¯•-->
 		<!-- unjar dest="${test.tmp.classes}" overwrite="true">
 			<fileset dir="${test.tmp.dir}/lib">
 				<include name="${PRMCommon.jar.name}"/>
@@ -197,10 +197,10 @@
 		</unjar-->
 	</target>
 
-	<!-- Ä£¿éµÄcheckstyle¼ì²é£¨ĞèÔËĞĞcheckstyle.batÖ´ĞĞÏÂÃæ½Å±¾£© -->
+	<!-- æ¨¡å—çš„checkstyleæ£€æŸ¥ï¼ˆéœ€è¿è¡Œcheckstyle.batæ‰§è¡Œä¸‹é¢è„šæœ¬ï¼‰ -->
 	<!-- taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/ -->
 
-	<!-- Ğè°Ñ´ËÈÎÎñÃû³ÆĞ´µ½checkstyle.batÖĞ -->
+	<!-- éœ€æŠŠæ­¤ä»»åŠ¡åç§°å†™åˆ°checkstyle.batä¸­ -->
 	<target name="commonconfig-checkstyle">
 		<!-- delete dir="${basedir}/../pal/config//PRMCommon/output/checkstyle"/ -->
 		<!-- mkdir dir="${basedir}/../pal/config/PRMCommon/output/checkstyle"/ -->
@@ -213,10 +213,10 @@
 	
 	<target name="sendmail" >
 		<echo>t3 test succeeded</echo>
-		<property name="subject" value="±àÒë²âÊÔ!${currenttime}"/>
+		<property name="subject" value="ç¼–è¯‘æµ‹è¯•!${currenttime}"/>
 		<echo>sendMail......</echo>
 		<mail mailhost="mail.21cn.com" subject="${subject}" tolist="g-w-c@hotmail.com" user="gwcproxy@21cn.com" password="1qaz2wsx" >
-			<from name="²âÊÔ" address="gwcproxy@21cn.com"/>
+			<from name="æµ‹è¯•" address="gwcproxy@21cn.com"/>
 			<message>SendMail and attache</message>
 			<fileset dir="${start.dir}" >
 				<include name="*.rar"/>
@@ -224,7 +224,7 @@
 		</mail>
 	</target>
 	
-	<!-- ËùÓĞ±àÒëÍê³Éºó ÔËĞĞËü -->
+	<!-- æ‰€æœ‰ç¼–è¯‘å®Œæˆå è¿è¡Œå®ƒ -->
 	<target name="Run The Programe">
 	<java jar="">
 	</java>

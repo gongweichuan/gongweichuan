@@ -15,58 +15,58 @@ import java.util.StringTokenizer;
 import com.chinaviponline.erp.corepower.psl.systemsupport.classloader.SelfAdaptClassLoader;
 
 /**
- * <p>ÎÄ¼şÃû³Æ£ºBoostMain.java</p>
- * <p>ÎÄ¼şÃèÊö£ºLoadÖ÷³ÌĞò</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2007-2017</p>
- * <p>¹«    Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2008-5-8</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * <p>æ–‡ä»¶åç§°ï¼šBoostMain.java</p>
+ * <p>æ–‡ä»¶æè¿°ï¼šLoadä¸»ç¨‹åº</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2007-2017</p>
+ * <p>å…¬    å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2008-5-8</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º    °æ±¾ºÅ£º    ĞŞ¸ÄÈË£º    ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š    ç‰ˆæœ¬å·ï¼š    ä¿®æ”¹äººï¼š    ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨
+ * @author é¾šä¸ºå·
  * @email  gongweichuan(AT)gmail.com
  */
 public class BoostMain
 {
 
     /**
-     * Èë¿Ú·½·¨Ãû
+     * å…¥å£æ–¹æ³•å
      */
     private static final String MAIN = "main";
 
     /**
-     * ¿Í»§¶Ë×Ö·û´®±êÊ¾
+     * å®¢æˆ·ç«¯å­—ç¬¦ä¸²æ ‡ç¤º
      */
     private static final String CLIENT = "client";
 
     /**
-     * erp.boot.bootclass Æô¶¯Àà
+     * erp.boot.bootclass å¯åŠ¨ç±»
      */
     private static final String BOOTBOOTCLASS = "erp.boot.bootclass";
 
     /**
-     * erp.boot.classpathes ÀàÂ·¾¶
+     * erp.boot.classpathes ç±»è·¯å¾„
      */
     private static final String BOOTCLASSPATHES = "erp.boot.classpathes";
 
     /**
-     * erp.boot.type Æô¶¯ÀàĞÍClient»òÕßServer
+     * erp.boot.type å¯åŠ¨ç±»å‹Clientæˆ–è€…Server
      */
     private static final String BOOTTYPE = "erp.boot.type";
 
     /**
-     * ×Ö·û´®±àÂë UTF-8
+     * å­—ç¬¦ä¸²ç¼–ç  UTF-8
      */
     private static final String UTF8 = "UTF-8";
 
     /**
-     * ÊôĞÔÎÄ¼ş
+     * å±æ€§æ–‡ä»¶
      */
     public static final String BOOT_INFO_FILE_NAME = "bin/bootinfo.properties";
 
@@ -76,7 +76,7 @@ public class BoostMain
     public static String homeDir = null;
 
     /**
-     * ¹¹Ôìº¯Êı µ¥Àı
+     * æ„é€ å‡½æ•° å•ä¾‹
      *
      */
     private BoostMain()
@@ -86,17 +86,17 @@ public class BoostMain
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£ºÖ÷º¯Êı,Èë¿Ú</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨</p>
-     * <p>´´½¨ÈÕÆÚ£º2008-5-9</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šä¸»å‡½æ•°,å…¥å£</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2008-5-9</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º    ĞŞ¸ÄÈÕÆÚ£º    ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š    ä¿®æ”¹æ—¥æœŸï¼š    ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
-     * @param args ÃüÁîĞĞ²ÎÊı
-     * @throws Exception IOÒì³£,ÕÒ²»CLASSÒì³£µÈ
+     * @param args å‘½ä»¤è¡Œå‚æ•°
+     * @throws Exception IOå¼‚å¸¸,æ‰¾ä¸CLASSå¼‚å¸¸ç­‰
      */
     public static void main(String args[]) throws Exception
     {
@@ -105,11 +105,11 @@ public class BoostMain
                 .getCodeSource().getLocation().getFile();
         jarPath = URLDecoder.decode(jarPath, UTF8);
 
-        // Ö÷Ä¿Â¼
+        // ä¸»ç›®å½•
         homeDir = (new File(jarPath)).getParentFile().getParent()
                 + File.separator;
 
-        // ÊôĞÔÎÄ¼ş
+        // å±æ€§æ–‡ä»¶
         String binDir = homeDir + BoostMain.BOOT_INFO_FILE_NAME;
         FileInputStream inS = null;
         try
@@ -120,7 +120,7 @@ public class BoostMain
         finally
         {
 
-            // ¹Ø±ÕÎÄ¼ş
+            // å…³é—­æ–‡ä»¶
             if (inS != null)
             {
                 try
@@ -149,7 +149,7 @@ public class BoostMain
         ClassLoader p1 = Thread.currentThread().getContextClassLoader();
         URLClassLoader theNewClassLoader;
 
-        if (type.equalsIgnoreCase(CLIENT)) // ²»Çø·Ö´óĞ¡Ğ´
+        if (type.equalsIgnoreCase(CLIENT)) // ä¸åŒºåˆ†å¤§å°å†™
         {
             theNewClassLoader = new SelfAdaptClassLoader(initURLs, p1);
         }
