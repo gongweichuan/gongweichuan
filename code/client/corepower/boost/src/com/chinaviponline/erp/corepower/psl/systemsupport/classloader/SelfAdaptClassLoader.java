@@ -154,11 +154,11 @@ public class SelfAdaptClassLoader extends URLClassLoader
      * 功能描述：加载class
      * @see java.lang.ClassLoader#loadClass(java.lang.String, boolean)
      */
-    protected synchronized Class loadClass(String name, boolean resolve)
+    protected synchronized Class<?> loadClass(String name, boolean resolve)
             throws ClassNotFoundException
     {
         long tt1 = System.currentTimeMillis();
-        Class c = findLoadedClass(name);
+        Class<?> c = findLoadedClass(name);
         if (c == null)
         {
             if (cache != null)
@@ -297,7 +297,7 @@ public class SelfAdaptClassLoader extends URLClassLoader
      * @return 类
      * @throws ClassNotFoundException 没有找到类
      */
-    private Class findClass(ClassCacheInfo info, String name)
+    private Class<?> findClass(ClassCacheInfo info, String name)
             throws ClassNotFoundException
     {
         int classOffset = info.offset;
@@ -314,5 +314,15 @@ public class SelfAdaptClassLoader extends URLClassLoader
         }
 
         return defineClass(name, sharedBytes, 0, classLength);
+    }
+
+    public static int getONE_HUNDRED()
+    {
+        return ONE_HUNDRED;
+    }
+
+    public static int getTEN_THOUSAND()
+    {
+        return TEN_THOUSAND;
     }
 }
