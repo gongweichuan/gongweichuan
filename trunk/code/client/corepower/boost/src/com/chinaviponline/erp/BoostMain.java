@@ -142,7 +142,9 @@ public class BoostMain
         URL initURLs[] = new URL[size];
         for (int i = 0; st.hasMoreElements(); i++)
         {
-            initURLs[i] = (new File(st.nextToken())).toURL();
+            //initURLs[i] = (new File(st.nextToken())).toURL();
+            //toURL() 已过时。 此方法不会自动转义 URL 中的非法字符
+            initURLs[i] = (new File(st.nextToken())).toURI().toURL();
         }
 
         String bootclassName = p.getProperty(BOOTBOOTCLASS);
@@ -159,7 +161,9 @@ public class BoostMain
         }
 
         Thread.currentThread().setContextClassLoader(theNewClassLoader);
-        Class bootClass = theNewClassLoader.loadClass(bootclassName);
+        // Class bootClass = theNewClassLoader.loadClass(bootclassName);
+        //泛型的例子
+        Class<?> bootClass = theNewClassLoader.loadClass(bootclassName);
         Method mainMethod = bootClass.getMethod(MAIN,
                 new Class[] {java.lang.String[].class});
         mainMethod.invoke(null, new Object[] {args});
