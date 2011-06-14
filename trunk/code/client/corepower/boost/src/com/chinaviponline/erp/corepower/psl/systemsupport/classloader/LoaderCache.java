@@ -8,8 +8,6 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.security.CodeSource;
-import java.security.ProtectionDomain;
 import java.util.*;
 import java.util.zip.*;
 
@@ -74,32 +72,32 @@ public final class LoaderCache
     /**
      * 缓存Jar信息
      */
-    private final HashMap cachedJarInfoMap = new HashMap(50);
+    private final HashMap<Object,Object> cachedJarInfoMap = new HashMap<Object,Object>(50);
 
     /**
      * 缓存类信息
      */
-    private final HashMap cachedClassInfoMap = new HashMap(3000);
+    private final HashMap<Object,Object> cachedClassInfoMap = new HashMap<Object,Object>(3000);
 
     /**
      * 缓存的资源文件
      */
-    private final HashMap cachedResourceFilesMap = new HashMap(500);
+    private final HashMap<Object,Object> cachedResourceFilesMap = new HashMap<Object,Object>(500);
 
     /**
      * 新找到的类
      */
-    private final LinkedList newFoundClasses = new LinkedList();
+    private final LinkedList<Object> newFoundClasses = new LinkedList<Object>();
 
     /**
      * 缓存的URL
      */
-    private final HashMap cachedURLsMap = new HashMap(500);
+    private final HashMap<Object,Object> cachedURLsMap = new HashMap<Object,Object>(500);
 
     /**
      * 新找到的资源URL
      */
-    private final HashMap newFoundResourceURLsMap = new HashMap();
+    private final HashMap<Object,Object> newFoundResourceURLsMap = new HashMap<Object,Object>();
 
     /**
      * 类二进制文件
@@ -235,7 +233,7 @@ public final class LoaderCache
             {
                 try
                 {
-                    cachedURL = resourceFile.toURL();
+                    cachedURL = resourceFile.toURI().toURL();
                 }
                 catch (Exception ignore)
                 {
@@ -1160,6 +1158,41 @@ public final class LoaderCache
     }
     
     
+
+    public static byte getMAGIC()
+    {
+        return MAGIC;
+    }
+
+
+
+    public static byte getVERSION()
+    {
+        return VERSION;
+    }
+
+
+
+    public static int getFIFTY()
+    {
+        return FIFTY;
+    }
+
+
+
+    public static int getFIVE_HUNDRED()
+    {
+        return FIVE_HUNDRED;
+    }
+
+
+
+    public static int getTHREE_THOUSAND()
+    {
+        return THREE_THOUSAND;
+    }
+
+
 
     // 后台线程
     private final class BackRunnable implements Runnable
