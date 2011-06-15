@@ -1,0 +1,2 @@
+Google App EngineµÄEclipse²å¼þupdate Site.
+http://dl.google.com/eclipse/plugin/3.4
