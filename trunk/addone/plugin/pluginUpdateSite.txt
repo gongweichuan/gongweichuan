@@ -1,2 +1,5 @@
 Google App Engine的Eclipse插件update Site.
 http://dl.google.com/eclipse/plugin/3.4
+
+subclipse的Eclipse插件update Site.
+http://subclipse.tigris.org/update_1.6.x
