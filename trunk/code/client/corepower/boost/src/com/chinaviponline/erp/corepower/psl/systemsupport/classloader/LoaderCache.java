@@ -174,7 +174,7 @@ public final class LoaderCache
 		return this.currentFileBuffer;
     	
     	/*
-		 * //TODO 理清逻辑 优先级 classBinFile = class1File.exists() ?
+		 * // 理清逻辑 优先级? classBinFile = class1File.exists() ?
 		 * class2File.exists() ? class1File .lastModified() <=
 		 * class2File.lastModified() ? class2File : class1File : class1File :
 		 * class2File;
@@ -554,7 +554,7 @@ public final class LoaderCache
                         }
 
                         theURL = nextURL;
-                        break; //TODO 是否有问题
+                        break; //是否有问题?
                     }
                     while (true);
 
