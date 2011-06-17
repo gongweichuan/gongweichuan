@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- !DOCTYPE interface-bind PUBLIC "service-binding.dtd" "service-binding.dtd" -->
+<interface-bind>
+    <service id="com.chinaviponline.erp.corepower.api.pfl.finterface.FClientService">
+        <description>打桩、需要一个服务替换它</description>
+        <interface-class>com.chinaviponline.erp.corepower.api.pfl.finterface.FClientService</interface-class>
+        <local-impl>
+            <impl-class>com.chinaviponline.erp.corepower.mock.TMockFClientService</impl-class>
+            <singleton/>
+        </local-impl>
+    </service>
+</interface-bind>
