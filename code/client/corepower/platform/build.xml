@@ -1,0 +1,169 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="platform-install" basedir="../../build" default="platform-install">
+
+  <import file="../../tools/targets/init-build.xml"/>
+  
+  <description>
+    platform Compilation Targets
+  </description>
+  
+  <target name="platform-init" depends="prepare">
+    <property file="${source}/corepower/platform/platform.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="platform-compile" depends="platform-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${platform.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${platform.output}"/>
+    <mkdir dir="${platform.output}"/>  
+    <mkdir dir="${platform.output}/classes"/>
+
+	<javac srcdir="${platform.source}"
+           destdir="${platform.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+           classpathref="javac.classpath"/>
+  </target>
+
+  <target name="platform-build" depends="platform-compile">
+    <mkdir dir="${platform.output}/lib"/>
+    <jar jarfile="${platform.output}/lib/${platform.jar.name}" index="true">
+      <fileset dir="${platform.output}/classes">
+		<include name="com/chinaviponline/erp/corepower/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="platform-install" depends="platform-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${platform.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${platform.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${platform.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${platform.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${platform.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${platform.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${platform.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${platform.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${platform.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${platform.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${platform.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${platform.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${platform.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${platform.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${platform.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${platform.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${platform.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${platform.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${platform.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${platform.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${platform.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+
+		<!-- 将platform的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${platform.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.template}/lct/${platform.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${platform.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.template}/clnt/${platform.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${platform.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.template}/svr/${platform.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		
+		<!-- 将jboss-service.xml拷贝到版本中放在包的直接目录下 -->
+		<copy todir="${lct.erp.build.dir}/${dest.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.dir}">
+				<include name="${jboss.service.xml}"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${dest.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.dir}">
+				<include name="${jboss.service.xml}"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${dest.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.dir}">
+				<include name="${jboss.service.xml}"/>
+			</fileset>
+		</copy>
+		
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="platform-checkstyle">
+	  <delete dir="${basedir}/../corepower/platform/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/platform/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/platform/output/checkstyle/platform-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/platform/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>
