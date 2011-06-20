@@ -6,35 +6,35 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 /**
- * <p>�ļ����ƣ�ErpClassLoader.java</p>
- * <p>�ļ��������Զ���������� ����ʵ��jar���Ķ�̬���� ʵ�ֹ��ܲ��Gar [par]</p>
- * <p>��Ȩ���У� ��Ȩ����(C)2007-2017</p>
- * <p>��    ˾�� �����������������</p>
- * <p>����ժҪ�� </p>
- * <p>����˵���� </p>
- * <p>������ڣ�2007-7-20</p>
- * <p>�޸ļ�¼1��</p>
+ * <p>文件名称：ErpClassLoader.java</p>
+ * <p>文件描述：自定义类加载器 用来实现jar包的动态加载 实现功能插件Gar [par]</p>
+ * <p>版权所有： 版权所有(C)2007-2017</p>
+ * <p>公    司： 与龙共舞独立工作室</p>
+ * <p>内容摘要： </p>
+ * <p>其他说明： </p>
+ * <p>完成日期：2007-7-20</p>
+ * <p>修改记录1：</p>
  * <pre>
- *  �޸����ڣ�
- *  �汾�ţ�
- *  �޸��ˣ�
- *  �޸����ݣ�
+ *  修改日期：
+ *  版本号：
+ *  修改人：
+ *  修改内容：
  * </pre>
- * <p>�޸ļ�¼2��</p>
+ * <p>修改记录2：</p>
  *
  * @version 1.0
- * @author ��Ϊ��
+ * @author 龚为川
  * @email  gongweichuan(AT)gmail.com
  */
 public class ErpClassLoader extends URLClassLoader
 {
 
-    // ���Ӷ���
+    // 单子对象
     private static ErpClassLoader singleto = new ErpClassLoader();
 
     /**
      *  
-     * ����ģʽ ���캯��
+     * 单例模式 构造函数
      */
     private ErpClassLoader()
     {
@@ -48,16 +48,16 @@ public class ErpClassLoader extends URLClassLoader
 
     /**
      * 
-     * <p>������������õ�������</p>
-     * <p>�����ˣ���Ϊ��</p>
-     * <p>�������ڣ�2007-7-21</p>
-     * <p>�޸ļ�¼1��</p>
+     * <p>功能描述：获得单例对象</p>
+     * <p>创建人：龚为川</p>
+     * <p>创建日期：2007-7-21</p>
+     * <p>修改记录1：</p>
      * <pre>
-     *  �޸��ˣ�
-     *  �޸����ڣ�
-     *  �޸����ݣ�
+     *  修改人：
+     *  修改日期：
+     *  修改内容：
      * </pre>
-     * <p>�޸ļ�¼2��</p>
+     * <p>修改记录2：</p>
      *
      * @return
      */
@@ -68,16 +68,16 @@ public class ErpClassLoader extends URLClassLoader
 
     /**
      * 
-     * <p>��������������·��</p>
-     * <p>�����ˣ���Ϊ��</p>
-     * <p>�������ڣ�2007-7-21</p>
-     * <p>�޸ļ�¼1��</p>
+     * <p>功能描述：增加路径</p>
+     * <p>创建人：龚为川</p>
+     * <p>创建日期：2007-7-21</p>
+     * <p>修改记录1：</p>
      * <pre>
-     *  �޸��ˣ�
-     *  �޸����ڣ�
-     *  �޸����ݣ�
+     *  修改人：
+     *  修改日期：
+     *  修改内容：
      * </pre>
-     * <p>�޸ļ�¼2��</p>
+     * <p>修改记录2：</p>
      *
      * @param paths
      */
@@ -96,11 +96,11 @@ public class ErpClassLoader extends URLClassLoader
                 try
                 {
                     
-                    // ���˳���·����ת����һ�� file: URL���� URL �ľ�����ʽ��ϵͳ�йء�
-                    // �������ȷ���˳���·������ʾ���ļ���һ��Ŀ¼����õ��� URL ����б�ܽ����� 
-                    // ʹ��ע������˷��������Զ��ܿ� URL �еķǷ��ַ���
-                    // �����µĴ��뽫����·����ת����һ�� URL��
-                    // ʵ�ַ�ʽ����ͨ�� toURI ����������·����ת���� URI��Ȼ��ͨ�� URI.toURL �������� URI ת���� URL��
+                    // 将此抽象路径名转换成一个 file: URL。该 URL 的具体形式与系统有关。
+                    // 如果可以确定此抽象路径名表示的文件是一个目录，则得到的 URL 将以斜杠结束。 
+                    // 使用注意事项：此方法不会自动避开 URL 中的非法字符。
+                    // 建议新的代码将抽象路径名转换成一个 URL，
+                    // 实现方式是先通过 toURI 方法将抽象路径名转换成 URI，然后通过 URI.toURL 方法将该 URI 转换成 URL。
                     File pathToAdd = new File(pathToAdds[i]).getCanonicalFile();
 //                    System.out.println(pathToAdd.exists());
                     addURL(pathToAdd.toURL());
@@ -108,10 +108,10 @@ public class ErpClassLoader extends URLClassLoader
                 catch (IOException e)
                 {
                     
-                    // �˴������Ϣ����Ҫ����
+                    // 此处输出信息可能要屏蔽
                     e.printStackTrace();
                     
-                    // ֱ��return ����break
+                    // 直接return 还是break
                     return;
                 }
             }

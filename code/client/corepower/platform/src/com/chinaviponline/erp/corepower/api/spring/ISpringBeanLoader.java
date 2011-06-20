@@ -1,6 +1,6 @@
 package com.chinaviponline.erp.corepower.api.spring;
 /**
- * SpringµÄAdapter
+ * Springçš„Adapter
  */
 import org.springframework.core.io.Resource;
 import org.springframework.context.ApplicationContext;

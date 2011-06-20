@@ -27,9 +27,9 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.plaf.metal.MetalTabbedPaneUI;
 
 /**
- * <p>ÎÄ¼şÃû³Æ£ºCloseableTabbedPane.java</p>
- * <p>ÎÄ¼şÃèÊö
- * À´×Ô:http://forum.java.sun.com/thread.jspa?threadID=337070&start=15&tstart=0
+ * <p>æ–‡ä»¶åç§°ï¼šCloseableTabbedPane.java</p>
+ * <p>æ–‡ä»¶æè¿°
+ * æ¥è‡ª:http://forum.java.sun.com/thread.jspa?threadID=337070&start=15&tstart=0
  * JTabbedPane which has a close ('X') icon on each tab.
  *
  * To add a tab, use the method addTab(String, Component)
@@ -37,23 +37,23 @@ import javax.swing.plaf.metal.MetalTabbedPaneUI;
  * To have an extra icon on each tab (e.g. like in JBuilder, showing the file
  * type) use the method addTab(String, Component, Icon). Only clicking the 'X'
  * closes the tab.
- * £º</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2007-2017</p>
- * <p>¹«    Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2007-7-22</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * ï¼š</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2007-2017</p>
+ * <p>å…¬    å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2007-7-22</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º
- *  °æ±¾ºÅ£º
- *  ĞŞ¸ÄÈË£º
- *  ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š
+ *  ç‰ˆæœ¬å·ï¼š
+ *  ä¿®æ”¹äººï¼š
+ *  ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨
+ * @author é¾šä¸ºå·
  * @email  gongweichuan(AT)gmail.com
  */
 
@@ -431,7 +431,7 @@ public class CloseableTabbedPane extends JTabbedPane implements MouseListener,
       Object[] listeners = listenerList.getListenerList();
 //      for (Object i : listeners) {
       
-      // ±»ĞŞ¸Ä¹ıµÄ ºÃ±ğÅ¤ µ«Ô¸Ã»ÓĞ¸Ä´í
+      // è¢«ä¿®æ”¹è¿‡çš„ å¥½åˆ«æ‰­ ä½†æ„¿æ²¡æœ‰æ”¹é”™
       Object o=new Object();
       for(int m=0,count=listeners.length;m<count;m++)
       {

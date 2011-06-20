@@ -4,21 +4,21 @@
 package com.chinaviponline.erp.corepower.api.psl.systemsupport;
 
 /**
- * <p>ÎÄ¼şÃû³Æ£ºSystemListenerException.java</p>
- * <p>ÎÄ¼şÃèÊö£º</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2007-2017</p>
- * <p>¹«    Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2008-6-10</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * <p>æ–‡ä»¶åç§°ï¼šSystemListenerException.java</p>
+ * <p>æ–‡ä»¶æè¿°ï¼š</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2007-2017</p>
+ * <p>å…¬    å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2008-6-10</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º    °æ±¾ºÅ£º    ĞŞ¸ÄÈË£º    ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š    ç‰ˆæœ¬å·ï¼š    ä¿®æ”¹äººï¼š    ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨
+ * @author é¾šä¸ºå·
  * @email  gongweichuan(AT)gmail.com
  */
 public class SystemListenerException extends Exception
@@ -34,7 +34,7 @@ public class SystemListenerException extends Exception
     public static final String REMOVE_FAILURE = "remove listener failed";
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      *
      */
     public SystemListenerException()
@@ -43,7 +43,7 @@ public class SystemListenerException extends Exception
     }
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      * @param msg
      */
     public SystemListenerException(String msg)
@@ -52,7 +52,7 @@ public class SystemListenerException extends Exception
     }
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      * @param t
      */
     public SystemListenerException(Throwable t)
@@ -61,7 +61,7 @@ public class SystemListenerException extends Exception
     }
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      * @param msg
      * @param t
      */
