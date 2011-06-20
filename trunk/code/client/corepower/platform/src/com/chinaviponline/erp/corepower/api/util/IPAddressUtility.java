@@ -11,21 +11,21 @@ import com.chinaviponline.erp.corepower.api.ServiceAccess;
 import com.chinaviponline.erp.corepower.api.psl.systemsupport.SystemSupportService;
 
 /**
- * <p>ÎÄ¼şÃû³Æ£ºIPAddressUtility.java</p>
- * <p>ÎÄ¼şÃèÊö£º</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2007-2017</p>
- * <p>¹«    Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2008-6-18</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * <p>æ–‡ä»¶åç§°ï¼šIPAddressUtility.java</p>
+ * <p>æ–‡ä»¶æè¿°ï¼š</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2007-2017</p>
+ * <p>å…¬    å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2008-6-18</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º    °æ±¾ºÅ£º    ĞŞ¸ÄÈË£º    ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š    ç‰ˆæœ¬å·ï¼š    ä¿®æ”¹äººï¼š    ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨
+ * @author é¾šä¸ºå·
  * @email  gongweichuan(AT)gmail.com
  */
 public class IPAddressUtility
@@ -269,7 +269,7 @@ public class IPAddressUtility
         }
         i = 0;
 //_L3:
-    //TODO ĞèÒª¶ş´ÎĞŞ¸Ä
+    //TODO éœ€è¦äºŒæ¬¡ä¿®æ”¹
         do{
             if(i >= temp.length) 
             {
@@ -278,10 +278,10 @@ public class IPAddressUtility
     //        _L1:
             else
             {
-                if(temp[i].compareTo(symbol) == 0)// Èç¹ûÊ±·Ö¸î·ûºÅ .»òÕß:
+                if(temp[i].compareTo(symbol) == 0)// å¦‚æœæ—¶åˆ†å‰²ç¬¦å· .æˆ–è€…:
                 {
                     symbolNum++;
-                    if(i > 0 && i < temp.length - 1 || symbolNum > 1) //ÅĞ¶ÏÂß¼­ÓĞÎÊÌâ
+                    if(i > 0 && i < temp.length - 1 || symbolNum > 1) //åˆ¤æ–­é€»è¾‘æœ‰é—®é¢˜
                     {
                         return false;                        
                     }

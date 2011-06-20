@@ -5,30 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>ÎÄ¼şÃû³Æ£ºFileScanner.java</p>
- * <p>ÎÄ¼şÃèÊö£º²éÕÒËùÓĞ lib ÏÂµÄ .jar ÎÄ¼ş</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2000-2010</p>
- * <p>¹«   Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2007-7-28</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * <p>æ–‡ä»¶åç§°ï¼šFileScanner.java</p>
+ * <p>æ–‡ä»¶æè¿°ï¼šæŸ¥æ‰¾æ‰€æœ‰ lib ä¸‹çš„ .jar æ–‡ä»¶</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2000-2010</p>
+ * <p>å…¬   å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2007-7-28</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º
- *  °æ±¾ºÅ£º
- *  ĞŞ¸ÄÈË£º
- *  ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š
+ *  ç‰ˆæœ¬å·ï¼š
+ *  ä¿®æ”¹äººï¼š
+ *  ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨gongwc
+ * @author é¾šä¸ºå·gongwc
  */
 public class FileScanner
 {
 
     /**
-     * ÎÄ¼ş·Ö¸ô·û
+     * æ–‡ä»¶åˆ†éš”ç¬¦
      */
     private static final String separator = System
             .getProperty("file.separator");
@@ -37,7 +37,7 @@ public class FileScanner
             .getProperty("path.separator");
 
     /**
-     * µ±Ç°¹¤×÷Ä¿Â¼
+     * å½“å‰å·¥ä½œç›®å½•
      */
     private static final String usrDir = System.getProperty("user.dir");
 
@@ -46,7 +46,7 @@ public class FileScanner
     private static FileScanner singleton = null;
 
     /**
-     * µ¥Àı
+     * å•ä¾‹
      *
      */
     private FileScanner()
@@ -66,19 +66,19 @@ public class FileScanner
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£ºÑ°ÕÒ pathName Ä¿Â¼ÏÂËùÓĞÒÔ extName ½áÎ²µÄÎÄ¼şÂ·¾¶</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨gongwc</p>
-     * <p>´´½¨ÈÕÆÚ£º2007-7-28</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šå¯»æ‰¾ pathName ç›®å½•ä¸‹æ‰€æœ‰ä»¥ extName ç»“å°¾çš„æ–‡ä»¶è·¯å¾„</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·gongwc</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2007-7-28</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º
-     *  ĞŞ¸ÄÈÕÆÚ£º
-     *  ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š
+     *  ä¿®æ”¹æ—¥æœŸï¼š
+     *  ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
-     * @param path ´ıËÑË÷µÄÎÄ¼ş
-     * @param extName ºó×ºÃû
+     * @param path å¾…æœç´¢çš„æ–‡ä»¶
+     * @param extName åç¼€å
      * @return
      */
     private void findExtFiles(File path, String extName)
@@ -90,7 +90,7 @@ public class FileScanner
 
         if (path.isDirectory())
         {
-            // ÊÇÄ¿Â¼
+            // æ˜¯ç›®å½•
             File allFiles[] = path.listFiles();
 
             for (int i = 0, count = allFiles.length; i < count; i++)
@@ -100,7 +100,7 @@ public class FileScanner
         }
         else if (path.isFile())
         {
-            // ÊÇÎÄ¼ş
+            // æ˜¯æ–‡ä»¶
             if (path.getName().endsWith(extName))
             {
                 fileList.add(path.getParent() + separator + path.getName());
@@ -112,16 +112,16 @@ public class FileScanner
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£ºËÑÑ°Ä¿Â¼Îª lib ,ºó×ºÎª</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨gongwc</p>
-     * <p>´´½¨ÈÕÆÚ£º2007-7-28</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šæœå¯»ç›®å½•ä¸º lib ,åç¼€ä¸º</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·gongwc</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2007-7-28</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º
-     *  ĞŞ¸ÄÈÕÆÚ£º
-     *  ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š
+     *  ä¿®æ”¹æ—¥æœŸï¼š
+     *  ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
      * @param lib
      * @param ext
@@ -145,16 +145,16 @@ public class FileScanner
     }
 
     /**
-     * <p>¹¦ÄÜÃèÊö£º</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨gongwc</p>
-     * <p>´´½¨ÈÕÆÚ£º2007-7-28</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼š</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·gongwc</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2007-7-28</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º
-     *  ĞŞ¸ÄÈÕÆÚ£º
-     *  ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š
+     *  ä¿®æ”¹æ—¥æœŸï¼š
+     *  ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
      * @param args
      */

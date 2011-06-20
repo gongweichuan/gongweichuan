@@ -3,26 +3,26 @@ package com.chinaviponline.erp.corepower.api;
 import java.util.EventListener;
 
 /**
- * <p>ÎÄ¼şÃû³Æ£ºCloseableTabbedPaneListener.java</p>
- * <p>ÎÄ¼şÃèÊö£º
- * À´×Ô:http://forum.java.sun.com/thread.jspa?threadID=337070&start=15&tstart=0
- * ÔÚµã»÷¹Ø±ÕÇ°×ö¸öÅĞ¶Ï ÀıÈçµ¯³ö¸öÈ·ÈÏ¶Ô»°¿òÖ®ÀàµÄ</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2007-2017</p>
- * <p>¹«    Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2007-7-22</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * <p>æ–‡ä»¶åç§°ï¼šCloseableTabbedPaneListener.java</p>
+ * <p>æ–‡ä»¶æè¿°ï¼š
+ * æ¥è‡ª:http://forum.java.sun.com/thread.jspa?threadID=337070&start=15&tstart=0
+ * åœ¨ç‚¹å‡»å…³é—­å‰åšä¸ªåˆ¤æ–­ ä¾‹å¦‚å¼¹å‡ºä¸ªç¡®è®¤å¯¹è¯æ¡†ä¹‹ç±»çš„</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2007-2017</p>
+ * <p>å…¬    å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2007-7-22</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º
- *  °æ±¾ºÅ£º
- *  ĞŞ¸ÄÈË£º
- *  ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š
+ *  ç‰ˆæœ¬å·ï¼š
+ *  ä¿®æ”¹äººï¼š
+ *  ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨
+ * @author é¾šä¸ºå·
  * @email  gongweichuan(AT)gmail.com
  */
 public interface CloseableTabbedPaneListener extends EventListener
@@ -30,19 +30,19 @@ public interface CloseableTabbedPaneListener extends EventListener
 
     /**
      * 
-     * <p>¹¦ÄÜÃèÊö£º¹Ø±ÕÇ°µÄ»Øµ÷¶¯×÷</p>
-     * <p>´´½¨ÈË£º¹¨Îª´¨</p>
-     * <p>´´½¨ÈÕÆÚ£º2007-7-22</p>
-     * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+     * <p>åŠŸèƒ½æè¿°ï¼šå…³é—­å‰çš„å›è°ƒåŠ¨ä½œ</p>
+     * <p>åˆ›å»ºäººï¼šé¾šä¸ºå·</p>
+     * <p>åˆ›å»ºæ—¥æœŸï¼š2007-7-22</p>
+     * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
      * <pre>
-     *  ĞŞ¸ÄÈË£º
-     *  ĞŞ¸ÄÈÕÆÚ£º
-     *  ĞŞ¸ÄÄÚÈİ£º
+     *  ä¿®æ”¹äººï¼š
+     *  ä¿®æ”¹æ—¥æœŸï¼š
+     *  ä¿®æ”¹å†…å®¹ï¼š
      * </pre>
-     * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+     * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
      *
-     * @param tabIndexToClose ¼´½«¹Ø±ÕµÄTabÒ³µÄIndex
-     * @return ÊÇ·ñÈ·ÊµÒª¹Ø±Õ
+     * @param tabIndexToClose å³å°†å…³é—­çš„Tabé¡µçš„Index
+     * @return æ˜¯å¦ç¡®å®è¦å…³é—­
      */
     public boolean closeTab(int tabIndexToClose);
 }

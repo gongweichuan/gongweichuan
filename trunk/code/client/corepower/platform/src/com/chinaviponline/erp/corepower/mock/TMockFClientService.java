@@ -14,92 +14,92 @@ import com.chinaviponline.erp.corepower.api.pfl.finterface.FIMessage;
 import com.chinaviponline.erp.corepower.api.pfl.finterface.ResponseListener;
 /**
  * 
- * <p>ÎÄ¼şÃû³Æ£ºTIcanFClientService.java</p>
- * <p>ÎÄ¼şÃèÊö£ºÎªµ¥Ôª²âÊÔ¶øĞ´µÄÄ£Äâ·şÎñÀà</p>
- * <p>°æÈ¨ËùÓĞ£º °æÈ¨ËùÓĞ(C)2007-2017</p>
- * <p>¹«   Ë¾£º ÓëÁú¹²Îè¶ÀÁ¢¹¤×÷ÊÒ</p>
- * <p>ÄÚÈİÕªÒª£º </p>
- * <p>ÆäËûËµÃ÷£º </p>
- * <p>Íê³ÉÈÕÆÚ£º2008-7-20</p>
- * <p>ĞŞ¸Ä¼ÇÂ¼1£º</p>
+ * <p>æ–‡ä»¶åç§°ï¼šTMockFClientService.java</p>
+ * <p>æ–‡ä»¶æè¿°ï¼šä¸ºå•å…ƒæµ‹è¯•è€Œå†™çš„æ¨¡æ‹ŸæœåŠ¡ç±»</p>
+ * <p>ç‰ˆæƒæ‰€æœ‰ï¼š ç‰ˆæƒæ‰€æœ‰(C)2007-2017</p>
+ * <p>å…¬   å¸ï¼š ä¸é¾™å…±èˆç‹¬ç«‹å·¥ä½œå®¤</p>
+ * <p>å†…å®¹æ‘˜è¦ï¼š </p>
+ * <p>å…¶ä»–è¯´æ˜ï¼š </p>
+ * <p>å®Œæˆæ—¥æœŸï¼š2008-7-20</p>
+ * <p>ä¿®æ”¹è®°å½•1ï¼š</p>
  * <pre>
- *  ĞŞ¸ÄÈÕÆÚ£º    °æ±¾ºÅ£º    ĞŞ¸ÄÈË£º    ĞŞ¸ÄÄÚÈİ£º
+ *  ä¿®æ”¹æ—¥æœŸï¼š    ç‰ˆæœ¬å·ï¼š    ä¿®æ”¹äººï¼š    ä¿®æ”¹å†…å®¹ï¼š
  * </pre>
- * <p>ĞŞ¸Ä¼ÇÂ¼2£º</p>
+ * <p>ä¿®æ”¹è®°å½•2ï¼š</p>
  *
  * @version 1.0
- * @author ¹¨Îª´¨
+ * @author é¾šä¸ºå·
  * @email gongweichuan(AT)gmail.com
  */
 public class TMockFClientService implements FClientService {
     
     /**
-     * ÓÃÀ´±£´æÔÚµ÷ÓÃrequestx·½·¨Ç°Ô¤ÉèµÄFIMesageÀàĞÍµÄ·µ»Ø½á¹û
-     * ×¢Òâ£ºÓÃÍêºóÎñ±ØÇå¿ÕreturnFIMsg£¬ÒÔ±£Ö¤ÏÂ´Îµ÷ÓÃÊ±·µ»ØÕıÈ·µÄ½á¹û
+     * ç”¨æ¥ä¿å­˜åœ¨è°ƒç”¨requestxæ–¹æ³•å‰é¢„è®¾çš„FIMesageç±»å‹çš„è¿”å›ç»“æœ
+     * æ³¨æ„ï¼šç”¨å®ŒååŠ¡å¿…æ¸…ç©ºreturnFIMsgï¼Œä»¥ä¿è¯ä¸‹æ¬¡è°ƒç”¨æ—¶è¿”å›æ­£ç¡®çš„ç»“æœ
      * add by liwei
      */
     private List returnFIMsg = new LinkedList();
     
     /**
-     * ÏµÍ³µÇÂ¼ 
-     * @param userName - ÓÃ»§Ãû
-     * @param passwd - ÃÜÂë£¨Î´¼ÓÃÜ£©
-     * @param srvIP - ·şÎñÆ÷IPºÍ¶Ë¿Ú£¬IP:ProtµÄ¸ñÊ½£¬port¿ÉÒÔÊ¡ÂÔ
+     * ç³»ç»Ÿç™»å½• 
+     * @param userName - ç”¨æˆ·å
+     * @param passwd - å¯†ç ï¼ˆæœªåŠ å¯†ï¼‰
+     * @param srvIP - æœåŠ¡å™¨IPå’Œç«¯å£ï¼ŒIP:Protçš„æ ¼å¼ï¼Œportå¯ä»¥çœç•¥
      */
     public int login(String userName, String passwd, String srvIP) throws FIException {
          return 0;
     }
     /** 
-     * ÏµÍ³×¢Ïú
+     * ç³»ç»Ÿæ³¨é”€
      */
     public void logout() throws FIException {
                
     }
     /**
-     * ·µ»Øµ±Ç°µÄ»á»°ID 
+     * è¿”å›å½“å‰çš„ä¼šè¯ID 
      */
     public short getSessionID() throws FIException {
         //TODO Auto-generated method stub
         return 0;
     }
     /**
-     * »ñÈ¡µ±Ç°ÓÃ»§µÄÃû³Æ£¬Î´µÇÂ¼Ê±·µ»Ønull 
+     * è·å–å½“å‰ç”¨æˆ·çš„åç§°ï¼Œæœªç™»å½•æ—¶è¿”å›null 
      */
     public String getUserName() {
         return userName;
     }
     
     /**
-     * Îªµ¥Ôª²âÊÔ¶øÌí¼ÓµÄº¯Êı£¬ÓÃ»§ÔÚµ÷ÓÃgetUserNameÇ°±ØĞëµ÷ÓÃ´Ëº¯Êı£¬ÒÔ±ãgetUserNameÄÜ¹»»ñµÃĞèÒªµÄÖµ¡£
+     * ä¸ºå•å…ƒæµ‹è¯•è€Œæ·»åŠ çš„å‡½æ•°ï¼Œç”¨æˆ·åœ¨è°ƒç”¨getUserNameå‰å¿…é¡»è°ƒç”¨æ­¤å‡½æ•°ï¼Œä»¥ä¾¿getUserNameèƒ½å¤Ÿè·å¾—éœ€è¦çš„å€¼ã€‚
      * @param userName
      */
     public void setUserName(String userName) {
         this.userName = userName;
     }
     /**
-     * »á»°µ±Ç°ÓÃ»§µÄID£¬Î´µÇÂ¼Ê±·µ»ØINVALID_USERID 
+     * ä¼šè¯å½“å‰ç”¨æˆ·çš„IDï¼Œæœªç™»å½•æ—¶è¿”å›INVALID_USERID 
      */
     public int getUserID() {
         //TODO Auto-generated method stub
         return 0;
     }
     /**
-     * ·µ»Øµ±Ç°µÇÂ¼·şÎñÆ÷µÄIP£¬Î´µÇÂ¼Ê±·µ»Ønull 
+     * è¿”å›å½“å‰ç™»å½•æœåŠ¡å™¨çš„IPï¼Œæœªç™»å½•æ—¶è¿”å›null 
      */
     public String getSvrIP() {
         
-        // ²»ÄÜÎªnull
+        // ä¸èƒ½ä¸ºnull
         return "java/env/127.0.0.1";
     }
     /**
-     * ·µ»Øµ±Ç°Á´Â·µÄ×´Ì¬£¬·Ö±ğÊÇ£º LINK_NORMAL:Á´Â·Õı³£¡¢LINK_BROKEN:Á´Â·Ë²¶Ï¡¢LINK_DEADÁ´Â·¹Ø±Õ
+     * è¿”å›å½“å‰é“¾è·¯çš„çŠ¶æ€ï¼Œåˆ†åˆ«æ˜¯ï¼š LINK_NORMAL:é“¾è·¯æ­£å¸¸ã€LINK_BROKEN:é“¾è·¯ç¬æ–­ã€LINK_DEADé“¾è·¯å…³é—­
      */
     public int getSessionState() {
         //TODO Auto-generated method stub
         return 0;
     }
     /**
-     * ÓÃÓĞµÈ´ı¶Ô»°¿òµÄ·½Ê½·¢ËÍÍ¬²½ÃüÁî
+     * ç”¨æœ‰ç­‰å¾…å¯¹è¯æ¡†çš„æ–¹å¼å‘é€åŒæ­¥å‘½ä»¤
      * 
      * @author liwei
      */
@@ -107,7 +107,7 @@ public class TMockFClientService implements FClientService {
         return requestx(arg1);
     }
     /**
-     * ÒÔ¼ÈÎŞµÈ´ı¶Ô»°¿ò¡¢ÓÖÎŞ³¬Ê±µÄ·½Ê½·¢ËÍÍ¬²½ÃüÁî
+     * ä»¥æ—¢æ— ç­‰å¾…å¯¹è¯æ¡†ã€åˆæ— è¶…æ—¶çš„æ–¹å¼å‘é€åŒæ­¥å‘½ä»¤
      * 
      * @author liwei
      */
@@ -120,7 +120,7 @@ public class TMockFClientService implements FClientService {
 //        }
             
         if (returnFIMsg.size() == 0) {            
-            throw new FIException(-100, "TIcanFClientService: ÃüÁîÂëÎª"+fm.getCommandCode()+"µÄReturnFIMsgÎª¿Õ", null);
+            throw new FIException(-100, "TIcanFClientService: å‘½ä»¤ç ä¸º"+fm.getCommandCode()+"çš„ReturnFIMsgä¸ºç©º", null);
         }
         
         SendFIReturnObject ro = null;
@@ -135,20 +135,20 @@ public class TMockFClientService implements FClientService {
         }
         
         if (ro.raiseException) {
-            throw new FIException(-100, "Communication´ò×®²âÊÔ", null);
+            throw new FIException(-100, "Communicationæ‰“æ¡©æµ‹è¯•", null);
         }
         
         return ro.fiMsg;      
     }
     /**
-     * ÓÃÓĞµÈ´ı¶Ô»°¿òµÄ·½Ê½·¢ËÍÅúÃüÁî 
+     * ç”¨æœ‰ç­‰å¾…å¯¹è¯æ¡†çš„æ–¹å¼å‘é€æ‰¹å‘½ä»¤ 
      */
     public FIMessage[] requestxBatch(Component arg0, FIMessage[] arg1) throws FIException {
         
         return null;
     }
     /**
-     * ÓÃÓĞµÈ´ı¶Ô»°¿òµÄ·½Ê½·¢ËÍÅúÃüÁî,Ìá½»·½Ê½Îª×î´óÌá½»
+     * ç”¨æœ‰ç­‰å¾…å¯¹è¯æ¡†çš„æ–¹å¼å‘é€æ‰¹å‘½ä»¤,æäº¤æ–¹å¼ä¸ºæœ€å¤§æäº¤
      * 
      * @author liwei  
      */
@@ -160,7 +160,7 @@ public class TMockFClientService implements FClientService {
         }
         
         if (returnFIMsg.size() < count) { 
-            throw new FIException(-100, "TIcanFClientService: ÅúÁ¿·¢ËÍÃüÁîrequestBatchTryBestµÄreturnCmdMsg¿Õ¼ä²»×ã£¬ĞèÒªµÄ¿Õ¼äÎª" + count + ", Êµ¼Ê¿Õ¼äÎª" + returnFIMsg.size(), null);            
+            throw new FIException(-100, "TIcanFClientService: æ‰¹é‡å‘é€å‘½ä»¤requestBatchTryBestçš„returnCmdMsgç©ºé—´ä¸è¶³ï¼Œéœ€è¦çš„ç©ºé—´ä¸º" + count + ", å®é™…ç©ºé—´ä¸º" + returnFIMsg.size(), null);            
         }
         
         boolean raiseException = false;
@@ -170,7 +170,7 @@ public class TMockFClientService implements FClientService {
             
             raiseException = temp.raiseException;
             if(raiseException) {
-                result[i] = new FIException(-100, "Communication´ò×®²âÊÔ", null);
+                result[i] = new FIException(-100, "Communicationæ‰“æ¡©æµ‹è¯•", null);
             }
             else {
                 result[i] = temp.fiMsg;
@@ -181,19 +181,19 @@ public class TMockFClientService implements FClientService {
         return result;
      }
     /**
-     * ·¢ËÍÒì²½ÃüÁî 
+     * å‘é€å¼‚æ­¥å‘½ä»¤ 
      */
     public void requestxAsyn(FIMessage arg0, ResponseListener arg1) {
                
     }
     /**
-     * Ïò¿Í»§¶ËÏûÏ¢ÔÛÖĞĞÄ¶©ÔÄÏûÏ¢
+     * å‘å®¢æˆ·ç«¯æ¶ˆæ¯å’±ä¸­å¿ƒè®¢é˜…æ¶ˆæ¯
      */
     public void requestxAsyn(Component arg0, FIMessage arg1, ResponseListener arg2) {
             
     }
     /**
-     * Ïò¿Í»§¶ËÏûÏ¢ÖĞĞÄÈ¡Ïû¶©ÔÄ
+     * å‘å®¢æˆ·ç«¯æ¶ˆæ¯ä¸­å¿ƒå–æ¶ˆè®¢é˜…
      */
     public void unRegisterAsynListener(FIMessage arg0) {
               
@@ -218,7 +218,7 @@ public class TMockFClientService implements FClientService {
     }
     
     /**
-     * Îªµ¥Ôª²âÊÔ¶øÌí¼ÓµÄ±äÁ¿
+     * ä¸ºå•å…ƒæµ‹è¯•è€Œæ·»åŠ çš„å˜é‡
      */
     private String userName;
     /* (non-Javadoc)
@@ -246,14 +246,14 @@ public class TMockFClientService implements FClientService {
     /**
      * 
     ******************************************************* 
-    * º¯ÊıÃû: addRequestxReturnHelper<br>
-    * Ãè  Êö: ÓÃÓÚÔ¤Éèrequestx·½·¨µÄ·µ»Ø½á¹û<br>
-    * ²Î  Êı: @param fiMsg<br>
-    * ·µ»ØÖµ: <br>
-    * ´´½¨ÈË: liwei<br>
-    * ÈÕ  ÆÚ: 2006-3-7<br>
-    * ĞŞ¸Ä¼ÇÂ¼: <br>
-    * ĞŞ¸ÄÈË    ĞŞ¸ÄÈÕÆÚ     ĞŞ¸ÄÃèÊö<br>
+    * å‡½æ•°å: addRequestxReturnHelper<br>
+    * æ  è¿°: ç”¨äºé¢„è®¾requestxæ–¹æ³•çš„è¿”å›ç»“æœ<br>
+    * å‚  æ•°: @param fiMsg<br>
+    * è¿”å›å€¼: <br>
+    * åˆ›å»ºäºº: liwei<br>
+    * æ—¥  æœŸ: 2006-3-7<br>
+    * ä¿®æ”¹è®°å½•: <br>
+    * ä¿®æ”¹äºº    ä¿®æ”¹æ—¥æœŸ     ä¿®æ”¹æè¿°<br>
     *******************************************************
      */
     public void addRequestxReturnHelper(FIMessage fiMsg, boolean isRaiseExc) {
@@ -263,14 +263,14 @@ public class TMockFClientService implements FClientService {
     /**
      * 
     ******************************************************* 
-    * º¯ÊıÃû: clearRequestxReturnHelper<br>
-    * Ãè  Êö: ÓÃÓÚÇå¿ÕÔ¤Éè½á¹û£¬Ã¿´ÎÓÃÍêaddRequestxReturnHelper·½·¨ºóÓ¦ÔÚºÏÊÊµÄµØ·½µ÷ÓÃ¸Ã·½·¨Çå¿Õ·µ»ØÏûÏ¢¶ÓÁĞ<br>
-    * ²Î  Êı: @param fiMsg<br>
-    * ·µ»ØÖµ: <br>
-    * ´´½¨ÈË: liwei<br>
-    * ÈÕ  ÆÚ: 2006-3-7<br>
-    * ĞŞ¸Ä¼ÇÂ¼: <br>
-    * ĞŞ¸ÄÈË    ĞŞ¸ÄÈÕÆÚ     ĞŞ¸ÄÃèÊö<br>
+    * å‡½æ•°å: clearRequestxReturnHelper<br>
+    * æ  è¿°: ç”¨äºæ¸…ç©ºé¢„è®¾ç»“æœï¼Œæ¯æ¬¡ç”¨å®ŒaddRequestxReturnHelperæ–¹æ³•ååº”åœ¨åˆé€‚çš„åœ°æ–¹è°ƒç”¨è¯¥æ–¹æ³•æ¸…ç©ºè¿”å›æ¶ˆæ¯é˜Ÿåˆ—<br>
+    * å‚  æ•°: @param fiMsg<br>
+    * è¿”å›å€¼: <br>
+    * åˆ›å»ºäºº: liwei<br>
+    * æ—¥  æœŸ: 2006-3-7<br>
+    * ä¿®æ”¹è®°å½•: <br>
+    * ä¿®æ”¹äºº    ä¿®æ”¹æ—¥æœŸ     ä¿®æ”¹æè¿°<br>
     *******************************************************
      */
     public void clearRequestxReturnHelper() {
@@ -307,7 +307,7 @@ public class TMockFClientService implements FClientService {
         
     }
     /**
-     * ¹¦ÄÜÃèÊö£º
+     * åŠŸèƒ½æè¿°ï¼š
      * @see com.chinaviponline.erp.corepower.api.pfl.finterface.FClientService#getClientIP()
      */
     public String getClientIP()
@@ -316,7 +316,7 @@ public class TMockFClientService implements FClientService {
         return null;
     }
     /**
-     * ¹¦ÄÜÃèÊö£º
+     * åŠŸèƒ½æè¿°ï¼š
      * @see com.chinaviponline.erp.corepower.api.pfl.finterface.FClientService#isHiddenCommand(int)
      */
     public boolean isHiddenCommand(int arg0)
@@ -325,7 +325,7 @@ public class TMockFClientService implements FClientService {
         return false;
     }
     /**
-     * ¹¦ÄÜÃèÊö£º
+     * åŠŸèƒ½æè¿°ï¼š
      * @see com.chinaviponline.erp.corepower.api.pfl.finterface.FClientService#isHiddenOperation(java.lang.String)
      */
     public boolean isHiddenOperation(String arg0)
@@ -334,7 +334,7 @@ public class TMockFClientService implements FClientService {
         return false;
     }
     /**
-     *¹¦ÄÜÃèÊö£º
+     *åŠŸèƒ½æè¿°ï¼š
      * @see com.chinaviponline.erp.corepower.api.pfl.finterface.FClientService#loginUseRadius(java.lang.String, java.lang.String, java.lang.String)
      */
     public int loginUseRadius(String arg0, String arg1, String arg2) throws FIException
@@ -344,7 +344,7 @@ public class TMockFClientService implements FClientService {
     }
     /**
      * 
-     * ¹¦ÄÜÃèÊö£º
+     * åŠŸèƒ½æè¿°ï¼š
      * @see com.chinaviponline.erp.corepower.api.pfl.finterface.FClientService#getAllcommandInfo()
      */
     public CommandInfo[] getAllcommandInfo()
