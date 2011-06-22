@@ -19,11 +19,12 @@
         <include name="*.jar"/>
       </fileset>
 
-	  <fileset dir="${platform.output.lib.dir}">
-        <include name="*.jar"/>
-      </fileset>
-
-	  <!-- fileset dir="${gui-component.output.lib.dir}">
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+    	
+	  <!-- 
+	  fileset dir="${gui-component.output.lib.dir}">
         <include name="*.jar"/>
       </fileset -->    	
   	  <fileset dir="${spring.lib}">
@@ -42,7 +43,8 @@
     <delete dir="${spring.output}"/>
     <mkdir dir="${spring.output}"/>  
     <mkdir dir="${spring.output}/classes"/>
-
+  	<mkdir dir="${spring.output}/lib"/>
+  	
 	<javac srcdir="${spring.source}"
            destdir="${spring.output}/classes"
            debug="${debug}"
@@ -50,11 +52,14 @@
            optimize="${compiler.optimize}"
            deprecation="${compiler.deprecation}"
            nowarn="${compiler.nowarn}"
-           classpathref="javac.classpath"/>
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
   </target>
 
-  <target name="spring-build" depends="spring-compile">
-    <mkdir dir="${spring.output}/lib"/>
+  <target name="spring-build" depends="spring-compile">    
     <jar jarfile="${spring.output}/lib/${spring.jar.name}" index="true">
       <fileset dir="${spring.output}/classes">
 		<include name="com/chinaviponline/**"/>
