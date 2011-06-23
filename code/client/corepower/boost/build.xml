@@ -43,8 +43,12 @@
            debuglevel="${debuglevel}"
            optimize="${compiler.optimize}"
            deprecation="${compiler.deprecation}"
-           nowarn="${compiler.nowarn}"
-           classpathref="javac.classpath"/>
+           nowarn="${compiler.nowarn}"		
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
   </target>
 
   <target name="boost-build" depends="boost-compile">
