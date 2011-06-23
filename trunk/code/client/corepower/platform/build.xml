@@ -39,7 +39,12 @@
            optimize="${compiler.optimize}"
            deprecation="${compiler.deprecation}"
            nowarn="${compiler.nowarn}"
-           classpathref="javac.classpath"/>
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	 </javac>
+		
   </target>
 
   <target name="platform-build" depends="platform-compile">
