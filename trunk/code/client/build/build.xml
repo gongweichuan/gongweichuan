@@ -169,12 +169,12 @@
 		</copy>
 		<javadoc 
 			destdir="./javadoc/" access="public" 
-			source="1.4" use="true" 
+			source="1.6" use="true" 
 			notree="false" nonavbar="false" 
 			noindex="false" splitindex="true" 
 			author="true" version="true" 
 			nodeprecatedlist="false" 
-			nodeprecated="false" packagenames="com.chinaviponline.*" 
+			nodeprecated="false" packagenames="com.chinaviponline.*"  encoding="utf-8" charset="utf-8" 
 			sourcepath="./javares/" classpath="." />
 	</target>
 
