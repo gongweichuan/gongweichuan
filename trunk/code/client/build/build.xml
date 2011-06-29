@@ -37,6 +37,9 @@
 		<available file="./../utils/util/build.xml" property="util.present" />
 		<available file="./../api/build.xml" property="api.present" />
 		
+		<!-- Spring 模块目录访问权限判断- -->
+		<available file="./../corepower/spring/build.xml" property="spring.present" />
+		
 		<!-- 删除上次生成的日志文件-->
 		<delete file="${basedir}/build.log" />
 		
@@ -58,6 +61,8 @@
 
 		<antcall target="boost build" />
 		<antcall target="run build" />
+		
+		
 
 		<antcall target="servicedeployer build" />
 		
@@ -74,7 +79,8 @@
 		<!-- 以下为pfl-->
 		<!-- 以下为psl-->
 		<!-- 以下为 其它依赖较强的模块-->
-
+		<!-- Spring -->
+		<antcall target="spring build" />
 
 
 		<!-- 拷贝COREPOWER模板 -->
@@ -152,6 +158,13 @@
 	<!-- api 模块编译-->
 	<target name="api build" if="api.present">
 		<exec executable="cmd.exe" dir="./../api">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- spring 模块编译-->
+	<target name="spring build" if="spring.present">
+		<exec executable="cmd.exe" dir="./../corepower/spring">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
