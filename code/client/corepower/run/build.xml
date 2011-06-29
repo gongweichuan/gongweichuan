@@ -149,23 +149,24 @@
 			</fileset>
 		</copy -->	
 
+		
 
 		<!-- 将run模板配置文件拷贝到版本中,特殊支撑文件,无模板配置文件 -->
-		<!-- copy todir="${lct.erp.build.dir}/${run.par.lct.name}" filtering="no" overwrite="true">
-			<fileset dir="${run.template}/lct/${run.par.lct.name}">
+		<copy todir="${lct.erp.build.dir}/${common.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${run.template}/lct/${common.par.lct.name}">
 				<include name="*.xml"/>
 			</fileset>
 		</copy>
-		<copy todir="${clnt.erp.build.dir}/${run.par.clnt.name}" filtering="no" overwrite="true">
-			<fileset dir="${run.template}/clnt/${run.par.clnt.name}">
+		<copy todir="${clnt.erp.build.dir}/${common.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${run.template}/clnt/${common.par.clnt.name}">
 				<include name="*.xml"/>
 			</fileset>
 		</copy>
-		<copy todir="${svr.erp.build.dir}/${run.par.svr.name}" filtering="no" overwrite="true">
-			<fileset dir="${run.template}/svr/${run.par.svr.name}">
+		<copy todir="${svr.erp.build.dir}/${common.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${run.template}/svr/${common.par.svr.name}">
 				<include name="*.xml"/>
 			</fileset>
-		</copy -->
+		</copy>
 
   </target>  
   
