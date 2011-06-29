@@ -48,7 +48,7 @@ public  class  TSpringBeanLoaderImpl implements ISpringBeanLoader
     
     /**
      * 初始化Spring
-     * 加载所有的*-springban.xml
+     * 加载所有的*-springbean.xml
      */ 
     static
     {
