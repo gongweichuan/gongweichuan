@@ -122,7 +122,7 @@ set JAVA_OPTS=%JAVA_OPTS% -Dsun.lang.ClassLoader.allowArraySyntax=true
 set ERP_XCLASSPATH=%ERP_HOME%\..\jdk-ext\windows\corepower-prert.jar
 
 rem JPDA options. Uncomment and modify as appropriate to enable remote debugging.
-    set JAVA_OPTS=-classic -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4280,server=y,suspend=y %JAVA_OPTS%
+    set JAVA_OPTS=-classic -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4280,server=y,suspend=n %JAVA_OPTS%
 
 if not %JUSTECHO%==y goto excutejava
 echo %JAVA% %JAVA_OPTS%   -Xbootclasspath/p:"%ERP_XCLASSPATH%"  -classpath " %ERP_CLASSPATH%" com.chinaviponline.erp.BoostMain %ARGS%
