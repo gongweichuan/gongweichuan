@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server>
+<!-- $Id: user-service.xml,v 1.2.2.1 2002/07/18 18:16:46 starksm Exp $ -->
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  User Service Configuration                                           -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<server>
+ 
+  <!-- ==================================================================== -->
+  <!-- PSF DPrnSvrController                                                  -->
+  <!-- ====================================================================   -->
+  <mbean code="com.chinaviponline.erp.corepower.psl.dugprn.server.DPrnSvrController" 
+         name="psf:service=DPrnSvrController" />
+  
+  <!-- ==================================================================== -->
+  <!-- PSF  timer                                                 -->
+  <!-- ==================================================================== 
+  <mbean code="com.chinaviponline.erp.corepower.psf.clockmanager.TimerService" 
+         name="psf:service=TimerService">
+     <attribute name="PoolSize">60</attribute> 
+     <attribute name="InitCheckTime">0</attribute>
+  </mbean>
+  --> 
+  
+  <!-- ==================================================================== -->
+  <!-- PSF synchronize time                                                 -->
+  <!-- ==================================================================== -->
+  <!--
+  <mbean code="com.chinaviponline.erp.corepower.psf.clockmanager.SynClockService" 
+         name="psf:service=SynClockService">
+  </mbean>
+  -->
+  <!-- ==================================================================== -->
+  <!-- PSF file service                                                     -->
+  <!-- ==================================================================== --> 
+  <!--<mbean code="com.chinaviponline.erp.corepower.psf.filemanager.filemanagerserver.FileServer"
+	 name="psf:service=FileServer">
+  </mbean>
+ 
+  <mbean code="com.chinaviponline.erp.corepower.psf.filemanager.filecopyserver.FileCopyServer"
+	 name="psf:service=FileCopyServer">
+     <attribute name="Port">30015</attribute>            
+  </mbean>-->
+
+</server>
