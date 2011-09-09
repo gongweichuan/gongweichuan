@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locales>
+	<locale language-country="zh_CN">		
+		<pair label-key="log" label-value="日志"/>	
+	</locale>
+	
+	<locale language-country="en_US">
+	</locale>
+</locales>
