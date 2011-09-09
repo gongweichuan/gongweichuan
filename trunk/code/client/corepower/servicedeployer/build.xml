@@ -1,0 +1,193 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="servicedeployer-install" basedir="../../build" default="servicedeployer-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    servicedeployer Compilation Targets
+  </description>
+  
+  <target name="servicedeployer-init" depends="prepare">
+    <property file="${source}/corepower/servicedeployer/servicedeployer.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <!-- fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+
+      <fileset dir="${tools.lib.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+	 <fileset dir="${antwrapper.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+	  <fileset dir="${platform.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+	  <fileset dir="${boost.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+	   <fileset dir="${run.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+    </path>  
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="servicedeployer-compile" depends="servicedeployer-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${servicedeployer.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${servicedeployer.output}"/>
+    <mkdir dir="${servicedeployer.output}"/>  
+    <mkdir dir="${servicedeployer.output}/classes"/>
+
+	<javac srcdir="${servicedeployer.source}"
+           destdir="${servicedeployer.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+           classpathref="javac.classpath"/>
+  </target>
+
+  <target name="servicedeployer-build" depends="servicedeployer-compile">
+    <mkdir dir="${servicedeployer.output}/lib"/>
+    <jar jarfile="${servicedeployer.output}/lib/${servicedeployer.jar.name}" index="true">
+      <fileset dir="${servicedeployer.output}/classes">
+		<include name="com/chinaviponline/erp/corepower/psl/systemsupport/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="servicedeployer-install" depends="servicedeployer-build">
+       <!-- 拷贝到版本中-->
+	<!-- mkdir dir="${lct.erp.build.dir}/${servicedeployer.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${servicedeployer.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${servicedeployer.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${servicedeployer.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${servicedeployer.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${servicedeployer.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy -->	
+	
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.kernel.lib.dir}"/>
+      	<copy todir="${lct.kernel.lib.dir}" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.kernel.lib.dir}"/>
+      	<copy todir="${clnt.kernel.lib.dir}" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.kernel.lib.dir}"/>
+      	<copy todir="${svr.kernel.lib.dir}" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${servicedeployer.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${servicedeployer.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${servicedeployer.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${servicedeployer.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${servicedeployer.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${servicedeployer.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${servicedeployer.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${servicedeployer.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${servicedeployer.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${servicedeployer.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+
+		<!-- 将servicedeployer配置文件拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${servicedeployer.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${servicedeployer.template}/lct/${servicedeployer.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${servicedeployer.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${servicedeployer.template}/clnt/${servicedeployer.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${servicedeployer.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${servicedeployer.template}/svr/${servicedeployer.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="servicedeployer-checkstyle">
+	  <delete dir="${basedir}/../corepower/servicedeployer/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/servicedeployer/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/servicedeployer/output/checkstyle/servicedeployer-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/servicedeployer/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>
