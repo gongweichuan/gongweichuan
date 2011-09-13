@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	<bean id="systemtray" class="com.chinaviponline.erp.corepower.tray.SystemTrayFrame">
+		<constructor-arg>
+			<value>tray.gif</value>
+		</constructor-arg>
+	</bean>
+</beans> 
+<!--
+	 其他注入方式
+   <constructor-arg><value>John</value></constructor-arg>
+   <constructor-arg><ref bean="car"/></constructor-arg>
+   <constructor-arg><ref bean="office"/></constructor-arg>
+
+   <bean id="car" class="com.lxm.cons.Car">
+		<constructor-arg index="0" value="奔驰CA72"/>
+		<constructor-arg index="1" ref="boss"/>
+   </bean>
+	<bean id="boss" class="com.lxm.cons.Boss">
+		<constructor-arg index="0" value="John"/>
+		<constructor-arg index="1" ref="car"/>
+	</bean>
+-->
