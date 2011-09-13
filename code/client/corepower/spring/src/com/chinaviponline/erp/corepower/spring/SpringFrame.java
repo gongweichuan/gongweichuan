@@ -2,10 +2,11 @@ package com.chinaviponline.erp.corepower.spring;
 
 import com.chinaviponline.erp.corepower.api.BaseMBeanSupport;
 import com.chinaviponline.erp.corepower.api.ServiceAccess;
+import com.chinaviponline.erp.corepower.api.spring.ISpringBeanLoader;
 
 /**
  * <p>文件名称：SpringFrame.java</p>
- * <p>文件描述：</p>
+ * <p>文件描述：触发Spring、把控制权交给Spring</p>
  * <p>版权所有： 版权所有(C)2007-2017</p>
  * <p>公    司： 与龙共舞独立工作室</p>
  * <p>内容摘要： </p>
@@ -48,9 +49,16 @@ public class SpringFrame extends BaseMBeanSupport implements SpringFrameMBean
         return null;
     }
 
+    /**
+     * 
+     * 功能描述：触发Spring、把控制权交给Spring
+    
+     * @see org.jboss.system.ServiceMBeanSupport#create()
+     */
     public void create() throws Exception
     {
-        // TODO Auto-generated method stub
+        ISpringBeanLoader springBL=ServiceAccess.getSpringService();
+        springBL.getBean("sqlMapClient");
 
     }
 
