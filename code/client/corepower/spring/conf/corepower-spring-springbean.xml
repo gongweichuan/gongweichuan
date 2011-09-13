@@ -19,13 +19,16 @@
        </property>
    </bean --> 	
    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-    	<property name="configLocation" value="classpath:sqlmap-config.xml" />
+    	<!-- property name="configLocation" value="classpath:sqlmap-config.xml" / -->
 		<property name="dataSource">
 			<ref local="dataSource"/>
 		</property>
-		<property name="mappingLocations">
+		<!-- property name="mappingLocations">
         	<ref local="sqlmapExtendXml"/>
-        </property>
+        </property -->
+	    <property name="configLocations">
+        	<ref local="sqlmapExtendXml"/>
+	    </property>  
 	</bean>
 	<bean id="sqlmapExtendXml" class="com.chinaviponline.erp.corepower.ibatis.TIbatisSqlmapFactory" 
 	factory-method="getIbatisSqlmap">
