@@ -10,8 +10,8 @@
 		<property name="startAction">
 			<ref local="embedTomcatStartupAction"></ref>
 		</property>
-		<property name="embedTomcatStopAction">			
-			<ref local="EmbedTomcatStopAction"></ref>
+		<property name="stopAction">			
+			<ref local="embedTomcatStopAction"></ref>
 		</property>
 	</bean>
 	<!-- 启动Tomcat -->
