@@ -11,8 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.net.MalformedURLException;
 
 import org.apache.log4j.Logger;
+
+import com.chinaviponline.erp.corepower.api.ServiceAccess;
 
 /**
  * <p>文件名称：SystemTrayFrame.java</p>
@@ -44,11 +48,17 @@ public class SystemTrayFrame
      * 日志
      */
     private static final Logger log;
+    
+    /**
+     * 鼠标放上去的后的提示。
+     */
+    private String toolTipStr="Tray PRM";
 
     /**
      * 系统托盘实例
      */
-    // private final TrayIcon trayIcon;
+   private  TrayIcon trayIcon;
+     
     static
     {
         log = Logger.getLogger(SystemTrayFrame.class);
@@ -56,13 +66,24 @@ public class SystemTrayFrame
 
     public SystemTrayFrame(String picName)
     {
-        final TrayIcon trayIcon;
+        //   final TrayIcon trayIcon;
 
         if (SystemTray.isSupported())
         {
 
-            SystemTray tray = SystemTray.getSystemTray();
-            Image image = Toolkit.getDefaultToolkit().getImage(picName==null?"tray.gif":picName);//设定一个默认值
+            SystemTray tray = SystemTray.getSystemTray();            
+            File file = ServiceAccess.getSystemSupportService().getFile(picName==null?"tray.gif":picName);//设定一个默认值
+            
+            Image image=null;
+            try
+            {
+                image = Toolkit.getDefaultToolkit().getImage(file.toURI().toURL());
+            }
+            catch (MalformedURLException mue)
+            {
+               
+                log.warn("find ImangeIcon:"+mue.getMessage());
+            }
 
             MouseListener mouseListener = new MouseListener()
             {
@@ -108,7 +129,7 @@ public class SystemTrayFrame
             defaultItem.addActionListener(exitListener);
             popup.add(defaultItem);
 
-            trayIcon = new TrayIcon(image, "Tray Demo", popup);
+            trayIcon = new TrayIcon(image, toolTipStr, popup);
 
             ActionListener actionListener = new ActionListener()
             {
@@ -142,5 +163,25 @@ public class SystemTrayFrame
         {
             log.error("System tray is currently not supported.");
         }
+    }
+
+    public String getToolTipStr()
+    {
+        return toolTipStr;
+    }
+
+    public void setToolTipStr(String toolTipStr)
+    {
+        this.toolTipStr = toolTipStr;
+    }
+
+    public TrayIcon getTrayIcon()
+    {
+        return trayIcon;
+    }
+
+    public void setTrayIcon(TrayIcon trayIcon)
+    {
+        this.trayIcon = trayIcon;
     }
 }
