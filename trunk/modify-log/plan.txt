@@ -1,6 +1,8 @@
-
+2011-09-14 开始EmbeddedTomcat
+2011-09-13 程序员节
+		        需要一个可视化的东西、那就是系统托盘！ 
 2011-09-09 corepower-psl-debugprn  servicedeployer 
-2011-09-07 run4Debug EmbeddedTomcat 
+2011-09-07 run4Debug  
 
 2011-06-20 Welcome CY!
 
