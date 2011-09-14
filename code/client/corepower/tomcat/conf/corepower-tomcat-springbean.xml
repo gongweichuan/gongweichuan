@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	<!-- 嵌入式Tomcat服务 -->
+	<bean id="embeddedTomcatFrame" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatFrame">
+		<property name="tomcatEmbedDir">
+			<value>${user.home}/tmp</value>
+		</property>
+		<property name="startAction">
+			<ref local="embedTomcatStartupAction"></ref>
+		</property>
+		<property name="embedTomcatStopAction">			
+			<ref local="EmbedTomcatStopAction"></ref>
+		</property>
+	</bean>
+	<!-- 启动Tomcat -->
+	<bean id="embedTomcatStartupAction" class="com.chinaviponline.erp.corepower.tomcat.EmbedTomcatStartupAction">		
+	</bean>
+	<!-- 停止Tomcat -->
+	<bean id="embedTomcatStopAction" class="com.chinaviponline.erp.corepower.tomcat.EmbedTomcatStopAction">		
+	</bean>	
+	
+	<bean id="embeddedTomcatStartActionMenuItem"  init-method="init" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatStartActionMenuItem">
+		<property name="label">
+			<value>启动</value>
+		</property>
+		<property name="action">
+			<ref local="embedTomcatStartupAction"></ref>
+		</property>
+	</bean>
+	<bean id="embeddedTomcatStopActionMenuItem" init-method="init" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatStopActionMenuItem">
+		<property name="label">
+			<value>停止</value>
+		</property>
+	</bean>
+	<bean id="embeddedTomcatMenu" init-method="init" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatMenu">
+		<property name="label">
+			<value>Tomcat...</value>
+		</property>
+		<property name="item">
+			<list>
+				<ref local="embeddedTomcatStartActionMenuItem"></ref>
+				<ref local="embeddedTomcatStopActionMenuItem"></ref>
+			</list>
+		</property>
+	</bean>
+</beans> 
