@@ -2,10 +2,34 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
 	"http://www.springframework.org/dtd/spring-beans.dtd">
 <beans> 
-	<bean id="systemtray" class="com.chinaviponline.erp.corepower.tray.SystemTrayFrame">
+	<bean id="systemtray" init-method="init" class="com.chinaviponline.erp.corepower.tray.SystemTrayFrame">
 		<constructor-arg>
 			<value>tray.gif</value>
 		</constructor-arg>
+		<property name="menuItem">
+			<list>
+				<value>*4SystemtrayPopmenu</value>
+			</list>
+		</property>
+		<property name="picName">
+			<value>tray.gif</value>
+		</property>
+	</bean>
+	
+	<bean id="addToTrayiconPopMenuAdvice" class="com.chinaviponline.erp.corepower.tray.AddToTrayiconPopMenuAdvice">
+	</bean>
+	<!-- 自动代理 -->
+	<bean  class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>*4SystemtrayPopmenu</value>
+			</list>			
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>addToTrayiconPopMenuAdvice</value>
+			</list>
+		</property>
 	</bean>
 </beans> 
 <!--
