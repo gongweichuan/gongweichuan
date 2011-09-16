@@ -133,6 +133,27 @@
 			</fileset>
 		</copy>	
 
+	  <!-- 拷贝lib包 -->
+	  <copy todir="${clnt.erp.build.dir}/${tomcat.par.clnt.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.lib}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${tomcat.par.lct.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${tomcat.par.svr.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
 
 		<!-- 将tomcat的parinfo.xml拷贝到版本中 -->
 		<copy todir="${lct.erp.build.dir}/${tomcat.par.lct.name}" filtering="no" overwrite="true">
