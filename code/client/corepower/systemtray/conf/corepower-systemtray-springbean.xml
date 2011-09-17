@@ -20,10 +20,8 @@
 	</bean>
 	<!-- 自动代理 -->
 	<bean  class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-		<property name="beanNames">
-			<list>
-				<value>*4SystemtrayPopmenu</value>
-			</list>			
+		<property name="beanNames">			
+				<value>*4SystemtrayPopmenu</value>					
 		</property>
 		<property name="interceptorNames">
 			<list>
