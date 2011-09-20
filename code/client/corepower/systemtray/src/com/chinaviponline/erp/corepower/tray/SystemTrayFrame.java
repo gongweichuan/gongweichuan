@@ -13,11 +13,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.springframework.util.StringUtils;
 
 import com.chinaviponline.erp.corepower.api.ServiceAccess;
 
@@ -215,14 +213,14 @@ public class SystemTrayFrame
         return menuItem;
     }
 
-    public void setMenuItem(String[] menuItems)
+    public void setMenuItem(List menuItem)
     {
-        //this.menuItem = menuItem;
-        this.menuItem = new ArrayList(menuItems.length);
-        for (int i = 0; i < menuItems.length; i++)
-        {
-            this.menuItem.add(StringUtils.trimWhitespace(menuItems[i]));
-        }
+        this.menuItem = menuItem;
+//        this.menuItem = new ArrayList(menuItems.length);
+//        for (int i = 0; i < menuItems.length; i++)
+//        {
+//            this.menuItem.add(StringUtils.trimWhitespace(menuItems[i]));
+//        }
 
     }
 
