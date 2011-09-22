@@ -41,7 +41,7 @@ import com.chinaviponline.erp.corepower.api.spring.ISpringBeanLoader;
 
  * @email  gongweichuan(AT)gmail.com
  */
-public class AddToTrayiconPopMenuAdvice implements AfterReturningAdvice,MethodBeforeAdvice,MethodInterceptor
+public class AddToTrayiconPopMenuAdvice implements AfterReturningAdvice //,MethodBeforeAdvice,MethodInterceptor
 {
     private static final String SYSTEMTRAY = "systemtray";
     private static final Logger log=Logger.getLogger(AddToTrayiconPopMenuAdvice.class);
