@@ -47,6 +47,14 @@
 		</property>
 	</bean>
 
+	<!-- 配置Dery数据源 可以换成其他的数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${derby.jdbc.driverClassName}"/>
+		<property name="url" value="${derby.jdbc.url}"/>
+		<property name="username" value="${derby.jdbc.username}"/>
+		<property name="password" value="${derby.jdbc.password}"/>
+	</bean>
+	
 	<!-- 配置本地的 C3P0 数据源 -->
 	<!-- 所有的数据源都有close方法,该方法会在此数据源bean销毁时候被关闭 -->
 	<!--bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
@@ -55,16 +63,8 @@
 		<property name="user" value="${oracle.jdbc.username}"/>
 		<property name="password" value="${oracle.jdbc.password}"/>
 	</bean-->
-
-	<!-- 配置本地的 DBCP 数据源 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${oracle.jdbc.driverClassName}"/>
-		<property name="url" value="${oracle.jdbc.url}"/>
-		<property name="username" value="${oracle.jdbc.username}"/>
-		<property name="password" value="${oracle.jdbc.password}"/>
-	</bean>
 	
-		<!-- UserDAO方案一 -->
+	<!-- UserDAO方案一
 	<bean id="userDAO1" class="com.chinaviponline.test.samples.ibatis.dao.UserDAOImpl">
 		<property name="sqlMapClient">
 			<ref bean="sqlMapClient"/>
@@ -80,5 +80,5 @@
 		<property name="name">
 			<value>n</value>
 		</property>
-	</bean>
+	</bean>  -->
 </beans> 
