@@ -4,6 +4,7 @@
 package com.chinaviponline.erp.corepower.tomcat;
 
 import java.awt.Menu;
+import java.awt.MenuItem;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -33,31 +34,31 @@ import java.util.List;
  */
 public class EmbeddedTomcatMenu extends Menu
 {
-    private String label;//菜单文字
+   // private String label;//菜单文字
     private List  item;//子菜单
     
     public void init()
     {
-        this.add(label);
+     //   this.add(label);
         
         if(item!=null &&item.size()>0)
         {
             for(int i=0;i<item.size();i++)
             {
-                this.addActionListener((ActionListener)item.get(i));
+                this.add((MenuItem)item.get(i));
             }
         }
     }
 
-    public String getLabel()
-    {
-        return label;
-    }
-
-    public void setLabel(String label)
-    {
-        this.label = label;
-    }
+//    public String getLabel()
+//    {
+//        return label;
+//    }
+//
+//    public void setLabel(String label)
+//    {
+//        this.label = label;
+//    }
 
     public List getItem()
     {

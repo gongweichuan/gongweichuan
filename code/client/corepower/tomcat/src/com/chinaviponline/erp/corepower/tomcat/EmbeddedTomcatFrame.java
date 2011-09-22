@@ -15,7 +15,7 @@ import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Embedded;
 import org.apache.log4j.Logger;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+
 
 /**
  * <p>文件名称：EmbeddedTomcatFrame.java</p>
@@ -75,7 +75,7 @@ public class EmbeddedTomcatFrame
 
     public void setStartAction(Action startAction)
     {
-        startAction = startAction;
+        this.startAction = startAction;
     }
 
     public Action getStopAction()
@@ -85,7 +85,7 @@ public class EmbeddedTomcatFrame
 
     public void setStopAction(Action stopAction)
     {
-        stopAction = stopAction;
+        this.stopAction = stopAction;
     }
 
     public void start()
@@ -115,7 +115,7 @@ public class EmbeddedTomcatFrame
         }
         catch (LifecycleException lcex)
         {
-            lcex.printStackTrace();
+            log.error(lcex.getMessage());
         }
     }
 
@@ -180,7 +180,7 @@ public class EmbeddedTomcatFrame
 
     public void setBoot(boolean isBoot)
     {
-        isBoot = isBoot;
+        this.isBoot = isBoot;
     }
 
     public void reboot() throws Exception

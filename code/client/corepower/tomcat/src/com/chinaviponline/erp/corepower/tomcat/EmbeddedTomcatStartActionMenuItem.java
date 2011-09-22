@@ -7,6 +7,8 @@ import java.awt.MenuItem;
 
 import javax.swing.Action;
 
+import org.apache.log4j.Logger;
+
 /**
  * <p>文件名称：EmbeddedTomcatStartActionMenuItem.java</p>
  * <p>文件描述：启动Tomcat的菜单</p>
@@ -34,12 +36,12 @@ import javax.swing.Action;
 public class EmbeddedTomcatStartActionMenuItem extends MenuItem
 {
     private Action action;
-    private String label;
+    private static final Logger log=Logger.getLogger(EmbeddedTomcatStartActionMenuItem.class);
     
     public void init()
     {
         this.addActionListener(action);//操作
-        this.setLabel(label);        
+        log.info("init action is:"+action); 
     }
 
     public Action getAction()
@@ -52,7 +54,7 @@ public class EmbeddedTomcatStartActionMenuItem extends MenuItem
         this.action = action;
     }
 
-    public String getLabel()
+/*    public String getLabel()
     {
         return label;
     }
@@ -60,5 +62,5 @@ public class EmbeddedTomcatStartActionMenuItem extends MenuItem
     public void setLabel(String label)
     {
         this.label = label;
-    }
+    }*/
 }
