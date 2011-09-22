@@ -5,7 +5,7 @@
 	<!-- 嵌入式Tomcat服务 -->
 	<bean id="embeddedTomcatFrame" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatFrame">
 		<property name="tomcatEmbedDir">
-			<value>${user.home}/tmp</value>
+			<value>${erp.home.dir}/web/tomcatembed</value>
 		</property>
 		<property name="startAction">
 			<ref local="embedTomcatStartupAction"></ref>
@@ -21,7 +21,8 @@
 	<bean id="embedTomcatStopAction" class="com.chinaviponline.erp.corepower.tomcat.EmbedTomcatStopAction">		
 	</bean>	
 	
-	<bean id="embeddedTomcatStartActionMenuItem"  init-method="init" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatStartActionMenuItem">
+	
+	<!--  <bean id="embeddedTomcatStartActionMenuItem"  init-method="init" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatStartActionMenuItem">
 		<property name="label">
 			<value>启动</value>
 		</property>
@@ -33,8 +34,41 @@
 		<property name="label">
 			<value>停止</value>
 		</property>
+		<property name="action">
+			<ref local="embedTomcatStopAction"></ref>
+		</property>
+	</bean> -->
+	
+	<bean id="startTETomcatJMenu"  init-method="init" class="com.chinaviponline.erp.corepower.tomcat.impl.TActionJMenuItem">
+		<property name="label">
+			<value>启动</value>
+		</property>
+		<property name="action">
+			<ref local="embedTomcatStartupAction"></ref>
+		</property>
 	</bean>
-	<bean id="embeddedTomcatMenu" init-method="init" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatMenu">
+	<bean id="stopTETomcatJMenu" init-method="init" class="com.chinaviponline.erp.corepower.tomcat.impl.TActionJMenuItem">
+		<property name="label">
+			<value>停止</value>
+		</property>
+		<property name="action">
+			<ref local="embedTomcatStopAction"></ref>
+		</property>
+	</bean>
+	<bean id="systemTrayTETomcatJMenu"  init-method="init" class="com.chinaviponline.erp.corepower.tomcat.impl.TETomcatJMenu">
+		<property name="label">
+			<value>Tomcat...</value>
+		</property>
+		<property name="item">
+			<list>
+				<ref local="startTETomcatJMenu"></ref>
+				<ref local="stopTETomcatJMenu"></ref>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- lazy-init="true" 
+	<bean id="embeddedTomcatMenu4SystemtrayPopmenu"  init-method="init" class="com.chinaviponline.erp.corepower.tomcat.EmbeddedTomcatMenu">
 		<property name="label">
 			<value>Tomcat...</value>
 		</property>
@@ -44,5 +78,5 @@
 				<ref local="embeddedTomcatStopActionMenuItem"></ref>
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 </beans> 
