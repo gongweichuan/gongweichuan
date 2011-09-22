@@ -39,7 +39,7 @@ import com.chinaviponline.erp.corepower.api.spring.ISpringBeanLoader;
  */
 public class EmbedTomcatStopAction implements Action
 {
-    private static final String EMBEDDEDTOMCATFRAME = "embeddedtomcatframe";
+    private static final String EMBEDDEDTOMCATFRAME = "embeddedTomcatFrame";
     private static final Logger log=Logger.getLogger(EmbedTomcatStopAction.class);
     
     /**
@@ -147,7 +147,7 @@ public class EmbedTomcatStopAction implements Action
             }
         };
      
-        Thread t=new Thread();
+        Thread t=new Thread(r);
         t.start();
         log.info("tomcat stoping");
     }

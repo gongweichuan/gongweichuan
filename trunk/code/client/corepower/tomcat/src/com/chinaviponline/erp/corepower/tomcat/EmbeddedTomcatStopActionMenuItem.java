@@ -5,6 +5,10 @@ package com.chinaviponline.erp.corepower.tomcat;
 
 import java.awt.MenuItem;
 
+import javax.swing.Action;
+
+import org.apache.log4j.Logger;
+
 /**
  * <p>文件名称：EmbeddedTomcatStopActionMenuItem.java</p>
  * <p>文件描述：停止Tomcat的菜单</p>
@@ -31,5 +35,22 @@ import java.awt.MenuItem;
  */
 public class EmbeddedTomcatStopActionMenuItem extends MenuItem
 {
+    private static final Logger log=Logger.getLogger(EmbeddedTomcatStopActionMenuItem.class);
+    private Action action;   
+     
+     public void init()
+     {
+         log.info("init action is:"+action);
+         this.addActionListener(action);//操作       
+     }
 
+     public Action getAction()
+     {
+         return action;
+     }
+
+     public void setAction(Action action)
+     {
+         this.action = action;
+     }
 }

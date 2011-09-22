@@ -127,7 +127,7 @@ public class EmbedTomcatStartupAction implements Action
                     {
                         try
                         {
-                            ((EmbeddedTomcatFrame)tomcatFrame).stop();
+                            ((EmbeddedTomcatFrame)tomcatFrame).start();
                         }
                         catch (Exception e)
                         {
@@ -148,7 +148,7 @@ public class EmbedTomcatStartupAction implements Action
             }
         };
      
-        Thread t=new Thread();
+        Thread t=new Thread(r);
         t.start();
         log.info("tomcat starting");
     }
