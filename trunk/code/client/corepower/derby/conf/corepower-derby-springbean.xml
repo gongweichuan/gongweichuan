@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	<!-- 嵌入式数据库服务 derby -->
+	<bean id="tEmbeddedDerbyFrame"   init-method="init" class="com.chinaviponline.corepower.derby.impl.TEmbeddedDerbyFrame">
+		<property name="derbyProps">
+			<props>
+				<!-- 
+				<prop key="derby.system.home">${erp.home.dir}/deploy</prop> -->
+				<prop key="derby.stream.error.file">${erp.home.dir}/log/db.log</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans> 
