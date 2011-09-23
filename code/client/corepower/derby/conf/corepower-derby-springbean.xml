@@ -8,9 +8,28 @@
 			<props>
 				<!-- 
 				<prop key="derby.system.home">${erp.home.dir}/deploy</prop> -->
-				<prop key="derby.stream.error.file">${erp.home.dir}/log/db.log</prop>
+				<prop key="derby.stream.error.file">${erp.home.dir}log\db.log</prop>
 			</props>
 		</property>
-	</bean>
+		<property name="createSysProps">
+			<!-- 创建系统属性表 type="java.lang.String" -->
+			<value>createSysProps</value>
+		</property>
+		<!--
+		<property name="sqlMap">
+			<ref bean="sqlMapClient"></ref>
+		</property>  -->
+		<property name="createSysPropsTable">
+			<ref bean="createSysPropsTable"></ref>
+		</property>
+	</bean>	
 	
+	<bean id="createSysPropsTable" class="com.chinaviponline.corepower.derby.impl.TCreateSysPropsTableImpl">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+        <property name="sqlMapClient">
+            <ref bean="sqlMapClient" />
+        </property>      
+    </bean>	
 </beans> 
