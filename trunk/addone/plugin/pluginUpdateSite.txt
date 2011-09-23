@@ -1,5 +1,21 @@
-Google App EngineµÄEclipse²å¼şupdate Site.
+Google App Engineçš„Eclipseæ’ä»¶update Site.
 http://dl.google.com/eclipse/plugin/3.4
 
-subclipseµÄEclipse²å¼şupdate Site.
+subclipseçš„Eclipseæ’ä»¶update Site.
 http://subclipse.tigris.org/update_1.6.x
+
+Derbyæ•°æ®åº“çš„å‚è€ƒèµ„æ–™
+Derby documentation
+http://db.apache.org/derby/manuals/index.html
+
+Derby reference
+http://db.apache.org/derby/docs/dev/ref/
+
+Derby developerâ€˜s guide
+http://db.apache.org/derby/docs/dev/devguide/
+
+JQuery API
+http://jquery-api-zh-cn.googlecode.com/svn/trunk/index.html
+
+JQuery Code Try
+http://jsfiddle.net/chinaviponline/gGt7a/105/
