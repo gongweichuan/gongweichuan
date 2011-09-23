@@ -19,3 +19,6 @@ http://jquery-api-zh-cn.googlecode.com/svn/trunk/index.html
 
 JQuery Code Try
 http://jsfiddle.net/chinaviponline/gGt7a/105/
+
+MyBatis 参考
+http://www.mybatis.org/java.html
