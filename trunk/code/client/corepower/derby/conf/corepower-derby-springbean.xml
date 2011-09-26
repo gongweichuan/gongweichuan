@@ -6,9 +6,8 @@
 	<bean id="tEmbeddedDerbyFrame"   init-method="init" class="com.chinaviponline.corepower.derby.impl.TEmbeddedDerbyFrame">
 		<property name="derbyProps">
 			<props>
-				<!-- 
-				<prop key="derby.system.home">${erp.home.dir}/deploy</prop> -->
-				<prop key="derby.stream.error.file">${erp.home.dir}log\db.log</prop>
+				<prop key="derby.system.home">${erp.home.dir}\\deploy</prop>
+				<prop key="derby.stream.error.file">${erp.home.dir}log\\db.log</prop>
 			</props>
 		</property>
 		<property name="createSysProps">
@@ -25,11 +24,17 @@
 	</bean>	
 	
 	<bean id="createSysPropsTable" class="com.chinaviponline.corepower.derby.impl.TCreateSysPropsTableImpl">
-        <property name="dataSource">
+        <!--property name="dataSource">
             <ref bean="dataSource" />
-        </property>
+        </property -->
         <property name="sqlMapClient">
             <ref bean="sqlMapClient" />
-        </property>      
+        </property>    
+		<property name="existTableSysProps">
+			<value>existTableSysProps</value>
+		</property>  
+		<property name="createSysProps">
+			<value>createSysProps</value>
+		</property>
     </bean>	
 </beans> 
