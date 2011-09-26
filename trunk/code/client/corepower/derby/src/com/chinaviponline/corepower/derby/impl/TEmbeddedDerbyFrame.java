@@ -8,7 +8,9 @@ import java.util.Properties;
 import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
 
+import com.chinaviponline.corepower.derby.i.ICreateSysPropsTable;
 import com.chinaviponline.corepower.derby.i.IEmbeddedDerbyFrame;
 
 /**
@@ -41,6 +43,15 @@ public class TEmbeddedDerbyFrame implements IEmbeddedDerbyFrame
 
     private static final Logger log=Logger.getLogger(TEmbeddedDerbyFrame.class);
     
+
+    
+    /**
+     * 创建系统属性表
+     */
+    private String createSysProps;
+    
+    private ICreateSysPropsTable createSysPropsTable;
+    
     public void init()
     {
         
@@ -69,6 +80,46 @@ public class TEmbeddedDerbyFrame implements IEmbeddedDerbyFrame
             log.debug(key+"="+value);
         }        
         
+        createSysPropsTable.createSysPropsTable();//Call Test
+        
+/*   try
+    {
+        Connection conn= sqlMap.getCurrentConnection();
+        
+        Statement stm= conn.createStatement();
+        boolean b=stm.execute("create TABLE sysProps if not exist{name varchar(300),value varchar(300)}");
+        
+        log.debug("stm.execute:"+b);
+    }
+    catch (SQLException e)
+    {
+        log.error("Connection on error "+e.getMessage());
+    }*/
+        
+//        ISpringBeanLoader springBL=ServiceAccess.getSpringService();
+//        Object sqlMapTmp=springBL.getBean("sqlMapClient");
+        
+/*        if(sqlMap!=null)
+        {            
+            try
+            {
+                sqlMap.startTransaction();
+                
+                log.debug("gggggggggggggggggggggg "+createSysProps);
+                sqlMap.update(createSysProps);
+                sqlMap.endTransaction();
+            }
+            catch (SQLException e)
+            {
+                
+                log.error("sqlMap on error "+e.getMessage());
+            }
+        }
+        else
+        {
+            log.error("sqlMap is "+sqlMap);
+        }*/
+        
     }
 
     public Properties getDerbyProps()
@@ -79,6 +130,27 @@ public class TEmbeddedDerbyFrame implements IEmbeddedDerbyFrame
     public void setDerbyProps(Properties derbyProps)
     {
         this.derbyProps = derbyProps;
+    }
+
+    public String getCreateSysProps()
+    {
+        return createSysProps;
+    }
+
+    public void setCreateSysProps(String createSysProps)
+    {
+        this.createSysProps = createSysProps;
+    }
+
+
+    public ICreateSysPropsTable getCreateSysPropsTable()
+    {
+        return createSysPropsTable;
+    }
+
+    public void setCreateSysPropsTable(ICreateSysPropsTable createSysPropsTable)
+    {
+        this.createSysPropsTable = createSysPropsTable;
     }    
     
 }
