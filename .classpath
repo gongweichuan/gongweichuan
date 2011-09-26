@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/commons-dbcp-1.2.1.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/commons-pool.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/concurrent.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/ibatis-2.3.3.720.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/ibatis-common-2.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/ibatis-dao-2.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/ibatis-sqlmap-2.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jboss-common.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jboss-j2ee.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jboss-jmx.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jboss-system.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jdom.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jhall.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/OfficeLnFs_2.6.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/spring.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
