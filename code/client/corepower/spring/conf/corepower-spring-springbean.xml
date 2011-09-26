@@ -23,12 +23,19 @@
 		<property name="dataSource">
 			<ref local="dataSource"/>
 		</property>
-		<!-- property name="mappingLocations">
-        	<ref local="sqlmapExtendXml"/>
-        </property -->
 	    <property name="configLocations">
-        	<ref local="sqlmapExtendXml"/>
+        	<ref local="sqlconfigExtendXml"/>
 	    </property>  
+	   <!-- 
+	   	<property name="mappingLocations">
+        	<ref local="sqlmapExtendXml"/>
+        </property> -->
+	</bean>
+	<bean id="sqlconfigExtendXml" class="com.chinaviponline.erp.corepower.ibatis.TIbatisSqlmapFactory" 
+	factory-method="getIbatisSqlmap">
+		<constructor-arg>
+            <value>-sqlconfig.xml</value>
+        </constructor-arg>
 	</bean>
 	<bean id="sqlmapExtendXml" class="com.chinaviponline.erp.corepower.ibatis.TIbatisSqlmapFactory" 
 	factory-method="getIbatisSqlmap">

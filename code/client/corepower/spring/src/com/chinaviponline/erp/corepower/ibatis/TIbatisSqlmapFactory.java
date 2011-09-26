@@ -1,12 +1,17 @@
 package com.chinaviponline.erp.corepower.ibatis;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 import org.apache.log4j.Logger;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
 import com.chinaviponline.erp.corepower.api.ServiceAccess;
+import com.chinaviponline.erp.corepower.psl.systemsupport.classloader.SelfAdaptClassLoader;
+
 
 /**
  * <p>文件名称：TIbatisSqlmap.java</p>
@@ -44,25 +49,60 @@ public class TIbatisSqlmapFactory
      */
     private static String mappingLocations="-sqlmap.xml";
     
-    public static Resource[] getIbatisSqlmap(String arg)
+    public static Resource[] getIbatisSqlmap(String mathStr)
     {
         log = Logger.getLogger(TIbatisSqlmapFactory.class);
-        
-        if(arg!=null)
+        ClassLoader cl=Thread.currentThread().getContextClassLoader();
+        if(cl instanceof URLClassLoader)
         {
-            mappingLocations=arg;
+            URLClassLoader urlCL=(URLClassLoader)cl;
+            URL[] url=urlCL.getURLs();
+            for (int i = 0; i < url.length; i++)
+            {
+                log.debug("url["+i+"]:"+url[i]);
+            }            
+        }else
+        {
+            log.error("cl is not URLClassLoader,is "+cl);
+        }
+      //========================================================================================
+        
+        if(mathStr!=null)
+        {
+            mappingLocations=mathStr;
         }
         
         File iBATISBeanFiles[] = ServiceAccess.getSystemSupportService().getFiles(mappingLocations);
-        
-        //String[] iBATISBeanVar=new String[iBATISBeanFiles.length];
         Resource[] iBATISExtendRes=new Resource[iBATISBeanFiles.length];
         for (int i = 0; i < iBATISBeanFiles.length; i++)
         {
-            //iBATISBeanVar[i]=iBATISBeanFiles[i].toString();
+            try
+            {
+                if(cl instanceof SelfAdaptClassLoader)
+                {
+                    SelfAdaptClassLoader urlWillAdd=(SelfAdaptClassLoader)cl;
+                    urlWillAdd.addURLs(new URL[]{iBATISBeanFiles[i].getParentFile().toURI().toURL()});                    
+                    log.debug("added["+i+"] is:"+iBATISBeanFiles[i].toURI().toURL());
+                }                   
+            }
+            catch (MalformedURLException e)
+            {
+               log.error("iBATISBeanFiles[i].toURI().toURL() "+e.getMessage());
+            }
             iBATISExtendRes[i]=new FileSystemResource(iBATISBeanFiles[i]);
         }
-                
+        //===============================================================================
+        {//把ibatis的xml加入到classpath中去
+            log.info("when done,the URLClassLoader:");
+            ClassLoader clAdded=Thread.currentThread().getContextClassLoader();
+            URLClassLoader urlCL=(URLClassLoader)clAdded;
+            URL[] urlAdded=urlCL.getURLs();
+            for (int i = 0; i < urlAdded.length; i++)
+            {
+                log.debug("url["+i+"]:"+urlAdded[i]);
+            }   
+        }
+        
         return iBATISExtendRes;
     }
 
