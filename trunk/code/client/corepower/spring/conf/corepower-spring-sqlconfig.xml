@@ -5,5 +5,5 @@
 		statementCachingEnabled="true" maxSessions="128" maxTransactions="128"
 		maxRequests="128" />
   <!-- sqlMap resource="User.xml"/-->
-	<sqlMap resource="corepower-spring-sqlmap.xml"></sqlMap>
+		<sqlMap resource="corepower-spring-sqlmap.xml"></sqlMap>
 </sqlMapConfig>

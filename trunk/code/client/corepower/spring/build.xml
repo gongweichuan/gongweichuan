@@ -4,7 +4,7 @@
 -->
 <project name="spring-install" basedir="../../build" default="spring-install">
 
-  <import file="../../tools/targets/init-build.xml" />
+  <import file="../../tools/targets/init-build.xml"/>
   
   <description>
     spring Compilation Targets
@@ -23,13 +23,15 @@
           <include name="*.jar"/>
         </fileset>
     	
-	  <!-- fileset dir="${gui-component.output.lib.dir}">
-        <include name="*.jar"/>
-      </fileset -->
+		<fileset dir="${boost.output.lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
     	
   	  <fileset dir="${spring.lib}">
           <include name="*.jar"/>
         </fileset>
+    
+    	
     </path>        
   </target>           
 
