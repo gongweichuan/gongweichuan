@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="GB2312"?>
+<project name="CRM" default="crmbuild">
+	<import file="./../tools/targets/init-build.xml" />
+	<description>CRM Build</description>
+
+	<!-- 执行CRM和PRM各模块的build脚本 -->
+
+	<target name="crmbuild" description="crmbuild">
+
+		<!-- 由于PRM和CRM共用一个build脚本，因此需要先判断要build的模块是否有权限访问 -->
+
+		<!-- CRM 模块目录访问权限判断 -->
+		
+		<!-- 基础模块 平台基础支撑先编译 -->
+		<available file="./../corepower/platform/build.xml" property="platform.present" />
+
+		<available file="./../corepower/gui-component/build.xml" property="gui-component.present" />
+		<available file="./../corepower/pfl-mainframe/build.xml" property="pfl-mainframe.present" />
+
+		<available file="./../corepower/antwrapper/build.xml" property="antwrapper.present" />
+
+		<available file="./../corepower/boost/build.xml" property="boost.present" />
+		<available file="./../corepower/run/build.xml" property="run.present" />
+
+		<available file="./../corepower/servicedeployer/build.xml" property="servicedeployer.present" />
+		
+		<!-- 打印日志模板 空par -->
+		<available file="./../corepower/psl-debugprn/build.xml" property="psl-debugprn.present" />
+		
+		<available file="./../corepower/platform/build.xml" property="prm.javadoc" />
+
+		<!-- available file="./../utils/util/build.xml" property="util.present" / -->
+		<!-- available file="./../api/build.xml" property="api.present" / -->
+
+
+		<!-- PRM 模块目录访问权限判断-->
+		<available file="./../utils/util/build.xml" property="util.present" />
+		<available file="./../api/build.xml" property="api.present" />
+		
+		<!-- Spring 模块目录访问权限判断- -->
+		<available file="./../corepower/spring/build.xml" property="spring.present" />
+		
+		<!-- 删除上次生成的日志文件-->
+		<delete file="${basedir}/build.log" />
+		
+		
+
+		<!-- 执行PRM 各模块javadoc生成任务  -->
+		<antcall target="javadoc generation"/>	
+      
+
+		<!-- 执行 CRM 各模块编译任务-->
+		<antcall target="clean" />
+
+		<antcall target="platform build" />
+
+		<antcall target="gui-component build" />
+		<antcall target="pfl-mainframe build" />
+
+		<antcall target="antwrapper build" />
+
+		<antcall target="boost build" />
+		<antcall target="run build" />
+		
+		
+
+		<antcall target="servicedeployer build" />
+		
+		<!-- 打印日志模板 空par -->
+		<antcall target="psl-debugprn build" />
+
+		<!-- 执行PRM 各模块编译任务-->
+		<!-- 以下为公用-->
+		<antcall target="util build" />
+		<antcall target="api build" />
+
+
+		<!-- 以下为pal-->
+		<!-- 以下为pfl-->
+		<!-- 以下为psl-->
+		<!-- 以下为 其它依赖较强的模块-->
+		<!-- Spring -->
+		<antcall target="spring build" />
+
+
+		<!-- 拷贝COREPOWER模板 -->
+		<antcall target="copy-erp" />
+	</target>
+
+	<!-- CRM各模块编译任务-->
+	<!-- platform 模块编译-->
+	<target name="platform build" if="platform.present">
+		<exec executable="cmd.exe" dir="./../corepower/platform">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+
+	<!-- gui-component 模块编译-->
+	<target name="gui-component build" if="gui-component.present">
+		<exec executable="cmd.exe" dir="./../corepower/gui-component">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+
+	<!-- pfl-mainframe 模块编译-->
+	<target name="pfl-mainframe build" if="pfl-mainframe.present">
+		<exec executable="cmd.exe" dir="./../corepower/pfl-mainframe">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+
+	<!-- antwrapper 模块编译-->
+	<target name="antwrapper build" if="antwrapper.present">
+		<exec executable="cmd.exe" dir="./../corepower/antwrapper">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+	<!-- boost 模块编译-->
+	<target name="boost build" if="boost.present">
+		<exec executable="cmd.exe" dir="./../corepower/boost">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+	<!-- run 模块编译-->
+	<target name="run build" if="run.present">
+		<exec executable="cmd.exe" dir="./../corepower/run">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+	<!-- servicedeployer 模块编译-->
+	<target name="servicedeployer build" if="servicedeployer.present">
+		<exec executable="cmd.exe" dir="./../corepower/servicedeployer">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- 打印日志模板 空par -->
+	<!-- psl-debugprn 模块编译-->
+	<target name="psl-debugprn build" if="psl-debugprn.present">
+		<exec executable="cmd.exe" dir="./../corepower/psl-debugprn">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+	<!-- 工具类 util 模块编译-->
+	<target name="util build" if="util.present">
+		<exec executable="cmd.exe" dir="./../utils/util">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+	<!-- api 模块编译-->
+	<target name="api build" if="api.present">
+		<exec executable="cmd.exe" dir="./../api">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- spring 模块编译-->
+	<target name="spring build" if="spring.present">
+		<exec executable="cmd.exe" dir="./../corepower/spring">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+
+	<!-- PRM 各模块javadoc生成任务 -->
+	<target name="javadoc generation" if="prm.javadoc">
+		<delete dir="./javares" />
+		<mkdir dir="./javares" />
+		<delete dir="./javadoc" />
+		<mkdir dir="./javadoc" />
+		<copy todir="./javares" filtering="no" overwrite="true">
+			<fileset dir="./../corepower/platform/src/">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<javadoc 
+			destdir="./javadoc/" access="public" 
+			source="1.6" use="true" 
+			notree="false" nonavbar="false" 
+			noindex="false" splitindex="true" 
+			author="true" version="true" 
+			nodeprecatedlist="false" 
+			nodeprecated="false" packagenames="com.chinaviponline.*"  encoding="utf-8" charset="utf-8" 
+			sourcepath="./javares/" classpath="." />
+	</target>
+
+	<!-- PRM 各模块编译任务 -->
+
+
+	<!-- filter log content 
+	<target name="log filtering" if="t3.log.filter">
+		<java classname="com.zte.t3.dailybuild.parser.TDailBuildLogParser">
+			<arg value="./build.log" />
+			<arg value="./../../daily/temp/filtered-client-t3-build_win.log" />
+			<classpath>
+				<pathelement path="./../lib/log_parser.jar" />
+			</classpath>
+		</java>
+	</target>	
+	-->
+	
+</project>

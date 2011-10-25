@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="derby">
+	<select id="existTableSysProps" resultClass="java.lang.Integer">
+		<![CDATA[select count(*) from sys.SYSTABLES t where t.TABLENAME='PRMPROPS']]>
+	</select>
+	<statement id="createSysProps">
+		<![CDATA[
+			create TABLE PRMPROPS 
+			(
+						n varchar(300) not null,
+						v varchar(1000)
+			)
+		]]>	
+	</statement>
+	<!--
+	<parameterMap class="java.util.HashMap" id="nameValueMap">
+		<parameter property="n" javaType="java.lang.String" jdbcType="VARCHAR" nullValue=""  mode="IN"></parameter>
+		<parameter property="v" javaType="java.lang.String" jdbcType="VARCHAR" nullValue="" mode="IN"></parameter>
+	</parameterMap> -->
+	<select id="existPrmPropsName"  resultClass="java.lang.String" parameterClass="java.util.HashMap" >
+		<![CDATA[
+		select count(*) from PRMPROPS where  n=#n#
+		]]>
+	</select>
+	<insert id="insertIntoPrmPropsNameValue" parameterClass="java.util.HashMap">
+		<![CDATA[
+			insert into PRMPROPS values(#n#,#v#)
+			]]>		
+	</insert>	
+	<!--
+	<parameterMap class="java.util.HashMap" id="valueNameMap">
+		<parameter property="v" javaType="java.lang.String" jdbcType="VARCHAR" nullValue="" mode="IN"></parameter>
+		<parameter property="n" javaType="java.lang.String" jdbcType="VARCHAR" nullValue=""  mode="IN"></parameter>		
+	</parameterMap> -->
+	<update id="updatePrmPropsNameValue" parameterClass="java.util.HashMap">
+		<![CDATA[update PRMPROPS set v=#v# where n=#n#]]>
+	</update>
+</sqlMap>

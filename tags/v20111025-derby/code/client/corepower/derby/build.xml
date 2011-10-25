@@ -1,0 +1,188 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="derby-install" basedir="../../build" default="derby-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    derby Compilation Targets
+  </description>
+  
+  <target name="derby-init" depends="prepare">
+    <property file="${source}/corepower/derby/derby.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+		
+	 <fileset dir="${derby.lib}">
+		 <include name="*.jar"/>
+	 </fileset>
+	  <!-- 
+	  fileset dir="${gui-component.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="derby-compile" depends="derby-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${derby.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${derby.output}"/>
+    <mkdir dir="${derby.output}"/>  
+    <mkdir dir="${derby.output}/classes"/>
+  	<mkdir dir="${derby.output}/lib"/>
+  	
+	<javac srcdir="${derby.source}"
+           destdir="${derby.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="derby-build" depends="derby-compile">    
+    <jar jarfile="${derby.output}/lib/${derby.jar.name}" index="true">
+      <fileset dir="${derby.output}/classes">
+		<include name="com/chinaviponline/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="derby-install" depends="derby-build">
+       <!-- 拷贝jar到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${derby.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${derby.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${derby.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${derby.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${derby.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${derby.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${derby.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${derby.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${derby.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${derby.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${derby.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${derby.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${derby.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${derby.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${derby.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${derby.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${derby.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${derby.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${derby.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${derby.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${derby.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+	  <!-- 拷贝lib中的依赖jar包 -->
+	  <copy todir="${clnt.erp.build.dir}/${derby.par.clnt.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${derby.lib}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${derby.par.lct.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${derby.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${derby.par.svr.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${derby.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+		<!-- 将derby的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${derby.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${derby.template}/lct/${derby.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${derby.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${derby.template}/clnt/${derby.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${derby.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${derby.template}/svr/${derby.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="derby-checkstyle">
+	  <delete dir="${basedir}/../corepower/derby/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/derby/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/derby/output/checkstyle/derby-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/derby/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>
