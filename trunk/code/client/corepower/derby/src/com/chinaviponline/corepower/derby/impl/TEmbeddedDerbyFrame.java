@@ -68,8 +68,9 @@ public class TEmbeddedDerbyFrame implements IEmbeddedDerbyFrame
             }
         }
         
-        Properties sysProps=System.getProperties();
+        createSysPropsTable.createSysPropsTable();//Call 1.创建系统属性表  
         
+        Properties sysProps=System.getProperties();
         for (Iterator iterator = sysProps.entrySet().iterator(); iterator.hasNext();)
         {
             
@@ -77,49 +78,14 @@ public class TEmbeddedDerbyFrame implements IEmbeddedDerbyFrame
             String  key =(String) eSys.getKey();
             String  value =(String)eSys.getValue();
             
+           //将每条属性写入DB
+            String n=key.length()>300?key.substring(key.length()-300):key;
+            String v=value.length()>1000? value.substring(value.length()-1000):value;
+            createSysPropsTable.insertNameValue2SysProsTable(n,v);
             log.debug(key+"="+value);
         }        
         
-        createSysPropsTable.createSysPropsTable();//Call Test
-        
-/*   try
-    {
-        Connection conn= sqlMap.getCurrentConnection();
-        
-        Statement stm= conn.createStatement();
-        boolean b=stm.execute("create TABLE sysProps if not exist{name varchar(300),value varchar(300)}");
-        
-        log.debug("stm.execute:"+b);
-    }
-    catch (SQLException e)
-    {
-        log.error("Connection on error "+e.getMessage());
-    }*/
-        
-//        ISpringBeanLoader springBL=ServiceAccess.getSpringService();
-//        Object sqlMapTmp=springBL.getBean("sqlMapClient");
-        
-/*        if(sqlMap!=null)
-        {            
-            try
-            {
-                sqlMap.startTransaction();
-                
-                log.debug("gggggggggggggggggggggg "+createSysProps);
-                sqlMap.update(createSysProps);
-                sqlMap.endTransaction();
-            }
-            catch (SQLException e)
-            {
-                
-                log.error("sqlMap on error "+e.getMessage());
-            }
-        }
-        else
-        {
-            log.error("sqlMap is "+sqlMap);
-        }*/
-        
+        //classpath表
     }
 
     public Properties getDerbyProps()

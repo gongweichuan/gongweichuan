@@ -36,5 +36,15 @@
 		<property name="createSysProps">
 			<value>createSysProps</value>
 		</property>
+		
+		<property name="existPrmPropsName">
+			<value>existPrmPropsName</value>
+		</property>
+		<property name="insertIntoPrmPropsNameValue">
+			<value>insertIntoPrmPropsNameValue</value>
+		</property>
+		<property name="updatePrmPropsNameValue">
+			<value>updatePrmPropsNameValue</value>
+		</property>
     </bean>	
 </beans> 
