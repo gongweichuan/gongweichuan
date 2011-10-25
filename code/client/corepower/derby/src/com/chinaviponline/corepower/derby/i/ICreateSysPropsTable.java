@@ -30,4 +30,25 @@ package com.chinaviponline.corepower.derby.i;
 public interface ICreateSysPropsTable
 {
     public boolean createSysPropsTable();  
+    
+    /**
+     * 
+     * <p>功能描述：插入系统属性到属性表中</p>
+     * <p>创建人：龚为川</p>
+     * <p>创建日期：2011-9-27</p>
+     * <p>修改记录1：</p>
+     * <pre>
+     *  修改人：
+     *  修改日期：
+    
+     *  修改内容：
+    
+     * </pre>
+     * <p>修改记录2：</p>
+     *
+     * @param name
+     * @param value
+     * @return
+     */
+    public int insertNameValue2SysProsTable(String name,String value);//PRMPROPS TABLE
 }
