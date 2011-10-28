@@ -1,0 +1,11 @@
+Spring3.0不支持Quartz 2.0.
+
+http://www.blogjava.net/fanyingjie/archive/2010/07/14/326054.html?opt=admin
+http://soulshard.iteye.com/blog/337886
+http://wangcheng.iteye.com/blog/469344
+
+主页
+http://www.quartz-scheduler.org/
+
+下载
+http://quartz-scheduler.org/downloads/catalog
