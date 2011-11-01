@@ -30,6 +30,7 @@
 		<property name="menuItem">
 			<list>
 				<ref bean="systemTrayTETomcatJMenu"></ref>
+				<ref bean="snowJMenu"></ref>
 			</list>
 		</property>
 	</bean>
