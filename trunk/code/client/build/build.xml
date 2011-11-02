@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="GB2312"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="CRM" default="crmbuild">
 	<import file="./../tools/targets/init-build.xml" />
 	<description>CRM Build</description>
 
-	<!-- Ö´ÐÐCRMºÍPRM¸÷Ä£¿éµÄbuild½Å±¾ -->
+	<!-- æ‰§è¡ŒCRMå’ŒPRMå„æ¨¡å—çš„buildè„šæœ¬ -->
 
 	<target name="crmbuild" description="crmbuild">
 
-		<!-- ÓÉÓÚPRMºÍCRM¹²ÓÃÒ»¸öbuild½Å±¾£¬Òò´ËÐèÒªÏÈÅÐ¶ÏÒªbuildµÄÄ£¿éÊÇ·ñÓÐÈ¨ÏÞ·ÃÎÊ -->
+		<!-- ç”±äºŽPRMå’ŒCRMå…±ç”¨ä¸€ä¸ªbuildè„šæœ¬ï¼Œå› æ­¤éœ€è¦å…ˆåˆ¤æ–­è¦buildçš„æ¨¡å—æ˜¯å¦æœ‰æƒé™è®¿é—® -->
 
-		<!-- CRM Ä£¿éÄ¿Â¼·ÃÎÊÈ¨ÏÞÅÐ¶Ï -->
+		<!-- CRM æ¨¡å—ç›®å½•è®¿é—®æƒé™åˆ¤æ–­ -->
 		
-		<!-- »ù´¡Ä£¿é Æ½Ì¨»ù´¡Ö§³ÅÏÈ±àÒë -->
+		<!-- åŸºç¡€æ¨¡å— å¹³å°åŸºç¡€æ”¯æ’‘å…ˆç¼–è¯‘ -->
 		<available file="./../corepower/platform/build.xml" property="platform.present" />
 
 		<available file="./../corepower/gui-component/build.xml" property="gui-component.present" />
@@ -24,7 +24,7 @@
 
 		<available file="./../corepower/servicedeployer/build.xml" property="servicedeployer.present" />
 		
-		<!-- ´òÓ¡ÈÕÖ¾Ä£°å ¿Õpar -->
+		<!-- æ‰“å°æ—¥å¿—æ¨¡æ¿ ç©ºpar -->
 		<available file="./../corepower/psl-debugprn/build.xml" property="psl-debugprn.present" />
 		
 		<available file="./../corepower/platform/build.xml" property="prm.javadoc" />
@@ -33,23 +33,38 @@
 		<!-- available file="./../api/build.xml" property="api.present" / -->
 
 
-		<!-- PRM Ä£¿éÄ¿Â¼·ÃÎÊÈ¨ÏÞÅÐ¶Ï-->
+		<!-- PRM æ¨¡å—ç›®å½•è®¿é—®æƒé™åˆ¤æ–­-->
 		<available file="./../utils/util/build.xml" property="util.present" />
 		<available file="./../api/build.xml" property="api.present" />
 		
-		<!-- Spring Ä£¿éÄ¿Â¼·ÃÎÊÈ¨ÏÞÅÐ¶Ï- -->
+		<!-- Spring æ¨¡å—ç›®å½•è®¿é—®æƒé™åˆ¤æ–­- -->
 		<available file="./../corepower/spring/build.xml" property="spring.present" />
 		
-		<!-- É¾³ýÉÏ´ÎÉú³ÉµÄÈÕÖ¾ÎÄ¼þ-->
+		<!-- æ•°æ®åº“ -->
+		<available file="./../corepower/derby/build.xml" property="derby.present" />
+		
+		<!-- ç¤ºä¾‹ é›ªèŠ± ä¸è§„åˆ™çª—ä½“å’Œé€æ˜Žçª—å£-->
+		<available file="./../corepower/helloworld-snow/build.xml" property="helloworld-snow.present" />
+		
+		<!-- å®šæ—¶ä»»åŠ¡ -->
+		<available file="./../corepower/quartz/build.xml" property="quartz.present" />
+		
+		<!-- ç³»ç»Ÿæ‰˜ç›˜ -->
+		<available file="./../corepower/systemtray/build.xml" property="systemtray.present" />
+		
+		<!-- TomcatæœåŠ¡å™¨ -->
+		<available file="./../corepower/tomcat/build.xml" property="tomcat.present" />
+		
+		<!-- åˆ é™¤ä¸Šæ¬¡ç”Ÿæˆçš„æ—¥å¿—æ–‡ä»¶-->
 		<delete file="${basedir}/build.log" />
 		
 		
 
-		<!-- Ö´ÐÐPRM ¸÷Ä£¿éjavadocÉú³ÉÈÎÎñ  -->
+		<!-- æ‰§è¡ŒPRM å„æ¨¡å—javadocç”Ÿæˆä»»åŠ¡  -->
 		<antcall target="javadoc generation"/>	
       
 
-		<!-- Ö´ÐÐ CRM ¸÷Ä£¿é±àÒëÈÎÎñ-->
+		<!-- æ‰§è¡Œ CRM å„æ¨¡å—ç¼–è¯‘ä»»åŠ¡-->
 		<antcall target="clean" />
 
 		<antcall target="platform build" />
@@ -66,29 +81,43 @@
 
 		<antcall target="servicedeployer build" />
 		
-		<!-- ´òÓ¡ÈÕÖ¾Ä£°å ¿Õpar -->
+		<!-- æ‰“å°æ—¥å¿—æ¨¡æ¿ ç©ºpar -->
 		<antcall target="psl-debugprn build" />
 
-		<!-- Ö´ÐÐPRM ¸÷Ä£¿é±àÒëÈÎÎñ-->
-		<!-- ÒÔÏÂÎª¹«ÓÃ-->
+		<!-- æ‰§è¡ŒPRM å„æ¨¡å—ç¼–è¯‘ä»»åŠ¡-->
+		<!-- ä»¥ä¸‹ä¸ºå…¬ç”¨-->
 		<antcall target="util build" />
 		<antcall target="api build" />
 
 
-		<!-- ÒÔÏÂÎªpal-->
-		<!-- ÒÔÏÂÎªpfl-->
-		<!-- ÒÔÏÂÎªpsl-->
-		<!-- ÒÔÏÂÎª ÆäËüÒÀÀµ½ÏÇ¿µÄÄ£¿é-->
+		<!-- ä»¥ä¸‹ä¸ºpal-->
+		<!-- ä»¥ä¸‹ä¸ºpfl-->
+		<!-- ä»¥ä¸‹ä¸ºpsl-->
+		<!-- ä»¥ä¸‹ä¸º å…¶å®ƒä¾èµ–è¾ƒå¼ºçš„æ¨¡å—-->
 		<!-- Spring -->
-		<antcall target="spring build" />
+		<antcall target="spring build"/>
 
+		<!-- æ•°æ®åº“ -->
+		<antcall target="derby build" />
+		
+		<!-- ç¤ºä¾‹ é›ªèŠ± ä¸è§„åˆ™çª—ä½“å’Œé€æ˜Žçª—å£-->
+		<antcall target="helloworld-snow build" />
+		
+		<!-- å®šæ—¶ä»»åŠ¡ -->
+		<antcall target="quartz build" />
+		
+		<!-- ç³»ç»Ÿæ‰˜ç›˜ -->
+		<antcall target="systemtray build" />
+		
+		<!-- TomcatæœåŠ¡å™¨ -->
+		<antcall target="tomcat build" />
 
-		<!-- ¿½±´COREPOWERÄ£°å -->
+		<!-- æ‹·è´COREPOWERæ¨¡æ¿ -->
 		<antcall target="copy-erp" />
 	</target>
 
-	<!-- CRM¸÷Ä£¿é±àÒëÈÎÎñ-->
-	<!-- platform Ä£¿é±àÒë-->
+	<!-- CRMå„æ¨¡å—ç¼–è¯‘ä»»åŠ¡-->
+	<!-- platform æ¨¡å—ç¼–è¯‘-->
 	<target name="platform build" if="platform.present">
 		<exec executable="cmd.exe" dir="./../corepower/platform">
 			<arg line="/c build.bat" />
@@ -96,7 +125,7 @@
 	</target>
 
 
-	<!-- gui-component Ä£¿é±àÒë-->
+	<!-- gui-component æ¨¡å—ç¼–è¯‘-->
 	<target name="gui-component build" if="gui-component.present">
 		<exec executable="cmd.exe" dir="./../corepower/gui-component">
 			<arg line="/c build.bat" />
@@ -104,7 +133,7 @@
 	</target>
 
 
-	<!-- pfl-mainframe Ä£¿é±àÒë-->
+	<!-- pfl-mainframe æ¨¡å—ç¼–è¯‘-->
 	<target name="pfl-mainframe build" if="pfl-mainframe.present">
 		<exec executable="cmd.exe" dir="./../corepower/pfl-mainframe">
 			<arg line="/c build.bat" />
@@ -112,64 +141,99 @@
 	</target>
 
 
-	<!-- antwrapper Ä£¿é±àÒë-->
+	<!-- antwrapper æ¨¡å—ç¼–è¯‘-->
 	<target name="antwrapper build" if="antwrapper.present">
 		<exec executable="cmd.exe" dir="./../corepower/antwrapper">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
 
-	<!-- boost Ä£¿é±àÒë-->
+	<!-- boost æ¨¡å—ç¼–è¯‘-->
 	<target name="boost build" if="boost.present">
 		<exec executable="cmd.exe" dir="./../corepower/boost">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
 
-	<!-- run Ä£¿é±àÒë-->
+	<!-- run æ¨¡å—ç¼–è¯‘-->
 	<target name="run build" if="run.present">
 		<exec executable="cmd.exe" dir="./../corepower/run">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
 
-	<!-- servicedeployer Ä£¿é±àÒë-->
+	<!-- servicedeployer æ¨¡å—ç¼–è¯‘-->
 	<target name="servicedeployer build" if="servicedeployer.present">
 		<exec executable="cmd.exe" dir="./../corepower/servicedeployer">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
 	
-	<!-- ´òÓ¡ÈÕÖ¾Ä£°å ¿Õpar -->
-	<!-- psl-debugprn Ä£¿é±àÒë-->
+	<!-- æ‰“å°æ—¥å¿—æ¨¡æ¿ ç©ºpar -->
+	<!-- psl-debugprn æ¨¡å—ç¼–è¯‘-->
 	<target name="psl-debugprn build" if="psl-debugprn.present">
 		<exec executable="cmd.exe" dir="./../corepower/psl-debugprn">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
 
-	<!-- ¹¤¾ßÀà util Ä£¿é±àÒë-->
+	<!-- å·¥å…·ç±» util æ¨¡å—ç¼–è¯‘-->
 	<target name="util build" if="util.present">
 		<exec executable="cmd.exe" dir="./../utils/util">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
 
-	<!-- api Ä£¿é±àÒë-->
+	<!-- api æ¨¡å—ç¼–è¯‘-->
 	<target name="api build" if="api.present">
 		<exec executable="cmd.exe" dir="./../api">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
 	
-	<!-- spring Ä£¿é±àÒë-->
+	<!-- spring æ¨¡å—ç¼–è¯‘-->
 	<target name="spring build" if="spring.present">
 		<exec executable="cmd.exe" dir="./../corepower/spring">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
+	
+	<!-- æ•°æ®åº“ -->
+	<target name="derby build" if="derby.present">
+		<exec executable="cmd.exe" dir="./../corepower/derby">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- ç¤ºä¾‹ é›ªèŠ± ä¸è§„åˆ™çª—ä½“å’Œé€æ˜Žçª—å£-->
+	<target name="helloworld-snow build" if="helloworld-snow.present">
+		<exec executable="cmd.exe" dir="./../corepower/helloworld-snow">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- å®šæ—¶ä»»åŠ¡ -->
+	<target name="quartz build" if="quartz.present">
+		<exec executable="cmd.exe" dir="./../corepower/quartz">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- ç³»ç»Ÿæ‰˜ç›˜ -->
+	<target name="systemtray build" if="systemtray.present">
+		<exec executable="cmd.exe" dir="./../corepower/systemtray">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- TomcatæœåŠ¡å™¨ -->
+	<target name="tomcat build" if="tomcat.present">
+		<exec executable="cmd.exe" dir="./../corepower/tomcat">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
 
-	<!-- PRM ¸÷Ä£¿éjavadocÉú³ÉÈÎÎñ -->
+	<!-- PRM å„æ¨¡å—javadocç”Ÿæˆä»»åŠ¡ -->
 	<target name="javadoc generation" if="prm.javadoc">
 		<delete dir="./javares" />
 		<mkdir dir="./javares" />
@@ -191,7 +255,7 @@
 			sourcepath="./javares/" classpath="." />
 	</target>
 
-	<!-- PRM ¸÷Ä£¿é±àÒëÈÎÎñ -->
+	<!-- PRM å„æ¨¡å—ç¼–è¯‘ä»»åŠ¡ -->
 
 
 	<!-- filter log content 
