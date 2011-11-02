@@ -157,6 +157,23 @@
 			</fileset>
 		</copy>
 		
+		<!-- 将common的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${dest.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.template}/lct/${dest.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${dest.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.template}/clnt/${dest.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${dest.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${platform.template}/svr/${dest.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		
 
   </target>  
   
