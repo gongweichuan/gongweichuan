@@ -151,7 +151,7 @@
 
 		
 
-		<!-- 将run模板配置文件拷贝到版本中,特殊支撑文件,无模板配置文件 -->
+		<!-- 将run模板配置文件拷贝到版本中,特殊支撑文件,无模板配置文件
 		<copy todir="${lct.erp.build.dir}/${common.par.lct.name}" filtering="no" overwrite="true">
 			<fileset dir="${run.template}/lct/${common.par.lct.name}">
 				<include name="*.xml"/>
@@ -166,7 +166,7 @@
 			<fileset dir="${run.template}/svr/${common.par.svr.name}">
 				<include name="*.xml"/>
 			</fileset>
-		</copy>
+		</copy>  -->
 
   </target>  
   
