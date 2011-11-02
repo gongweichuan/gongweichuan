@@ -42,7 +42,7 @@ public class ServiceDeployer implements ServiceDeployerInterface
     /**
      * 日志
      */
-    private static final Logger log;
+    private static Logger log;
 
     /**
      * 管理bean列表
