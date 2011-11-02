@@ -1,0 +1,18 @@
+ѧϰ
+
+мƻֹ˺þ,Ҫ!!!
+
+
+2009-06-14 ӦBootص
+在ubuntu上进行开发
+
+$JAVA_HOME 			/usr/lib/jvm/java-6-sun-1.6.0.22/bin
+
+Debian 6 is ok!
+
+用代理服务器连接成功
+配置文件：
+D:\Documents and Settings\GONGWEICHUAN001\Application Data\Subversion\servers
+配置值:
+http-proxy-host = 10.17.171.10
+http-proxy-port = 8080

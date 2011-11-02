@@ -1,0 +1,70 @@
+version 10.2
+Data types 数据类型
+http://db.apache.org/derby/docs/dev/ref/
+This section describes the data types used in Derby.
+    * Built-In type overview
+    * Numeric types
+    * Data type assignments and comparison, sorting, and ordering
+    * BIGINT data type
+    * BLOB data type
+    * BOOLEAN data type
+    * CHAR data type
+    * CHAR FOR BIT DATA data type
+    * CLOB data type
+    * DATE data type
+    * DECIMAL data type
+    * DOUBLE data type
+    * DOUBLE PRECISION data type
+    * FLOAT data type
+    * INTEGER data type
+    * LONG VARCHAR data type
+    * LONG VARCHAR FOR BIT DATA data type
+    * NUMERIC data type
+    * REAL data type
+    * SMALLINT data type
+    * TIME data type
+    * TIMESTAMP data type
+    * User-defined types
+    * VARCHAR data type
+    * VARCHAR FOR BIT DATA data type
+    * XML data type
+      The XML data type is used for Extensible Markup Language (XML) documents.
+
+ Setting attributes for the database connection URL 
+ URL连接字符串中的属性设置
+	# bootPassword=key attribute
+	# collation=collation attribute
+	# create=true attribute
+	# createFrom=path attribute
+	# databaseName=nameofDatabase attribute
+	# dataEncryption=true attribute
+	# deregister=false attribute
+	# drop=true attribute
+	# encryptionKey=key attribute
+	# encryptionProvider=providerName attribute
+	# encryptionAlgorithm=algorithm attribute
+	# failover=true attribute
+	# logDevice=logDirectoryPath attribute
+	# newEncryptionKey=key attribute
+	# newBootPassword=newPassword attribute
+	# password=userPassword attribute
+	# restoreFrom=path attribute
+	# retrieveMessageText=false attribute
+	# rollForwardRecoveryFrom=path attribute
+	# securityMechanism=value attribute
+	# shutdown=true attribute
+	# slaveHost=hostname attribute
+	# slavePort=portValue attribute
+	# ssl=sslMode attribute
+	# startMaster=true attribute
+	# startSlave=true attribute
+	# stopMaster=true attribute
+	# stopSlave=true attribute
+	# territory=ll_CC attribute
+	# traceDirectory=path attribute
+	# traceFile=path attribute
+	# traceFileAppend=true attribute
+	# traceLevel=value attribute
+	# upgrade=true attribute
+	# user=userName attribute
+	# Creating a connection without specifying attributes

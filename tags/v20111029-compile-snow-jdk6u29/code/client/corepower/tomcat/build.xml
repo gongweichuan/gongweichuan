@@ -1,0 +1,188 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="tomcat-install" basedir="../../build" default="tomcat-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    tomcat Compilation Targets
+  </description>
+  
+  <target name="tomcat-init" depends="prepare">
+    <property file="${source}/corepower/tomcat/tomcat.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+		
+	 <fileset dir="${tomcat.lib}">
+		 <include name="*.jar"/>
+	 </fileset>
+	  <!-- 
+	  fileset dir="${gui-component.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="tomcat-compile" depends="tomcat-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${tomcat.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${tomcat.output}"/>
+    <mkdir dir="${tomcat.output}"/>  
+    <mkdir dir="${tomcat.output}/classes"/>
+  	<mkdir dir="${tomcat.output}/lib"/>
+  	
+	<javac srcdir="${tomcat.source}"
+           destdir="${tomcat.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="tomcat-build" depends="tomcat-compile">    
+    <jar jarfile="${tomcat.output}/lib/${tomcat.jar.name}" index="true">
+      <fileset dir="${tomcat.output}/classes">
+		<include name="com/chinaviponline/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="tomcat-install" depends="tomcat-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${tomcat.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${tomcat.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${tomcat.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${tomcat.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${tomcat.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${tomcat.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${tomcat.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${tomcat.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${tomcat.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${tomcat.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${tomcat.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${tomcat.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${tomcat.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${tomcat.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${tomcat.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${tomcat.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${tomcat.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${tomcat.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+	  <!-- 拷贝lib包 -->
+	  <copy todir="${clnt.erp.build.dir}/${tomcat.par.clnt.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.lib}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${tomcat.par.lct.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${tomcat.par.svr.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+		<!-- 将tomcat的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${tomcat.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.template}/lct/${tomcat.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${tomcat.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.template}/clnt/${tomcat.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${tomcat.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${tomcat.template}/svr/${tomcat.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="tomcat-checkstyle">
+	  <delete dir="${basedir}/../corepower/tomcat/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/tomcat/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/tomcat/output/checkstyle/tomcat-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/tomcat/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>

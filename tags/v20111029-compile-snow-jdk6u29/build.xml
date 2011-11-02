@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  VIP License.
+-->
+<project name="PRMCommon-install"  default="PRMCommon-install">
+
+	<!-- 统一的环境变量 -->
+	<!-- import file="../../../tools/targets/init-build.xml" / basedir="./build" -->
+
+	<description>
+   		PRMCommon compilation targets
+  	</description>
+
+	<tstamp>
+		<format property="currenttime" pattern="yyyy-MM-dd-HHmmss"/>
+		<format property="year" pattern="yyyy"/>
+		<format property="birthday" pattern="yyyyMMddHH"/>	
+	</tstamp>
+	
+	<property name="libname" value="utili18n${birthday}.jar"/>
+	<property name="system" value="PRM "/>
+	<property name="version" value="-0.01- gongweichuan@gmail.com"/>
+		
+	<property name="start.dir" value="."/>
+	<property name="build.dir" value="${start.dir}/output"/>
+	<property name="build.classes.dir" value="${build.dir}/classes"/>
+	<property name="lib.dir" value="${start.dir}/lib"/>
+	<property name="src.dir" value="${start.dir}/src"/>
+	<property name="test.dir" value="${start.dir}/test"/>
+	<property name="tools.dir" value="${start.dir}/tools"/>
+	<property name="ant.lib.dir" value="${tools.dir}/lib"/>
+	<property name="etc.dir" value="${start.dir}/etc"/>
+	
+	<property name="debug" value="yes"/>
+	<property name="compiler.optimize" value="no"/>
+	<property name="compiler.nowarn" value="no"/>	
+	<property name="PRM.jar.name" value="prm1-${libname}"/>
+
+	<target name="time-is" description="time-is:">
+		<echo>${currenttime}</echo>
+	</target>
+
+	<target name="prepare">
+		<echo> PRM Complie prepare</echo>
+		<echo> PRM Complie prepare ......</echo>
+		<echo> PRM Complie prepare ok</echo>
+	</target>
+
+	<target name="PRMCommon-init" depends="prepare">
+		<!-- 统一的属性文件定义 -->
+		<!--property file="${source}/pal/config/PRMCommon/PRMCommon.properties"/ -->
+		<path id="commomlib">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+		
+		<path id="antlib">
+			<fileset dir="${ant.lib.dir}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>	
+		
+		<!-- 统一用 javac.classpath 表示-->
+		<path id="javac.classpath">
+			<path refid="commomlib"/>			
+			<path refid="antlib"/>		
+		</path>
+	</target>
+
+	<!-- 编译 -->
+	<target name="PRMCommon-compile" depends="PRMCommon-init">
+		<echo>
+		===================================PRMCommon==========================
+                 ${system} ${version} [${year}] ${start.dir}
+		========================================================================
+  	</echo>
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes.dir}"/>
+		
+		<!-- 编译正式代码 -->
+		<javac srcdir="${src.dir}"
+           destdir="${build.classes.dir}"
+           debug="${debug}"           
+           optimize="${compiler.optimize}"          
+           nowarn="${compiler.nowarn}"
+           classpathref="javac.classpath"/>
+
+		<!-- 编译测试代码 -->
+		<javac srcdir="${test.dir}"
+           destdir="${build.classes.dir}"
+           debug="${debug}"           
+           optimize="${compiler.optimize}"          
+           nowarn="${compiler.nowarn}"
+           classpathref="javac.classpath"/>
+	</target>
+
+	<!-- 生成(针对模块自身所有的目录) -->
+	<target name="PRMCommon-build" depends="PRMCommon-compile">
+		<mkdir dir="${build.dir}/lib"/>
+		<mkdir dir="${build.dir}/conf"/>
+		<mkdir dir="${build.dir}/res"/>
+
+		<!-- 拷贝配置文件 -->
+		<copy todir="${build.dir}/conf" filtering="no" overwrite="true">
+			<fileset dir="${etc.dir}/conf">
+				<include name="**"/>
+				<exclude name="**/*.contrib"/>
+			</fileset>
+		</copy>
+
+		<!-- 拷贝资源文件 -->
+		<copy todir="${build.dir}/res" filtering="no" overwrite="true">
+			<fileset dir="${etc.dir}/res">
+				<include name="**"/>
+				<exclude name="**/*.contrib"/>
+			</fileset>
+		</copy>
+
+		<!-- 生成jar -->
+		<jar jarfile="${build.dir}/lib/${PRM.jar.name}" index="true">
+			<fileset dir="${build.classes.dir}"/>
+		</jar>
+
+		<!-- 生成RAR 把目录下的文件打包 但不包括erp目录 -->
+		<delete>
+			<!-- 先删除之 -->
+			<fileset dir="${start.dir}">
+				<filename  name="prm*src.rar"/>
+			</fileset>			
+		</delete>
+		<property  name="rarfilename" value="${start.dir}/prm${birthday}src.rar"/>
+		<jar  jarfile="${rarfilename}" index="true"  >
+			<fileset dir="${start.dir}">
+				<exclude name="erp/**"/>
+				<exclude name="output/**"/>
+				<exclude name="tools/**"/>
+			</fileset>
+		</jar>
+
+		<!-- 发送邮件 制作中-->
+		<!--antcall target="sendmail" / -->
+		
+		<!-- 单元测试制作中-->
+		<!--antcall target="junittest" -->
+		
+		
+		<!-- 拷贝par模板到par包中 -->
+		<!--copy todir="${PRMCommon.output.PRMCommonpar}" filtering="no" overwrite="true">
+			<fileset dir="${PRMCommon.template.PRMCommonpar}">
+				<include name="**"/>
+			</fileset>
+		</copy -->
+
+		<!-- 拷贝lib中的jar到par包中 -->
+		<!--copy todir="${PRMCommon.output.PRMCommonpar}" filtering="no" overwrite="true">
+			<fileset dir="${PRMCommon.output}/lib">
+				<include name="*.jar"/>
+			</fileset>
+		</copy-->
+	</target>
+
+	<!-- 发布 -->
+	<target name="PRMCommon-install" depends="PRMCommon-build">
+		<property name="test.tmp.dir" value="${basedir}/output"/>
+		<property name="test.tmp.classes" value="${test.tmp.dir}/classes"/>
+
+		<!-- 拷贝到版本lct中-->
+		<!--mkdir dir="${lct.T3.dir}/${PRMCommon.par.name}"/>
+		<copy todir="${lct.T3.dir}/${PRMCommon.par.name}" filtering="no" overwrite="true">
+			<fileset dir="${PRMCommon.output.PRMCommonpar}">
+				<include name="**"/>
+			</fileset>
+		</copy -->
+
+		<!-- 拷贝到版本clnt中-->
+		<!-- mkdir dir="${clnt.T3.dir}/${PRMCommon.par.name}"/>
+		<copy todir="${clnt.T3.dir}/${PRMCommon.par.name}" filtering="no" overwrite="true">
+			<fileset dir="${PRMCommon.output.PRMCommonpar}">
+				<include name="**"/>
+			</fileset>
+		</copy -->
+
+		<!-- 拷贝到test.tmp.classes中，用于单元测试-->
+		<!--copy todir="${test.tmp.dir}" overwrite="true">
+			<fileset dir="${source}/pal/config/PRMCommon/output">
+				<include name="**/*.jar"/>
+			</fileset>
+		</copy -->
+
+		<!-- 解jar到test.tmp.classes中，用于单元测试-->
+		<!-- unjar dest="${test.tmp.classes}" overwrite="true">
+			<fileset dir="${test.tmp.dir}/lib">
+				<include name="${PRMCommon.jar.name}"/>
+			</fileset>
+		</unjar-->
+	</target>
+
+	<!-- 模块的checkstyle检查（需运行checkstyle.bat执行下面脚本） -->
+	<!-- taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/ -->
+
+	<!-- 需把此任务名称写到checkstyle.bat中 -->
+	<target name="commonconfig-checkstyle">
+		<!-- delete dir="${basedir}/../pal/config//PRMCommon/output/checkstyle"/ -->
+		<!-- mkdir dir="${basedir}/../pal/config/PRMCommon/output/checkstyle"/ -->
+
+		<!--checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+			<formatter type="xml" tofile="${basedir}/../pal/config/PRMCommon/output/checkstyle/PRMCommon-checkstyle.xml"/>
+			<fileset dir="${basedir}/../pal/config/PRMCommon/src" includes="**/*.java"/>
+		</checkstyle -->
+	</target>
+	
+	<target name="sendmail" >
+		<echo>t3 test succeeded</echo>
+		<property name="subject" value="编译测试!${currenttime}"/>
+		<echo>sendMail......</echo>
+		<mail mailhost="mail.21cn.com" subject="${subject}" tolist="g-w-c@hotmail.com" user="gwcproxy@21cn.com" password="1qaz2wsx" >
+			<from name="测试" address="gwcproxy@21cn.com"/>
+			<message>SendMail and attache</message>
+			<fileset dir="${start.dir}" >
+				<include name="*.rar"/>
+			</fileset>
+		</mail>
+	</target>
+	
+	<!-- 所有编译完成后 运行它 -->
+	<target name="Run The Programe">
+	<java jar="">
+	</java>
+	</target>
+</project>
