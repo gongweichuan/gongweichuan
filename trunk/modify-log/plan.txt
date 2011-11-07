@@ -1,3 +1,5 @@
+
+2011-11-07 将扩展点放入DB中存储、使用CoolSql进行辅助开发、自反式、安装使用NSIS、install4j
 2011-10-24 Snow的效果插件
 2011-09-27 下一步job、SpringRichClient
 2011-09-14 开始Derby
