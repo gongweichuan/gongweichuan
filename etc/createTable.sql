@@ -1,3 +1,14 @@
+create TABLE prmextensions
+(                           -- 不是大括弧
+    extensionpoint integer not null, --扩展点
+    extensionbean varchar(1000) not null, --实现类
+    extensiondesc varchar(1000), --描述
+    extensioni varchar(1000), --接口
+    extensionclass  varchar(1000), --抽象类
+    inserttime timestamp default current timestamp --插入时间
+)
+;
+
 create TABLE PRMPROPS 
 (
 			n varchar(300) not null,--name
