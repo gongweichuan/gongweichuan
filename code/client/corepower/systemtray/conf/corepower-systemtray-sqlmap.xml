@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="derby">
+	<select id="existTableExtensions" resultClass="java.lang.Integer">
+		<![CDATA[select count(*) from sys.SYSTABLES t where t.TABLENAME='PRMEXTENSIONS']]>
+	</select>
+	<statement id="createTableExtensions">
+		<![CDATA[
+			create TABLE PRMEXTENSIONS
+			(								-- 不是大括弧
+				extensionpoint integer not null, --扩展点
+				extensionbean varchar(1000) not null, --实现类
+				extensiondesc varchar(1000), --描述
+				extensioni varchar(1000), --接口
+				extensionclass  varchar(1000), --抽象类
+				inserttime timestamp default current timestamp --插入时间
+			);
+		]]>	
+	</statement>
+	<select id="existExtensionPoint"  resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+		<![CDATA[
+		select count(*) from PRMEXTENSIONS where  extensionpoint=#extensionpoint# and extensionbean=#extensionbean#
+		]]>
+	</select>
+	<insert id="insertIntoExtensions" parameterClass="java.util.HashMap">
+		<![CDATA[
+			insert into PRMEXTENSIONS values(#extensionpoint#,#extensionbean#,#extensiondesc#,#extensioni#,#extensionclass#,DEFAULT)
+			]]>		
+	</insert>	
+	<update id="updateExtensions" parameterClass="java.util.HashMap">
+		<![CDATA[
+			update PRMEXTENSIONS 
+			set extensionpoint=#extensionpoint#,
+			extensionbean=#extensionbean#,
+			extensiondesc=#extensiondesc#,
+			extensioni=#extensioni#,
+			extensionclass=#extensionclass#
+			where extensionpoint=#extensionpoint# and extensionbean=#extensionbean#
+		]]>
+	</update>
+	<delete id="deleteExtensions" parameterClass="java.util.HashMap">
+		<![CDATA[
+			delete from PRMEXTENSIONS t where t. extensionpoint=#extensionpoint# and t.extensionbean=#extensionbean#
+		]]>
+	</delete>
+	<select id="selectExtensions" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		<![CDATA[
+			select * from PRMEXTENSIONS t where t.extensionpoint=#extensionpoint# and t.extensionbean=#extensionbean#;
+			]]>
+	</select>
+</sqlMap>
