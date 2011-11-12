@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="derby">
+	<select id="existTableExtensions" resultClass="java.lang.Integer">
+		<![CDATA[select count(*) from sys.SYSTABLES t where t.TABLENAME='PRMEXTENSIONS']]>
+	</select>
+	<statement id="createTableExtensions">
+		<![CDATA[
+			create TABLE PRMEXTENSIONS
+			(
+				extensionpoint integer not null, 
+				extensionbean varchar(1000) not null, 
+				extensiondesc varchar(1000), 
+				extensioni varchar(1000),
+				extensionclass  varchar(1000),
+				inserttime timestamp default current timestamp 
+			)
+		]]>	
+	</statement>
+	<select id="existExtensionPoint"  resultClass="java.lang.Integer" parameterClass="java.util.HashMap" >
+		<![CDATA[
+		select count(*) from PRMEXTENSIONS where  extensionpoint=#extensionpoint# and extensionbean=#extensionbean#
+		]]>
+	</select>
+	<!-- insert into PRMEXTENSIONS values(#extensionpoint#,#extensionbean#,#extensiondesc#,#extensioni#,#extensionclass#,DEFAULT) -->
+	<insert id="insertIntoExtensions" parameterClass="java.util.HashMap">
+		<![CDATA[
+			insert into PRMEXTENSIONS values(#extensionpoint#,#extensionbean#,DEFAULT,DEFAULT,DEFAULT,DEFAULT)
+			]]>		
+	</insert>	
+	<!-- update PRMEXTENSIONS 
+			set extensionpoint=#extensionpoint#,
+			extensionbean=#extensionbean#,
+			extensiondesc=#extensiondesc#,
+			extensioni=#extensioni#,
+			extensionclass=#extensionclass#
+			where extensionpoint=#extensionpoint# and extensionbean=#extensionbean# -->
+	<update id="updateExtensions" parameterClass="java.util.HashMap">
+		<![CDATA[
+			update PRMEXTENSIONS 
+			set extensionpoint=#extensionpoint#,
+			extensionbean=#extensionbean#,
+			extensiondesc=DEFAULT,
+			extensioni=DEFAULT,
+			extensionclass=DEFAULT
+			where extensionpoint=#extensionpoint# and extensionbean=#extensionbean#
+		]]>
+	</update>
+	<delete id="deleteExtensions" parameterClass="java.util.HashMap">
+		<![CDATA[
+			delete from PRMEXTENSIONS t where t. extensionpoint=#extensionpoint# and t.extensionbean=#extensionbean#
+		]]>
+	</delete>
+	<select id="selectExtensions" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		<![CDATA[
+			select extensionbean from PRMEXTENSIONS t where t.extensionpoint=#extensionpoint#
+			]]>
+	</select>
+</sqlMap>
