@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	<!-- HelloWorld Snow服务 -->
+	<bean id="snow" class="com.chinaviponline.erp.corepower.helloworld.snow.impl.TSnowImpl">		
+		<property name="icon">
+			<value>snow.png</value>
+		</property>
+	</bean>
+	
+	<!-- 启动Snow -->
+	<bean id="startSnowAction" class="com.chinaviponline.erp.corepower.helloworld.snow.impl.THWSnowActionImpl" singleton="false">		
+		<property name="snow">
+			<ref local="snow"></ref>
+		</property>
+		<property name="twins">
+			<value>stopSnowAction</value>
+		</property>
+		<property name="command" value="start">	
+		</property>
+		<property name="enabled">
+			<value>true</value>
+		</property>
+	</bean>
+	<!-- 停止Snow -->
+	<bean id="stopSnowAction" class="com.chinaviponline.erp.corepower.helloworld.snow.impl.THWSnowActionImpl" singleton="false">	
+		<property name="snow">
+			<ref local="snow"></ref>
+		</property>	
+		<property name="twins">
+			<value>startSnowAction</value>
+		</property>
+		<property name="command" value="stop">	
+		</property>
+		<property name="enabled">
+			<value>false</value>
+		</property>
+	</bean>	
+	
+	<bean id="startSnwowJMenuItem"  init-method="init" class="com.chinaviponline.erp.corepower.helloworld.snow.impl.THWSnowActionJMenuItemImpl " singleton="false">
+		<property name="label">
+			<value>启动</value>
+		</property>
+		<property name="action">
+			<ref local="startSnowAction"></ref>
+		</property>
+	</bean>
+	<bean id="stopSnwowJMenuItem"  init-method="init" class="com.chinaviponline.erp.corepower.helloworld.snow.impl.THWSnowActionJMenuItemImpl " singleton="false">
+		<property name="label">
+			<value>停止</value>
+		</property>
+		<property name="action">
+			<ref local="stopSnowAction"></ref>
+		</property>
+	</bean>
+
+	<bean id="snowJMenu"  init-method="init"   class="com.chinaviponline.erp.corepower.helloworld.snow.impl.THWSnowJMenuImpl">
+		<property name="label">
+			<value>雪花</value>
+		</property>
+		<property name="item">
+			<list>
+				<ref local="startSnwowJMenuItem"></ref>
+				<ref local="stopSnwowJMenuItem"></ref>
+			</list>
+		</property>
+	</bean>
+	
+
+</beans> 

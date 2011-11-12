@@ -1,0 +1,30 @@
+
+# 从X.509证书文件cert.pem中获取公钥匙，
+# 用3DES加密mail.txt
+# 输出到文件mail.enc
+$ openssl smime -encrypt -in mail.txt -des3 -out mail.enc cert.pem
+ 
+# 从X.509证书文件cert.pem中获取接收人的公钥匙，
+# 用私钥匙key.pem解密S/MIME消息mail.enc，
+# 结果输出到文件mail.txt
+$ openssl smime -decrypt -in mail.enc -recip cert.pem -inkey key.pem -out mail.txt
+ 
+# cert.pem为X.509证书文件，用私匙key,pem为mail.txt签名，
+# 证书被包含在S/MIME消息中，输出到文件mail.sgn
+$ openssl smime -sign -in mail.txt -signer cert.pem -inkey key.pem -out mail.sgn
+ 
+# 验证S/MIME消息mail.sgn，输出到文件mail.txt
+# 签名者的证书应该作为S/MIME消息的一部分包含在mail.sgn中
+$ openssl smime -verify -in mail.sgn -out mail.txt
+
+转换
+x509 -in my1.CER -inform DER -out my2.pem -outform PEM
+
+查看：
+OpenSSL> x509 -in my3.cer -modulus -noout
+
+私钥： 
+OpenSSL> genrsa -out my4.key 1024
+
+公钥：
+OpenSSL> req -new -days 3650 -x509 -key my4.key -out jh.pem -config openssl.cnf

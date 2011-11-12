@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GB2312"?>
+<project name="DEPLOYED PAR DEFINITION" basedir="." default="main">
+    <taskdef name="DeployedPar" classname="com.chinaviponline.erp.corepower.psl.systemsupport.DeployedExcludePar"/>
+    <target name="main" description="Define the Deployed Par">
+        <echo>main execution</echo>
+	<DeployedPar>	
+	</DeployedPar>  
+    </target>
+</project>
+
