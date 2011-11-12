@@ -1,0 +1,188 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="helloworld-snow-install" basedir="../../build" default="helloworld-snow-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    helloworld-snow Compilation Targets
+  </description>
+  
+  <target name="helloworld-snow-init" depends="prepare">
+    <property file="${source}/corepower/helloworld-snow/helloworld-snow.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+		
+	 <fileset dir="${helloworld-snow.lib}">
+		 <include name="*.jar"/>
+	 </fileset>
+	  <!-- 
+	  fileset dir="${gui-component.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="helloworld-snow-compile" depends="helloworld-snow-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${helloworld-snow.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${helloworld-snow.output}"/>
+    <mkdir dir="${helloworld-snow.output}"/>  
+    <mkdir dir="${helloworld-snow.output}/classes"/>
+  	<mkdir dir="${helloworld-snow.output}/lib"/>
+  	
+	<javac srcdir="${helloworld-snow.source}"
+           destdir="${helloworld-snow.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="helloworld-snow-build" depends="helloworld-snow-compile">    
+    <jar jarfile="${helloworld-snow.output}/lib/${helloworld-snow.jar.name}" index="true">
+      <fileset dir="${helloworld-snow.output}/classes">
+		<include name="com/chinaviponline/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="helloworld-snow-install" depends="helloworld-snow-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${helloworld-snow.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${helloworld-snow.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-snow.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${helloworld-snow.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${helloworld-snow.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-snow.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${helloworld-snow.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${helloworld-snow.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-snow.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${helloworld-snow.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-snow.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${helloworld-snow.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-snow.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${helloworld-snow.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-snow.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${helloworld-snow.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${helloworld-snow.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${helloworld-snow.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+	  <!-- 拷贝lib包 -->
+	  <copy todir="${clnt.erp.build.dir}/${helloworld-snow.par.clnt.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.lib}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${helloworld-snow.par.lct.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${helloworld-snow.par.svr.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+		<!-- 将helloworld-snow的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${helloworld-snow.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.template}/lct/${helloworld-snow.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${helloworld-snow.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.template}/clnt/${helloworld-snow.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${helloworld-snow.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-snow.template}/svr/${helloworld-snow.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="helloworld-snow-checkstyle">
+	  <delete dir="${basedir}/../corepower/helloworld-snow/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/helloworld-snow/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/helloworld-snow/output/checkstyle/helloworld-snow-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/helloworld-snow/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>

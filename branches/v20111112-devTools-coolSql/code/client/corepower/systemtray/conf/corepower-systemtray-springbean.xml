@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	<bean id="extensionsOperate" class="com.chinaviponline.erp.corepower.tray.impl.TOperateTableExtensionsImpl">
+		<property name="existTableExtensions">			
+			<value>existTableExtensions</value>
+		</property>
+		<property name="createTableExtensions">			
+			<value>createTableExtensions</value>
+		</property>
+		<property name="existExtensionPoint">			
+			<value>existExtensionPoint</value>
+		</property>
+		<property name="deleteExtensions">			
+			<value>deleteExtensions</value>
+		</property>
+		<property name="insertIntoExtensions">			
+			<value>insertIntoExtensions</value>
+		</property>
+		<property name="selectExtensions">			
+			<value>selectExtensions</value>
+		</property>
+		<property name="updateExtensions">			
+			<value>updateExtensions</value>
+		</property>
+		<property name="sqlMapClient" >
+			<ref bean="sqlMapClient"></ref>
+		</property>
+	</bean>
+	
+	<bean class="com.chinaviponline.erp.corepower.tray.impl.TExtensionsFromDBImpl" init-method="init">
+		<property name="extensionPoints">
+			<list>
+				<value type="java.lang.Integer">100</value>
+				<value type="java.lang.Integer">101</value>
+			</list>
+		</property>
+		<property name="extensionBean">
+			<value>snowJMenu</value>
+		</property>
+		<property name="operate">
+			<ref local="extensionsOperate"></ref>
+		</property>
+	</bean>
+	<bean id="extensionsFromDB" class="com.chinaviponline.erp.corepower.tray.impl.TExtensionsFromDBImpl">
+		<property name="operate">
+			<ref local="extensionsOperate"></ref>
+		</property>
+	</bean>
+	
+	<!-- AWT 废弃 
+	<bean id="systemtray" init-method="init" class="com.chinaviponline.erp.corepower.tray.SystemTrayFrame">
+		<constructor-arg>
+			<value>tray.gif</value>
+		</constructor-arg>
+		<property name="menuItem">
+			<list>
+				<ref bean="embeddedTomcatStartActionMenuItem"></ref>
+				<ref bean="embeddedTomcatStopActionMenuItem"></ref>		
+				<ref bean="embeddedTomcatMenu4SystemtrayPopmenu"></ref>		
+			</list>
+		</property>
+		
+		<property name="picName">
+			<value>tray.gif</value>
+		</property>
+	</bean> -->
+	<!-- Swing -->
+	<bean id="systemTray4SwingFrame" init-method="init" class="com.chinaviponline.erp.corepower.tray.SystemTray4SwingFrame">
+		<constructor-arg type="int">
+			<value>0</value>
+		</constructor-arg>
+		<property name="picName">
+			<value>tray.gif</value>
+		</property>
+		<property name="menuItem">
+			<list>
+				<ref bean="systemTrayTETomcatJMenu"></ref>
+				
+			</list>
+		</property>
+	</bean>
+		
+	<bean id="addToTrayiconPopMenuAdvice" class="com.chinaviponline.erp.corepower.tray.AddToTrayiconPopMenuAdvice">
+	</bean>
+	<!-- 自动代理  
+	<bean  class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="proxyTargetClass" value="true"/>
+		<property name="beanNames">			
+				<value>*4SystemtrayPopmenu</value>			
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>addToTrayiconPopMenuAdvice</value>
+			</list>
+		</property> 
+	</bean> -->
+</beans> 
+<!--
+	 其他注入方式
+   <constructor-arg><value>John</value></constructor-arg>
+   <constructor-arg><ref bean="car"/></constructor-arg>
+   <constructor-arg><ref bean="office"/></constructor-arg>
+
+   <bean id="car" class="com.lxm.cons.Car">
+		<constructor-arg index="0" value="奔驰CA72"/>
+		<constructor-arg index="1" ref="boss"/>
+   </bean>
+	<bean id="boss" class="com.lxm.cons.Boss">
+		<constructor-arg index="0" value="John"/>
+		<constructor-arg index="1" ref="car"/>
+	</bean>
+-->
