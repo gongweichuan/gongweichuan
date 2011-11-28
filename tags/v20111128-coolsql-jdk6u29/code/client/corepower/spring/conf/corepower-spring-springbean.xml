@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>    
+   <!-- datasource JDBC 方式 连接池管理 -->
+   <!-- bean id="dataSource-2" class="org.apache.commons.dbcp.BasicDataSource"
+       destroy-method="close"> 
+       <property name="driverClassName">  
+           <value>oracle.jdbc.driver.OracleDriver</value>  
+       </property>  
+       <property name="url">  
+           <value>jdbc:oracle:thin:@localhost:1521:orcl</value>  
+       </property> 
+       <property name="username">  
+           <value>scott</value> 
+       </property>  
+       <property name="password">
+           <value>tiger</value>
+       </property>
+   </bean --> 	
+   <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+    	<!-- property name="configLocation" value="classpath:sqlmap-config.xml" / -->
+		<property name="dataSource">
+			<ref local="dataSource"/>
+		</property>
+	    <property name="configLocations">
+        	<ref local="sqlconfigExtendXml"/>
+	    </property>  
+	   <!-- 
+	   	<property name="mappingLocations">
+        	<ref local="sqlmapExtendXml"/>
+        </property> -->
+	</bean>
+	<bean id="sqlconfigExtendXml" class="com.chinaviponline.erp.corepower.ibatis.TIbatisSqlmapFactory" 
+	factory-method="getIbatisSqlmap">
+		<constructor-arg>
+            <value>-sqlconfig.xml</value>
+        </constructor-arg>
+	</bean>
+	<bean id="sqlmapExtendXml" class="com.chinaviponline.erp.corepower.ibatis.TIbatisSqlmapFactory" 
+	factory-method="getIbatisSqlmap">
+		<constructor-arg>
+            <value>-sqlmap.xml</value>
+        </constructor-arg>
+	</bean>
+<!-- 配置一个属性占位符bean.ApplictionContext支持从自动识别PropertyPlaceholderConfigurer的bean  -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:dbconn.properties</value>
+				<!--如果有多个属性文件,依次在下面列出来-->
+				<!--value>wawa.properties</value-->
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置Dery数据源 可以换成其他的数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${derby.jdbc.driverClassName}"/>
+		<property name="url" value="${derby.jdbc.url}"/><!--jdbc:derby:D:\opensourcesoft\prm\ws\prm-linux\code\client\build\output\erp\erp-clnt\db\derby3;create=true-->
+		<property name="username" value="${derby.jdbc.username}"/>
+		<property name="password" value="${derby.jdbc.password}"/>
+	</bean>
+	
+	<!-- 配置本地的 C3P0 数据源 -->
+	<!-- 所有的数据源都有close方法,该方法会在此数据源bean销毁时候被关闭 -->
+	<!--bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${oracle.jdbc.driverClassName}"/>
+		<property name="jdbcUrl" value="${oracle.jdbc.url}"/>
+		<property name="user" value="${oracle.jdbc.username}"/>
+		<property name="password" value="${oracle.jdbc.password}"/>
+	</bean-->
+	
+	<!-- UserDAO方案一
+	<bean id="userDAO1" class="com.chinaviponline.test.samples.ibatis.dao.UserDAOImpl">
+		<property name="sqlMapClient">
+			<ref bean="sqlMapClient"/>
+		</property>
+	</bean>
+	
+	<bean id="userDAO2" class="com.chinaviponline.test.samples.ibatis.dao.UserDAOImpl2">
+		<property name="sqlMapClient">
+			<ref bean="sqlMapClient"/>
+		</property>
+	</bean>
+	<bean id="TestDAO1" class="com.chinaviponline.test.samples.ibatis.demo.TestDAO1">
+		<property name="name">
+			<value>n</value>
+		</property>
+	</bean>  -->
+</beans> 

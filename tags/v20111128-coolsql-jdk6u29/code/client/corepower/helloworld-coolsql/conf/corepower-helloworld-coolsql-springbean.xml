@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	<!-- HelloWorld CoolSql服务 -->
+	<bean id="coolSql" class="com.chinaviponline.erp.corepower.helloworld.coolsql.impl.TCoolSqlImpl">		
+		<property name="className">
+			<value>com.coolsql.main.frame.Launcher</value>
+		</property>
+	</bean>
+	
+	<!-- 启动CoolSql -->
+	<bean id="startCoolSqlAction" class="com.chinaviponline.erp.corepower.helloworld.coolsql.impl.TCoolSqlActionImpl" singleton="false">		
+		<property name="coolSql">
+			<ref local="coolSql"></ref>
+		</property>
+		<property name="command" value="start">	
+		</property>
+	</bean>
+	
+	<!-- 停止CoolSql -->
+	<bean id="stopCoolSqlAction" class="com.chinaviponline.erp.corepower.helloworld.coolsql.impl.TCoolSqlActionImpl" singleton="false">	
+		<property name="coolSql">
+			<ref local="coolSql"></ref>
+		</property>	
+		<property name="command" value="stop">	
+		</property>
+	</bean>	
+	
+	<bean id="startCoolSqlJMenuItem"  init-method="init" class="com.chinaviponline.erp.corepower.helloworld.coolsql.impl.TCoolSqlJMenuItemImpl " singleton="false">
+		<property name="label">
+			<value>启动</value>
+		</property>
+		<property name="action">
+			<ref local="startCoolSqlAction"></ref>
+		</property>
+	</bean>
+	
+	<bean id="stopCoolSqlJMenuItem"  init-method="init" class="com.chinaviponline.erp.corepower.helloworld.coolsql.impl.TCoolSqlJMenuItemImpl " singleton="false">
+		<property name="label">
+			<value>停止</value>
+		</property>
+		<property name="action">
+			<ref local="stopCoolSqlAction"></ref>
+		</property>
+	</bean>
+
+	<bean id="coolSqlJMenu"  init-method="init"   class="com.chinaviponline.erp.corepower.helloworld.coolsql.impl.TCoolSqlJMenuImpl">
+		<property name="label">
+			<value>数据工具CoolSql</value>
+		</property>
+		<property name="item">
+			<list>
+				<ref local="startCoolSqlJMenuItem"></ref>
+				<ref local="stopCoolSqlJMenuItem"></ref>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.chinaviponline.erp.corepower.tray.impl.TExtensionsFromDBImpl" init-method="init">
+		<property name="extensionPoints">
+			<list>
+				<value type="java.lang.Integer">100</value>		
+				<value type="java.lang.Integer">101</value>	
+				<value type="java.lang.Integer">102</value>			
+			</list>
+		</property>
+		<property name="extensionBean">
+			<value>coolSqlJMenu</value>
+		</property>
+		<property name="operate">
+			<ref bean="extensionsOperate"></ref>
+		</property>
+	</bean>
+</beans> 

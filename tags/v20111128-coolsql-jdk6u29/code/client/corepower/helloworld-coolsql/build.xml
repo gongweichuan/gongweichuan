@@ -1,0 +1,195 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="helloworld-coolsql-install" basedir="../../build" default="helloworld-coolsql-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    helloworld-coolsql Compilation Targets
+  </description>
+  
+  <target name="helloworld-coolsql-init" depends="prepare">
+    <property file="${source}/corepower/helloworld-coolsql/helloworld-coolsql.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+	  <!-- 
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset> -->
+		
+	 <fileset dir="${helloworld-coolsql.lib}">
+		 <include name="*.jar"/>
+	 </fileset>
+	  <!-- 
+	  fileset dir="${gui-component.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="helloworld-coolsql-compile" depends="helloworld-coolsql-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${helloworld-coolsql.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${helloworld-coolsql.output}"/>
+    <mkdir dir="${helloworld-coolsql.output}"/>  
+    <mkdir dir="${helloworld-coolsql.output}/classes"/>
+  	<mkdir dir="${helloworld-coolsql.output}/lib"/>
+  	
+	<javac srcdir="${helloworld-coolsql.source}"
+           destdir="${helloworld-coolsql.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="helloworld-coolsql-build" depends="helloworld-coolsql-compile">    
+    <jar jarfile="${helloworld-coolsql.output}/lib/${helloworld-coolsql.jar.name}" index="true">
+      <fileset dir="${helloworld-coolsql.output}/classes">
+		<include name="com/**"/>		<!-- 所有com/chinaviponline/**" -->
+		<exclude name="*.scc"/> 
+	  </fileset>
+	  <fileset dir="${helloworld-coolsql.source}">
+		<include name="**"/>		
+		<exclude name="*.scc"/> 
+		<exclude name="*.bak"/> 
+		<exclude name="*.java"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="helloworld-coolsql-install" depends="helloworld-coolsql-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${helloworld-coolsql.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${helloworld-coolsql.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-coolsql.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${helloworld-coolsql.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${helloworld-coolsql.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-coolsql.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${helloworld-coolsql.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${helloworld-coolsql.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-coolsql.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${helloworld-coolsql.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-coolsql.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${helloworld-coolsql.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-coolsql.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${helloworld-coolsql.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${helloworld-coolsql.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${helloworld-coolsql.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${helloworld-coolsql.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${helloworld-coolsql.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+	  <!-- 拷贝lib包 -->
+	  <copy todir="${clnt.erp.build.dir}/${helloworld-coolsql.par.clnt.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.lib}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${helloworld-coolsql.par.lct.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${helloworld-coolsql.par.svr.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+		<!-- 将helloworld-coolsql的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${helloworld-coolsql.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.template}/lct/${helloworld-coolsql.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${helloworld-coolsql.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.template}/clnt/${helloworld-coolsql.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${helloworld-coolsql.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${helloworld-coolsql.template}/svr/${helloworld-coolsql.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="helloworld-coolsql-checkstyle">
+	  <delete dir="${basedir}/../corepower/helloworld-coolsql/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/helloworld-coolsql/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/helloworld-coolsql/output/checkstyle/helloworld-coolsql-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/helloworld-coolsql/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>

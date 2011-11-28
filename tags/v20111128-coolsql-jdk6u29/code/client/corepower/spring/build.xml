@@ -1,0 +1,169 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="spring-install" basedir="../../build" default="spring-install">
+
+  <import file="../../tools/targets/init-build.xml"/>
+  
+  <description>
+    spring Compilation Targets
+  </description>
+  
+  <target name="spring-init" depends="prepare">
+    <property file="${source}/corepower/spring/spring.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+    	
+		<fileset dir="${boost.output.lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+    	
+  	  <fileset dir="${spring.lib}">
+          <include name="*.jar"/>
+        </fileset>
+    
+    	
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="spring-compile" depends="spring-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${spring.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${spring.output}"/>
+    <mkdir dir="${spring.output}"/>  
+    <mkdir dir="${spring.output}/classes"/>
+  	<mkdir dir="${spring.output}/lib"/>
+  	
+	<javac srcdir="${spring.source}"
+           destdir="${spring.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="spring-build" depends="spring-compile">    
+    <jar jarfile="${spring.output}/lib/${spring.jar.name}" index="true">
+      <fileset dir="${spring.output}/classes">
+		<include name="com/chinaviponline/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="spring-install" depends="spring-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${spring.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${spring.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${spring.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${spring.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${spring.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${spring.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${spring.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${spring.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${spring.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${spring.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${spring.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${spring.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${spring.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${spring.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${spring.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${spring.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${spring.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${spring.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${spring.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${spring.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${spring.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+
+		<!-- 将spring的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${spring.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${spring.template}/lct/${spring.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${spring.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${spring.template}/clnt/${spring.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${spring.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${spring.template}/svr/${spring.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="spring-checkstyle">
+	  <delete dir="${basedir}/../corepower/spring/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/spring/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/spring/output/checkstyle/spring-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/spring/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>

@@ -1,0 +1,184 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="run-install" basedir="../../build" default="run-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    run Compilation Targets
+  </description>
+  
+  <target name="run-init" depends="prepare">
+    <property file="${source}/corepower/run/run.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <!-- fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+
+      <fileset dir="${tools.lib.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+	 <fileset dir="${antwrapper.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+		
+	  <fileset dir="${platform.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+	  <fileset dir="${boost.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="run-compile" depends="run-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${run.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${run.output}"/>
+    <mkdir dir="${run.output}"/>  
+    <mkdir dir="${run.output}/classes"/>
+	<mkdir dir="${run.output}/lib"/>
+	  
+	<javac srcdir="${run.source}"
+           destdir="${run.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	 </javac>
+  </target>
+
+  <target name="run-build" depends="run-compile">
+   
+    <jar jarfile="${run.output}/lib/${run.jar.name}" index="true">
+      <fileset dir="${run.output}/classes">
+		<include name="com/chinaviponline/erp/**"/>		
+		<exclude name="*.scc"/> 
+	  </fileset>
+
+      <fileset dir="${run.source}">
+		<include name="**"/>		
+		<exclude name="*.scc"/> 
+		<exclude name="*.bak"/> 
+		<exclude name="*.java"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="run-install" depends="run-build">
+       <!-- 拷贝到版本中-->
+	<!-- mkdir dir="${lct.erp.build.dir}/${run.par.lct.name}"/ -->
+      	<copy todir="${lct.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${run.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+
+	<!-- mkdir dir="${clnt.erp.build.dir}/${run.par.clnt.name}"/ -->
+      	<copy todir="${clnt.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${run.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+
+	<!-- mkdir dir="${svr.erp.build.dir}/${run.par.svr.name}"/ -->
+      	<copy todir="${svr.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${run.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件,这里只有一个run.properties -->
+  <copy todir="${lct.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${run.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${clnt.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${run.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.bin.dir}" filtering="no" overwrite="true">
+		<fileset dir="${run.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 ,特殊支撑包,无资源文件-->
+	  <!-- copy todir="${clnt.erp.build.dir}/${run.par.clnt.name}/conf" filtering="no" overwrite="true">
+			<fileset dir="${run.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${run.par.lct.name}/conf" filtering="no" overwrite="true">
+			<fileset dir="${run.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${run.par.svr.name}/conf" filtering="no" overwrite="true">
+			<fileset dir="${run.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy -->	
+
+		
+
+		<!-- 将run模板配置文件拷贝到版本中,特殊支撑文件,无模板配置文件
+		<copy todir="${lct.erp.build.dir}/${common.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${run.template}/lct/${common.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${common.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${run.template}/clnt/${common.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${common.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${run.template}/svr/${common.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>  -->
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="run-checkstyle">
+	  <delete dir="${basedir}/../corepower/run/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/run/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/run/output/checkstyle/run-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/run/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>
