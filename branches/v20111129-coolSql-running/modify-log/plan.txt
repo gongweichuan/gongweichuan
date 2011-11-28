@@ -1,0 +1,39 @@
+
+2011-11-07 将扩展点放入DB中存储、使用CoolSql进行辅助开发、自反式、安装使用NSIS、install4j
+2011-10-24 Snow的效果插件
+2011-09-27 下一步job、SpringRichClient
+2011-09-14 开始Derby
+2011-09-14 开始EmbeddedTomcat
+2011-09-13 程序员节
+		        需要一个可视化的东西、那就是系统托盘！ 
+2011-09-09 corepower-psl-debugprn  servicedeployer 
+2011-09-07 run4Debug  
+
+2011-06-20 Welcome CY!
+
+cy join in
+
+2011-06-17
+platform插件代码加入、但是其中的src目录的编码不正确。还是GB2312
+
+2011-06-14
+用代理服务器连接成功
+配置文件：
+D:\Documents and Settings\GONGWEICHUAN001\Application Data\Subversion\servers
+配置值:
+http-proxy-host = 10.17.171.10
+http-proxy-port = 8080
+==============================================
+2011-03-07 可以在线编辑文件。但是好像不能新增文件。
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+目录结构上传到服务器了
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+创建BOOST目录的部分内容，缺少.sh文件
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+创建目录结构。
+在ubuntu上进行开发
+
+$JAVA_HOME 			/usr/lib/jvm/java-6-sun-1.6.0.22/bin
+
+Debian 6 is ok!
+

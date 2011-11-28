@@ -1,0 +1,164 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="systemtray-install" basedir="../../build" default="systemtray-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    systemtray Compilation Targets
+  </description>
+  
+  <target name="systemtray-init" depends="prepare">
+    <property file="${source}/corepower/systemtray/systemtray.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+    	
+	  <!-- 
+	  fileset dir="${gui-component.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="systemtray-compile" depends="systemtray-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${systemtray.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${systemtray.output}"/>
+    <mkdir dir="${systemtray.output}"/>  
+    <mkdir dir="${systemtray.output}/classes"/>
+  	<mkdir dir="${systemtray.output}/lib"/>
+  	
+	<javac srcdir="${systemtray.source}"
+           destdir="${systemtray.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="systemtray-build" depends="systemtray-compile">    
+    <jar jarfile="${systemtray.output}/lib/${systemtray.jar.name}" index="true">
+      <fileset dir="${systemtray.output}/classes">
+		<include name="com/chinaviponline/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="systemtray-install" depends="systemtray-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${systemtray.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${systemtray.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${systemtray.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${systemtray.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${systemtray.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${systemtray.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${systemtray.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${systemtray.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${systemtray.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${systemtray.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${systemtray.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${systemtray.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${systemtray.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${systemtray.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${systemtray.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${systemtray.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${systemtray.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${systemtray.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${systemtray.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${systemtray.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${systemtray.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+
+		<!-- 将systemtray的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${systemtray.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${systemtray.template}/lct/${systemtray.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${systemtray.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${systemtray.template}/clnt/${systemtray.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${systemtray.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${systemtray.template}/svr/${systemtray.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="systemtray-checkstyle">
+	  <delete dir="${basedir}/../corepower/systemtray/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/systemtray/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/systemtray/output/checkstyle/systemtray-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/systemtray/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>

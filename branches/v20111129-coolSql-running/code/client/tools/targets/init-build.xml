@@ -1,0 +1,137 @@
+<?xml version="1.0"	encoding="GB2312"?>
+<!--
+  www.ChinaVipOnline.com License
+  Created on 2005-9-20
+  modifier:gongweichuan
+-->
+<project name="prepare">
+
+	<description>
+		Initialization Targets
+	</description>
+
+	<target	name="buildlog">
+		<property name="buildlog.level" value="info"/>
+		<record name="${basedir}/build.log" append="yes" loglevel="${buildlog.level}"/>
+	</target>
+
+	<target name="init" depends="buildlog">
+
+		<!-- Set the timestamps	-->
+		<tstamp/>
+
+		<!-- Get the (constant)	cocoon properties -->
+		<property file="project.properties"/>
+		<property file="corepower.properties"/>
+
+		<!-- Set classpath -->
+		<path id="classpath">
+			<!-- path	refid="temppath"/ -->
+				<!--fileset dir="${corepower.server.dir}/lib">
+					<include name="jacorb-2.1.jar"/>
+				</fileset -->
+
+			   <fileset dir="${corepower.thirdparty.jar.dir}">
+					<include name="*.jar"/>
+				</fileset>
+		</path>
+
+		<path id="temppath">
+			<fileset dir="${corepower.thirdparty.jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${corepower.kernal.jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${corepower.kernal.server.jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${corepower.api.jar.dir}">
+				<include name="*.jar"/>
+				<include name="corepower-api.sar/*.jar"/>
+			</fileset>
+			<fileset dir="${corepower.pm.api.jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${corepower.mainframe.jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${corepower.equip.jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${crm.jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+	</target>
+
+	<!-- Prepare the build directory -->
+	<target name="prepare" depends="init">
+		<echo>
+======================================================================
+${system}	 ${version}	   [${year}]
+----------------------------------------------------------------------
+Building with ${ant.version}
+----------------------------------------------------------------------
+Using build	file ${ant.file}
+======================================================================
+		</echo>
+	</target>
+
+	<target name="copy-corepower" depends="prepare">
+		<copy todir="${output}/${erp-version}" filtering="no" overwrite="true">
+			<fileset dir="../corepower/corepower-template">
+				<include name="**"/>
+			</fileset>
+		</copy>
+		<copy todir="${output}/${erp-version}/erp-lct" filtering="no" overwrite="true">
+			<fileset dir="../corepower/corepower-template/erp-clnt">
+				<include name="bin/**"/>
+				<include name="deploy/**"/>
+				<include name="kernel/**"/>
+				<include name="lib/**"/>
+				<include name="log/**"/>
+				<include name="platform/corepower-common.par/**"/>
+				<include name="platform/psl/corepower-psl-debugprn.par/**"/>
+				<include name="platform/psl/corepower-psl-systemsupport.par/**"/>
+				<include name="platform/psl/corepower-psl-ftpclient.par/**"/>
+				<include name="platform/pfl/corepower-pfl-mainframe.par/**"/>
+				<include name="platform/pal/corepower-pal-equip.par/**"/>
+				
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copy-erp" depends="copy-corepower">
+		<copy todir="${lct.deploy.dir}"	filtering="no" overwrite="true">
+			<fileset dir="./deploy/lct/deploy">
+				<include name="**"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.deploy.dir}" filtering="no"	overwrite="true">
+			<fileset dir="./deploy/clnt/deploy">
+				<include name="**"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.deploy.dir}"	filtering="no" overwrite="true">
+			<fileset dir="./deploy/svr/deploy">
+				<include name="**"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.deploy.dir}"	filtering="no" overwrite="true">
+			<fileset dir="./deploy/svr/sysdeploy">
+				<include name="deploy.properties"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.deploy.dir}/../platform/pal/corepower-pal-sysmanager.par/conf"	filtering="no" overwrite="true">
+			<fileset dir="./deploy/svr/sysdeploy">
+				<include name="corepower-pal-sysmanage*"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean" depends="init" description="Cleans the crm build">
+		<echo>clean	build outputs...</echo>
+		<delete	dir="${output}"/>		
+	</target>
+</project>

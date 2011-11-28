@@ -1,0 +1,190 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="quartz-install" basedir="../../build" default="quartz-install">
+
+  <import file="../../tools/targets/init-build.xml"/>
+  
+  <description>
+    quartz Compilation Targets
+  </description>
+  
+  <target name="quartz-init" depends="prepare">
+    <property file="${source}/corepower/quartz/quartz.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${corepower.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+    	
+		<fileset dir="${boost.output.lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+    	
+  	  <fileset dir="${quartz.lib}">
+          <include name="*.jar"/>
+        </fileset>
+    
+    	
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="quartz-compile" depends="quartz-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${quartz.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${quartz.output}"/>
+    <mkdir dir="${quartz.output}"/>  
+    <mkdir dir="${quartz.output}/classes"/>
+  	<mkdir dir="${quartz.output}/lib"/>
+  	
+	<javac srcdir="${quartz.source}"
+           destdir="${quartz.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="quartz-build" depends="quartz-compile">    
+    <jar jarfile="${quartz.output}/lib/${quartz.jar.name}" index="true">
+      <fileset dir="${quartz.output}/classes">
+		<include name="com/chinaviponline/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="quartz-install" depends="quartz-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${quartz.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${quartz.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${quartz.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${quartz.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${quartz.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${quartz.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${quartz.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${quartz.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${quartz.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${quartz.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${quartz.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${quartz.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${quartz.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${quartz.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${quartz.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${quartz.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${quartz.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${quartz.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${quartz.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${quartz.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${quartz.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+	  <!-- 拷贝lib中的依赖jar包 -->
+	  <copy todir="${clnt.erp.build.dir}/${quartz.par.clnt.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${quartz.lib}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${quartz.par.lct.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${quartz.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${quartz.par.svr.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${quartz.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+		<!-- 将quartz的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${quartz.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${quartz.template}/lct/${quartz.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${quartz.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${quartz.template}/clnt/${quartz.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${quartz.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${quartz.template}/svr/${quartz.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="quartz-checkstyle">
+	  <delete dir="${basedir}/../corepower/quartz/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../corepower/quartz/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../corepower/quartz/output/checkstyle/quartz-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../corepower/quartz/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>
