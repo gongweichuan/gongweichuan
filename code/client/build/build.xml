@@ -46,6 +46,9 @@
 		<!-- 示例 雪花 不规则窗体和透明窗口-->
 		<available file="./../corepower/helloworld-snow/build.xml" property="helloworld-snow.present" />
 		
+		<!-- 示例 开发工具 CoolSql -->
+		<available file="./../corepower/helloworld-coolsql/build.xml" property="helloworld-coolsql.present" />
+		
 		<!-- 定时任务 -->
 		<available file="./../corepower/quartz/build.xml" property="quartz.present" />
 		
@@ -102,6 +105,9 @@
 		
 		<!-- 示例 雪花 不规则窗体和透明窗口-->
 		<antcall target="helloworld-snow build" />
+		
+		<!-- 示例 开发工具 CoolSql-->
+		<antcall target="helloworld-coolsql build" />
 		
 		<!-- 定时任务 -->
 		<antcall target="quartz build" />
@@ -208,6 +214,13 @@
 	<!-- 示例 雪花 不规则窗体和透明窗口-->
 	<target name="helloworld-snow build" if="helloworld-snow.present">
 		<exec executable="cmd.exe" dir="./../corepower/helloworld-snow">
+			<arg line="/c build.bat" />
+		</exec>
+	</target>
+	
+	<!-- 示例 开发工具 CoolSql-->
+	<target name="helloworld-coolsql build" if="helloworld-coolsql.present">
+		<exec executable="cmd.exe" dir="./../corepower/helloworld-coolsql">
 			<arg line="/c build.bat" />
 		</exec>
 	</target>
