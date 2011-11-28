@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 import org.jdom.*;
 import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 /**
@@ -167,8 +168,10 @@ public class DeployExcludeXmlParser
                     e = (Element)it0.next();                    
                 }
 
-                fileset_e.removeChildren();
-                newFileset_e.setChildren(newChildren);
+//                fileset_e.removeChildren();
+                fileset_e.removeContent();
+//                newFileset_e.setChildren(newChildren);
+                newFileset_e.setContent(newChildren);
                 String path = fdir.getCanonicalPath();
                 newFileSetPathList.add(path);
             }
@@ -214,7 +217,8 @@ public class DeployExcludeXmlParser
                 }
             }
 
-            DeployedPar_e.setChildren(newFileSetParPathList);
+//            DeployedPar_e.setChildren(newFileSetParPathList);
+            DeployedPar_e.setContent(newFileSetParPathList);
         }
         catch(IOException e)
         {
@@ -246,11 +250,16 @@ public class DeployExcludeXmlParser
         try
         {
             fw = new FileWriter(outFileName);
-            XMLOutputter outputter = new XMLOutputter();
-            outputter.setTrimAllWhite(true);
-            outputter.setIndent("    ");
-            outputter.setNewlines(true);
-            outputter.setEncoding("GB2312");
+            
+            Format format = Format.getCompactFormat();    
+            format.setEncoding("gb2312"); //setEncoding就是设置编码了    
+            format.setIndent("    "); //setIndent是设置分隔附的意思，一般都是用空格，就是当你新节点后，自动换行并缩进，有层次感，如果这样写setIndent("")，就只有换行功能，而不会缩进了，如果写成setIndent(null)，这样就即不换行也不缩进，全部以一行显示了，默认的就是这样的效果，不好看。    
+                        
+            XMLOutputter outputter = new XMLOutputter(format);
+//            outputter.setTrimAllWhite(true);
+//            outputter.setIndent("    ");
+//            outputter.setNewlines(true);
+//            outputter.setEncoding("GB2312");
             outputter.output(doc1, fw);
         }
         catch(Exception ignore)
