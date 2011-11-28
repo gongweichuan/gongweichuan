@@ -8,6 +8,7 @@ import java.util.*;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 import com.chinaviponline.erp.corepower.psl.systemsupport.filescanner.FileScanner;
@@ -946,7 +947,15 @@ public final class PreProcess
             main.setAttribute("depends", dependStr);
             root.addContent(main);
             doc.setRootElement(root);
-            XMLOutputter outp = new XMLOutputter(" ", true, "GB2312");
+            
+            Format format = Format.getCompactFormat();    
+            format.setEncoding("gb2312"); //setEncoding就是设置编码了    
+            format.setIndent("    "); //setIndent是设置分隔附的意思，一般都是用空格，就是当你新节点后，自动换行并缩进，有层次感，如果这样写setIndent("")，就只有换行功能，而不会缩进了，如果写成setIndent(null)，这样就即不换行也不缩进，全部以一行显示了，默认的就是这样的效果，不好看。    
+
+            
+//            XMLOutputter outp = new XMLOutputter(" ", true, "GB2312");
+            XMLOutputter outp = new XMLOutputter(format);
+            
             outp.output(doc, new FileOutputStream(global_file));
         }
         catch (IOException ex)
