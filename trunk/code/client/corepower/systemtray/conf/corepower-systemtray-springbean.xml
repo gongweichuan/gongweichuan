@@ -42,8 +42,8 @@
 		<property name="operate">
 			<ref local="extensionsOperate"></ref>
 		</property>
-	</bean>
-	<bean id="extensionsFromDB" class="com.chinaviponline.erp.corepower.tray.impl.TExtensionsFromDBImpl">
+	</bean> 
+	<bean id="extensionsFromDB" class="com.chinaviponline.erp.corepower.tray.impl.TExtensionsFromDBImpl" singleton="false">
 		<property name="operate">
 			<ref local="extensionsOperate"></ref>
 		</property>
