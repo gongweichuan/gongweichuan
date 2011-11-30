@@ -1,4 +1,4 @@
-﻿package com.coolsql.action.framework;
+package com.coolsql.action.framework;
 
 import java.beans.BeanInfo;
 import java.beans.ExceptionListener;

@@ -1,4 +1,4 @@
-﻿package com.coolsql.action.framework;
+package com.coolsql.action.framework;
 
 import java.io.File;
 import java.util.HashMap;
