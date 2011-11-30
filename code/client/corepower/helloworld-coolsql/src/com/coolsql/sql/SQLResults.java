@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql;
+package com.coolsql.sql;
 
 /**
  * The base class of result of SQL statment execution.

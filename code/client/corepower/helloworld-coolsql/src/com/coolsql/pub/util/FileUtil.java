@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.util;
+package com.coolsql.pub.util;
 
 import java.awt.Container;
 import java.io.BufferedReader;

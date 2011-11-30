@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2006-6-2
  */
 package com.coolsql.bookmarkBean;

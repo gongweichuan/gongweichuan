@@ -1,4 +1,4 @@
-﻿/*
+/*
  * JEditTextArea.java - jEdit's text component
  * Copyright (C) 1999 Slava Pestov
  *

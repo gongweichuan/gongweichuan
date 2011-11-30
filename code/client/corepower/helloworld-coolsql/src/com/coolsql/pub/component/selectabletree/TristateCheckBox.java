@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * $Log: TristateCheckBox.java,v $
  * Revision 1.1  2010/08/03 14:09:24  xiaolin
  * 合并dbmanage和sqleditor

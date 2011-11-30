@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.display;
+package com.coolsql.pub.display;
 
 /*
  * DefaultInputHandler.java - Default implementation of an input handler

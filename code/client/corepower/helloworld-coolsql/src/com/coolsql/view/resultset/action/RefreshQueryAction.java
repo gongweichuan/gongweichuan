@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Create date:2008-4-30
  */
 package com.coolsql.view.resultset.action;

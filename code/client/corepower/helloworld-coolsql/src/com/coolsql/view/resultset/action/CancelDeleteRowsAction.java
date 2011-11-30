@@ -1,4 +1,4 @@
-﻿package com.coolsql.view.resultset.action;
+package com.coolsql.view.resultset.action;
 
 import java.awt.event.ActionEvent;
 

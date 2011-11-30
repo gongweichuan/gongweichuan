@@ -1,4 +1,4 @@
-﻿package com.coolsql.system;
+package com.coolsql.system;
 
 import java.awt.Color;
 import java.awt.Font;

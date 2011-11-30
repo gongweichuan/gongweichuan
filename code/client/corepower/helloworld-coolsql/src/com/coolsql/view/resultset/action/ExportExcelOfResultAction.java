@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 创建日期 2006-10-27
  */
 package com.coolsql.view.resultset.action;

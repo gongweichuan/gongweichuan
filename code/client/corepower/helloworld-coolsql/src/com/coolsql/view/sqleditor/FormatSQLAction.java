@@ -1,4 +1,4 @@
-﻿package com.coolsql.view.sqleditor;
+package com.coolsql.view.sqleditor;
 
 import java.awt.event.ActionEvent;
 

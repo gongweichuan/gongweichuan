@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.formater;
+package com.coolsql.sql.formater;
 
 import javax.swing.text.BadLocationException;
 

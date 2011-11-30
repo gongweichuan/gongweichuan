@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-2-7
  */
 package com.coolsql.popprompt.sqleditor;

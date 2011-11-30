@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Create date:2008-5-1
  */
 package com.coolsql.system.menu.action;

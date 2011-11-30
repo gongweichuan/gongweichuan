@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created date: 2006-9-16
  */
 package com.coolsql.search;

@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql;
+package com.coolsql.sql;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

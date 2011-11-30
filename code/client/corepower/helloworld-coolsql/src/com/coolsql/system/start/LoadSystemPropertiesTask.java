@@ -1,4 +1,4 @@
-﻿package com.coolsql.system.start;
+package com.coolsql.system.start;
 
 import java.io.File;
 import java.util.Properties;

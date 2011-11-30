@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.util;
+package com.coolsql.pub.util;
 
 /**
  * A dynamic byte[] array which gives direct access to the underlying 

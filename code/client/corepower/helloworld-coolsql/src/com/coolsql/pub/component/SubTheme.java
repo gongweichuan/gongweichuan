@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.component;
+package com.coolsql.pub.component;
 
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.MetalTheme;

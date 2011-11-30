@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 创建日期 2006-11-9
  */
 package com.coolsql.view.bookmarkview;

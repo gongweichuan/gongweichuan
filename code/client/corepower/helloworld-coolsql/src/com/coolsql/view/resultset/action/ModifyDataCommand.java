@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-2-1
  */
 package com.coolsql.view.resultset.action;

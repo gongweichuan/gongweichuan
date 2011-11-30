@@ -1,4 +1,4 @@
-﻿package com.coolsql.bookmarkBean;
+package com.coolsql.bookmarkBean;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

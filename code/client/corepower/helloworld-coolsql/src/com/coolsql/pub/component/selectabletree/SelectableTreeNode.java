@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.component.selectabletree;
+package com.coolsql.pub.component.selectabletree;
 
 import java.util.ArrayList;
 import java.util.Arrays;

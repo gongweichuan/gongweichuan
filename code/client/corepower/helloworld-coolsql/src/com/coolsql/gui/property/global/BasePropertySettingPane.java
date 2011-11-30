@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Create date:2008-5-3
  */
 package com.coolsql.gui.property.global;

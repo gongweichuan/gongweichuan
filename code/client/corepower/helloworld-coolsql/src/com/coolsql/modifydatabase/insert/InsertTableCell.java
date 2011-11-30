@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-3-2
  */
 package com.coolsql.modifydatabase.insert;

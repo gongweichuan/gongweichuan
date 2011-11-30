@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.display;
+package com.coolsql.pub.display;
 
 /*
  * TextAreaPainter.java - Paints the text area

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Create date:2008-5-4
  */
 package com.coolsql.pub.component;

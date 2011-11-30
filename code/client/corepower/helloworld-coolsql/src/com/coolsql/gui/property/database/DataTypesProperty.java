@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 创建日期 2006-9-12
  */
 package com.coolsql.gui.property.database;

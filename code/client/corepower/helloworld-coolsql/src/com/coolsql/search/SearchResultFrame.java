@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 创建日期 2006-8-19
  */
 package com.coolsql.search;

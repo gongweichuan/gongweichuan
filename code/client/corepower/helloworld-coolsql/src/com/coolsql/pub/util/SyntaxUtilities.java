@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.util;
+package com.coolsql.pub.util;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

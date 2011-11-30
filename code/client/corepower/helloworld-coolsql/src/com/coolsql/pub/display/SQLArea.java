@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-1-8
  */
 package com.coolsql.pub.display;
