@@ -1,4 +1,4 @@
-﻿package com.coolsql.adapters.dialect;
+package com.coolsql.adapters.dialect;
 
 /**
  * Exception subclass to indicate the user cancelled the copy operation.

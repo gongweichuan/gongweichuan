@@ -1,4 +1,4 @@
-﻿package com.coolsql.adapters.dialect;
+package com.coolsql.adapters.dialect;
 
 /**
  * This is thrown by DialectFactory.getDialect to indicate that the dialect 

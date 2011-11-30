@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2004, 2005, 2006 H2 Group.
  */
 package com.coolsql.adapters.dialect;

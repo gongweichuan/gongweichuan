@@ -1,4 +1,4 @@
-﻿package com.coolsql.adapters.dialect;
+package com.coolsql.adapters.dialect;
 
 public class MySQL5Dialect extends MySQLDialect {
 
