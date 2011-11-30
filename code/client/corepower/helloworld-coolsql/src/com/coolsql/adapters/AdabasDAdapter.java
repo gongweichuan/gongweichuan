@@ -1,4 +1,4 @@
-﻿package com.coolsql.adapters;
+package com.coolsql.adapters;
 
 
 public class AdabasDAdapter extends DatabaseAdapter

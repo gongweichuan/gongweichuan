@@ -1,4 +1,4 @@
-﻿package com.coolsql.adapters;
+package com.coolsql.adapters;
 
 import java.util.HashMap;
 import java.util.Map;
