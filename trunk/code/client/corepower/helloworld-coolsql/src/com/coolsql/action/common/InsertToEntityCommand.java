@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-1-31
  */
 package com.coolsql.action.common;

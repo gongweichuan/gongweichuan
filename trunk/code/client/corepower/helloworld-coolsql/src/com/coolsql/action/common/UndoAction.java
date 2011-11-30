@@ -1,4 +1,4 @@
-﻿package com.coolsql.action.common;
+package com.coolsql.action.common;
 
 import java.awt.event.ActionEvent;
 
