@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.interfaces;
+package com.coolsql.sql.interfaces;
 
 /**
  * An interface to get parts of a character source.

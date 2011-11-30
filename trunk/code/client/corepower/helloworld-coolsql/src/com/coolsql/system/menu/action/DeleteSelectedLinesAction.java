@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CoolSQL 2009 copyright.
  * You must confirm to the GPL license if want to reuse and redistribute the codes.
  * 2009-12-22

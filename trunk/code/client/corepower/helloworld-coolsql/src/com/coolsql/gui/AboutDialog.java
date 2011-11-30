@@ -1,4 +1,4 @@
-﻿package com.coolsql.gui;
+package com.coolsql.gui;
 
 
 import java.awt.BorderLayout;

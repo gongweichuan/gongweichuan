@@ -1,4 +1,4 @@
-﻿package com.coolsql.exportdata.html;
+package com.coolsql.exportdata.html;
 
 import java.util.Vector;
 

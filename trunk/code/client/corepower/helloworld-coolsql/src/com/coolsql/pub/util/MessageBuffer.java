@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.util;
+package com.coolsql.pub.util;
 
 import java.util.Collections;
 import java.util.LinkedList;

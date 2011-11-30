@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This file is part of a syntax highlighting package
  * Copyright (C) 2002  Stephen Ostermiller
  * http://ostermiller.org/contact.pl?regarding=Syntax+Highlighting

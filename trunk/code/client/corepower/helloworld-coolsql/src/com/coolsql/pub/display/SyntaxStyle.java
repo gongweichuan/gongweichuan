@@ -1,4 +1,4 @@
-﻿/*
+/*
  * SyntaxStyle.java - A simple text style class
  * Copyright (C) 1999 Slava Pestov
  *

@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.model;
+package com.coolsql.sql.model;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;

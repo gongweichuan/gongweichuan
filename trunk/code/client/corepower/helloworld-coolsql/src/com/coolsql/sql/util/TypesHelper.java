@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.util;
+package com.coolsql.sql.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

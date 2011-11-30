@@ -1,4 +1,4 @@
-﻿package com.coolsql.gui.property.database;
+package com.coolsql.gui.property.database;
 
 import java.sql.SQLException;
 

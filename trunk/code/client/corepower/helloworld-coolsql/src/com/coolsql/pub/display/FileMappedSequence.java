@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.display;
+package com.coolsql.pub.display;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.util;
+package com.coolsql.pub.util;
 
 import java.io.IOException;
 import java.io.Reader;

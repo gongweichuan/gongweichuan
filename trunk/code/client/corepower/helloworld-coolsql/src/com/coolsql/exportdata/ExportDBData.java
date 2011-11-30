@@ -1,4 +1,4 @@
-﻿package com.coolsql.exportdata;
+package com.coolsql.exportdata;
 
 import com.coolsql.bookmarkBean.Bookmark;
 

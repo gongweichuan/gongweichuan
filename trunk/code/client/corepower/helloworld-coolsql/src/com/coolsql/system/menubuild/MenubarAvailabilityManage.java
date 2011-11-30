@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-5-18
  */
 package com.coolsql.system.menubuild;

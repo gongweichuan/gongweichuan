@@ -1,4 +1,4 @@
-﻿/*
+/*
  * @(#)TextComponentSearchable.java 10/11/2005
  *
  * Copyright 2002 - 2005 JIDE Software Inc. All rights reserved.

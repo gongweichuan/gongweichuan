@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.util;
+package com.coolsql.sql.util;
 
 import java.text.MessageFormat;
 import java.util.MissingResourceException;

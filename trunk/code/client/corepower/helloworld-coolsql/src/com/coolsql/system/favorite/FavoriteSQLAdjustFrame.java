@@ -1,4 +1,4 @@
-﻿package com.coolsql.system.favorite;
+package com.coolsql.system.favorite;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

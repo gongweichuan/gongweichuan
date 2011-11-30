@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-1-18
  */
 package com.coolsql.gui.property.database;

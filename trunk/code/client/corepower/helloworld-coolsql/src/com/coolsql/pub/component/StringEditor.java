@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.component;
+package com.coolsql.pub.component;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

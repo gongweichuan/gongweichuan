@@ -1,4 +1,4 @@
-﻿/*
+/*
  * SettingFactory.java
  *
  * This file is part of CoolSQL, http://coolsql.dev.java.net.

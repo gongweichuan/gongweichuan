@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created on 2007-2-9
  */
 package com.coolsql.view.sqleditor.pop;

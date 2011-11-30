@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.display;
+package com.coolsql.pub.display;
 
 /*
  * InputHandler.java - Manages key bindings and executes actions

@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.model;
+package com.coolsql.sql.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql;
+package com.coolsql.sql;
 
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-﻿package com.coolsql.exportdata;
+package com.coolsql.exportdata;
 
 import java.io.File;
 import java.io.FileNotFoundException;

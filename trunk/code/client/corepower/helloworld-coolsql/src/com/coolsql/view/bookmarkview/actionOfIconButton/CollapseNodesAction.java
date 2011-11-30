@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 创建日期 2006-9-20
  */
 package com.coolsql.view.bookmarkview.actionOfIconButton;

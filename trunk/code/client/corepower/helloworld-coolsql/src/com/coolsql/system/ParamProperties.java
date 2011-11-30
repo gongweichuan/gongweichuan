@@ -1,4 +1,4 @@
-﻿package com.coolsql.system;
+package com.coolsql.system;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

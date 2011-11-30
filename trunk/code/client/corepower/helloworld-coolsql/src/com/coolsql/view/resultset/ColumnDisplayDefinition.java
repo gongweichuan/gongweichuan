@@ -1,4 +1,4 @@
-﻿package com.coolsql.view.resultset;
+package com.coolsql.view.resultset;
 
 /**
  * 

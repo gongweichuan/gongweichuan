@@ -1,4 +1,4 @@
-﻿package com.coolsql.view.sqleditor;
+package com.coolsql.view.sqleditor;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

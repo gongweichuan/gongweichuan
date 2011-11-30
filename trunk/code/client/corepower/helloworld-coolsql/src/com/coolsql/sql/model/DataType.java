@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.model;
+package com.coolsql.sql.model;
 
 import com.coolsql.sql.util.TypesHelper;
 

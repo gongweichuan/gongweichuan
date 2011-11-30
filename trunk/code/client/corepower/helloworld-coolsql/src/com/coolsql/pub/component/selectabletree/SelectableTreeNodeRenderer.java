@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.component.selectabletree;
+package com.coolsql.pub.component.selectabletree;
 
 import java.awt.Color;
 import java.awt.Component;

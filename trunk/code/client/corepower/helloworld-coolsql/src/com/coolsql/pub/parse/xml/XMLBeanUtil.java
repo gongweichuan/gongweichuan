@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 创建日期 2006-11-6
  */
 package com.coolsql.pub.parse.xml;

@@ -1,4 +1,4 @@
-﻿package com.coolsql.gui.property;
+package com.coolsql.gui.property;
 
 import java.awt.Component;
 /**

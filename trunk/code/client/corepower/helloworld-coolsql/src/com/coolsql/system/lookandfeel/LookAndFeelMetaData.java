@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Create date:2008-4-24
  */
 package com.coolsql.system.lookandfeel;

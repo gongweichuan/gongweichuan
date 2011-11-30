@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.util;
+package com.coolsql.pub.util;
 
 import com.coolsql.pub.display.FileMappedSequence;
 import com.coolsql.sql.interfaces.CharacterSequence;

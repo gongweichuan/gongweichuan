@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Created date: 2006-9-8
  */
 package com.coolsql.sql.commonoperator;

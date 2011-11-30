@@ -1,4 +1,4 @@
-﻿package com.coolsql.sql.model;
+package com.coolsql.sql.model;
 /**
  * View entity definition.
  * @author liu_xlin

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 
  */
 package com.coolsql.view.sqleditor.action;

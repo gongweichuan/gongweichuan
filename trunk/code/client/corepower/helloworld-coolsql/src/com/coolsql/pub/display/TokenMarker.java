@@ -1,4 +1,4 @@
-﻿package com.coolsql.pub.display;
+package com.coolsql.pub.display;
 /*
  * TokenMarker.java - Generic token marker
  * Copyright (C) 1998, 1999 Slava Pestov

@@ -1,4 +1,4 @@
-﻿
+
 package com.coolsql.system;
 
 import java.io.Serializable;
