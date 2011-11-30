@@ -1,4 +1,4 @@
-﻿/*
+/*
  * 创建日期 2006-9-26
  */
 package com.coolsql.action.common;
