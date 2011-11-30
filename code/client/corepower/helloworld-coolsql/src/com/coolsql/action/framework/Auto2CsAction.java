@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Create date:2009-12-23
  */
 package com.coolsql.action.framework;

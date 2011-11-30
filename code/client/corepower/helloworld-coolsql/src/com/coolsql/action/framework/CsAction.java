@@ -1,4 +1,4 @@
-﻿package com.coolsql.action.framework;
+package com.coolsql.action.framework;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
