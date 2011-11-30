@@ -1,4 +1,4 @@
-﻿package com.coolsql.adapters.dialect;
+package com.coolsql.adapters.dialect;
 
 import java.io.Serializable;
 import java.util.Comparator;

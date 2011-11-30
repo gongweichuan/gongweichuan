@@ -1,4 +1,4 @@
-﻿package com.coolsql.adapters.dialect;
+package com.coolsql.adapters.dialect;
 
 import java.sql.Types;
 import java.util.ArrayList;
