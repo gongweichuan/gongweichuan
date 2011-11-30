@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>    
+   <!-- quartz 启动定时任务 -->	
+   <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<!--
+	   <property name="dataSource">
+			<ref bean="dataSource"/>
+		</property>
+	   <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+		
+	   <property name="globalTriggerListeners">  
+			<list>  
+				<ref bean="globleLogListener" />   
+			</list>  
+		</property> -->
+	  <!--  <property name="overwriteExistingJobs" value="true" />    覆盖已经存在的job -->
+		<property name="triggers">  
+			<list>  
+				<!-- 心跳 作业 -->  
+				<ref bean="heartBeatImplJobTrigger"/>  
+			</list>  
+		</property>  
+		<!--  使用默认配置  
+		<property name="configLocation" value="classpath:quartz.properties" />   --> 
+		
+	</bean>	
+	
+	<bean id="heartBeatImpl" class="com.chinaviponline.erp.corepower.quartz.impl.HeartBeatImpl"></bean>	
+	<bean id="heartBeatImplJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+       <!-- 调用的类 -->  
+       <property name="targetObject">  
+           <ref bean="heartBeatImpl" />  
+       </property>  
+       <!-- 调用类中的方法 -->  
+       <property name="targetMethod">  
+           <value>execute</value>  
+       </property>  
+   </bean>  
+  
+   <!-- 定义触发时间 -->  
+   <bean id="heartBeatImplJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+       <property name="jobDetail">  
+           <ref bean="heartBeatImplJob" />  
+       </property>  
+       <!-- cron表达式 -->  
+       <property name="cronExpression">  
+        <!-- 每三分钟,触发一次。 -->  
+           <value>0 0/3 * * * ?</value>  
+       </property>  
+   </bean>  
+</beans> 

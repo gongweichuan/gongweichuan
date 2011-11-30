@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE server>
+<server>
+    <mbean code="com.chinaviponline.erp.corepower.api.ApiBind" name="api:service=ApiBind,par=corepower-common.par"/>
+</server>

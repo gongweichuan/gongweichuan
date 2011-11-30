@@ -1,0 +1,10 @@
+REM # create keystore file
+keytool -genkey -dname "CN=Pingan Bank, OU=Pingan, O=Pingan, L=Shenzhen, ST=Shenzhen, C=CN" -alias trans4test -keyalg RSA -keysize 1024 -keystore trans4test.jks -keypass cup_cpcx -storepass cup_cpcx -validity 365
+
+
+REM # export cert file
+keytool -export -alias trans4test -file trans4test.cer  -keystore trans4test.jks -storepass cup_cpcx -rfc
+
+
+C:\j2sdk1.4.2_08\bin>keytool -list -keystore trans4test.jks -storepass cup_cpcx
+-rfc
