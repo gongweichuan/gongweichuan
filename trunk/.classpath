@@ -15,11 +15,11 @@
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jboss-j2ee.jar"/>
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jboss-jmx.jar"/>
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jboss-system.jar"/>
-	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jdom.jar"/>
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jhall.jar"/>
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/log4j.jar"/>
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/OfficeLnFs_2.6.jar"/>
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/spring.jar"/>
+	<classpathentry kind="lib" path="code/client/corepower/corepower-template/erp-clnt/lib/jdom-1.1.2.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
