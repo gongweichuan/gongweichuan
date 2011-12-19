@@ -483,7 +483,7 @@ public class LoadJar {
 				}
 			}
 			if (list.size() < 1) {
-				classLoader = new LibLoader(new URL[0]);
+				classLoader = new LibLoader(new URL[0],Thread.currentThread().getContextClassLoader());
 			} else
 			{
 				classLoader = new LibLoader(getLibURL((File[]) list
