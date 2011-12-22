@@ -25,3 +25,7 @@ http://www.mybatis.org/java.html
 
 JQuartz
 http://quartz-scheduler.org/documentation/quartz-2.1.x/quick-start
+
+NSIS
+http://eclipsensis.sourceforge.net/index.shtml
+http://nsis.sourceforge.net/EclipseNSIS_-_NSIS_plugin_for_Eclipse
