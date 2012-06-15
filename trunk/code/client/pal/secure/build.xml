@@ -1,0 +1,188 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  www.ChinaVipOnline.com License.
+-->
+<project name="secure-install" basedir="../../build" default="secure-install">
+
+  <import file="../../tools/targets/init-build.xml" />
+  
+  <description>
+    secure Compilation Targets
+  </description>
+  
+  <target name="secure-init" depends="prepare">
+    <property file="${source}/pal/secure/secure.properties"/>
+    
+    <path id="javac.classpath">
+      <path refid="classpath"/>
+      <fileset dir="${pal.thirdparty.jar.dir}">
+        <include name="*.jar"/>
+      </fileset>
+
+  	  <fileset dir="${platform.output.lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+		
+	 <fileset dir="${secure.lib}">
+		 <include name="*.jar"/>
+	 </fileset>
+	  <!-- 
+	  fileset dir="${gui-component.output.lib.dir}">
+        <include name="*.jar"/>
+      </fileset -->
+    </path>        
+  </target>           
+
+  <!-- compiles the core -->
+  <target name="secure-compile" depends="secure-init"> 
+	<echo>	
+			=====================================compile begin==========================
+			                 ${system} ${version} [${year}] ${secure.dir}
+			============================================================================
+	</echo>	
+    <delete dir="${secure.output}"/>
+    <mkdir dir="${secure.output}"/>  
+    <mkdir dir="${secure.output}/classes"/>
+  	<mkdir dir="${secure.output}/lib"/>
+  	
+	<javac srcdir="${secure.source}"
+           destdir="${secure.output}/classes"
+           debug="${debug}"
+           debuglevel="${debuglevel}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           nowarn="${compiler.nowarn}"
+		   encoding="${encoding}"
+		   target="${target}"
+           classpathref="javac.classpath">
+		 <compilerarg line="${compilerarg.line}"/>   
+	</javac>
+  </target>
+
+  <target name="secure-build" depends="secure-compile">    
+    <jar jarfile="${secure.output}/lib/${secure.jar.name}" index="true">
+      <fileset dir="${secure.output}/classes">
+		<include name="com/chinaviponline/**"/>
+		<exclude name="*.scc"/> 
+	  </fileset>
+    </jar>
+  </target>
+	
+<target name="secure-install" depends="secure-build">
+       <!-- 拷贝到版本中-->
+	<mkdir dir="${lct.erp.build.dir}/${secure.par.lct.name}"/>
+      	<copy todir="${lct.erp.build.dir}/${secure.par.lct.name}" filtering="no" overwrite="true">
+		<fileset dir="${secure.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>		
+	<mkdir dir="${clnt.erp.build.dir}/${secure.par.clnt.name}"/>
+      	<copy todir="${clnt.erp.build.dir}/${secure.par.clnt.name}" filtering="no" overwrite="true">
+		<fileset dir="${secure.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	<mkdir dir="${svr.erp.build.dir}/${secure.par.svr.name}"/>
+      	<copy todir="${svr.erp.build.dir}/${secure.par.svr.name}" filtering="no" overwrite="true">
+		<fileset dir="${secure.output}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</copy>	
+	
+
+  <!-- 拷贝配置文件 -->
+  <copy todir="${clnt.erp.build.dir}/${secure.par.clnt.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${secure.conf}">
+			<include name="**"/>
+			<exclude name="*.scc"/> 
+		</fileset>
+	</copy>
+	
+	<copy todir="${lct.erp.build.dir}/${secure.par.lct.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${secure.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	<copy todir="${svr.erp.build.dir}/${secure.par.svr.name}/conf" filtering="no" overwrite="true">
+		<fileset dir="${secure.conf}">
+			<include name="**"/>
+	 		<exclude name="*.scc"/> 
+		</fileset>
+	</copy>	
+	
+	  <!-- 拷贝资源文件 -->
+	  <copy todir="${clnt.erp.build.dir}/${secure.par.clnt.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${secure.res}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${secure.par.lct.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${secure.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${secure.par.svr.name}/res" filtering="no" overwrite="true">
+			<fileset dir="${secure.res}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+	  <!-- 拷贝lib包 -->
+	  <copy todir="${clnt.erp.build.dir}/${secure.par.clnt.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${secure.lib}">
+				<include name="**"/>
+				<exclude name="*.scc"/> 
+			</fileset>
+		</copy>
+		
+		<copy todir="${lct.erp.build.dir}/${secure.par.lct.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${secure.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+	
+		<copy todir="${svr.erp.build.dir}/${secure.par.svr.name}/lib" filtering="no" overwrite="true">
+			<fileset dir="${secure.lib}">
+				<include name="**"/>
+		 		<exclude name="*.scc"/> 
+			</fileset>
+		</copy>	
+
+		<!-- 将secure的parinfo.xml拷贝到版本中 -->
+		<copy todir="${lct.erp.build.dir}/${secure.par.lct.name}" filtering="no" overwrite="true">
+			<fileset dir="${secure.template}/lct/${secure.par.lct.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${clnt.erp.build.dir}/${secure.par.clnt.name}" filtering="no" overwrite="true">
+			<fileset dir="${secure.template}/clnt/${secure.par.clnt.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${svr.erp.build.dir}/${secure.par.svr.name}" filtering="no" overwrite="true">
+			<fileset dir="${secure.template}/svr/${secure.par.svr.name}">
+				<include name="*.xml"/>
+			</fileset>
+		</copy>
+
+  </target>  
+  
+   <!-- 模块的checkstyle检查 -->
+  <taskdef resource="checkstyletask.properties" classpath="${basedir}/../tools/lib/checkstyle-all.jar"/>
+  <target name="secure-checkstyle">
+	  <delete dir="${basedir}/../pal/secure/output/checkstyle"/>
+	  <mkdir dir="${basedir}/../pal/secure/output/checkstyle"/>
+    <checkstyle config="${basedir}/../tools/lib/unitrans_coding_checks.xml" classpath="${basedir}/../tools/lib/checkstyle-all.jar">
+		  <formatter type="xml" tofile="${basedir}/../pal/secure/output/checkstyle/secure-checkstyle.xml"/>
+		  <fileset dir="${basedir}/../pal/secure/src" includes="**/*.java"/>
+	  </checkstyle>
+  </target>
+
+</project>
