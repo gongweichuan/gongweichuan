@@ -2,6 +2,7 @@ package com.chinaviponline.erp.pal.secure.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -53,7 +54,7 @@ public class TCreateJksFile implements ICreateJksFile
         String strValidity=(String)map.get("validity");
         
         String strGenkey=strStart+" "+strKeytool+" ";
-        strGenkey+="-genkey -dname"+" "+strGenkeyDname+" ";
+        strGenkey+="-genkey -dname"+" \""+strGenkeyDname+"\" ";
         strGenkey+="-alias"+" "+strAlias+" ";
         strGenkey+="-keyalg"+" "+strKeyalg+" ";
         strGenkey+="-keysize"+" "+strKeysize+" ";
@@ -62,6 +63,7 @@ public class TCreateJksFile implements ICreateJksFile
         strGenkey+="-storepass"+" "+strStorepass+" ";
         strGenkey+="-validity"+" "+strValidity;
         
+        //System.out.println("CmdLine keygen:"+strGenkey);
         log.info("CmdLine keygen:"+strGenkey);
         
         //keytool -export -alias pinganmer -file pinganmer.cer  -keystore pinganmer.jks -storepass 12345678 -rfc
@@ -70,13 +72,17 @@ public class TCreateJksFile implements ICreateJksFile
         
         String strFile=(String)map.get("file");
         strExport+="-file"+" "+strFile+" ";
-        strExport+="-keystore"+" "+strKeystore+"";
-        strExport+="-storepass"+" "+strGenkey+" -rfc";
+        strExport+="-keystore"+" "+strKeystore+" ";
+        strExport+="-storepass"+" "+strStorepass+" -rfc";
         
+        System.out.println("CmdLine keygen:"+strExport);
         log.info("CmdLine export:"+strExport);
         try
         {
             Process genkey=Runtime.getRuntime().exec(strGenkey, null, new File(strDir));
+            
+            //OutputStream outs=genkey.getOutputStream();
+           // System.out.println(outs.);
             Process export=Runtime.getRuntime().exec(strExport, null, new File(strDir));
         }
         catch (IOException e)
